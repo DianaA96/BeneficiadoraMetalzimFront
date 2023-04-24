@@ -1,5 +1,6 @@
 import React from 'react'
 import "../styles/landingPage.css"
+import "../styles/button.css"
 import Science from "../assets/IconsLandingPages/science.png"
 import Group from "../assets/IconsLandingPages/group.png"
 import History from "../assets/IconsLandingPages/history.png"
@@ -19,7 +20,8 @@ function LandingPage() {
         <body className="containerLandingPage">
             <div>
                 <img className="miniLogo" src={LogoMini}/>
-                <header className="titleLandingPage">Bienvenido, {rol}</header>
+                <header className="titleLandingPage">Bienvenido, {rol} <button className='buttonLogOutLP'><span class="material-symbols-outlined">logout</span></button></header>
+                
             </div>
             {opciones.map((option, i) =>
                 <div className={`stripLandingPage strip${i+1}`} style={{width: `${100/option[3]}vw`}}> 
@@ -28,7 +30,8 @@ function LandingPage() {
                     </span>
                     <div className="textAndButtonInStrip">    
                         <p>{option[0]}</p>
-                        <button className="buttonLandingPage">Ir<span className="material-symbols-outlined">expand_more</span></button>
+                        <button className="buttonLandingPage"><span className='textoEnBotonLP'>Ir</span></button>
+                        <p className='iconButtonLandingPage'><span className="material-symbols-outlined">expand_more</span></p>
                     </div>
                 </div>
             )}
