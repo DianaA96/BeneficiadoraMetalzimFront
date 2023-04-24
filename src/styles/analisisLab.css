@@ -1,0 +1,86 @@
+.card {
+    padding: 75px;
+    margin-top: 54px;
+    margin-bottom: 54px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 65%;    
+}
+
+.custom-button {
+    background-color: #575353;
+    color: #FFFFFF;
+    border-radius: 4px;
+    font-size: 22px;
+    text-align: center;
+    width: 18%;
+    min-height: fit-content;
+    height: 56px;
+}
+
+.button-text {
+    display: block;
+}
+
+.button-content{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.cabeza{
+    padding-left: 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.turno{
+    font-style: bold;
+    font-weight: 660;
+    color: #4D4A4A;
+    font-size: 30px;
+}
+
+.tablona {
+
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.tablona th,
+.tablona td {
+    padding: 8px;
+    text-align: center;
+    border: 5px solid;
+    border-color: #FAD3BA;
+    font-size: 20px;
+}
+
+.tablona span{
+    color: black;
+    font-weight: 1;
+    display: grid;
+    justify-items: center;
+    font-style: oblique;
+    font-size: 16px;
+}
+
+.tablona td{
+    font-weight: 340;
+    font-size: 20px;
+}
+
+hr{
+    border: 1.5px solid;
+    width: 97%;
+    color: #B4B1B1;
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
