@@ -1,0 +1,66 @@
+.iconLandingPage {
+    height: 55vh;
+}
+
+.miniLogo {
+    position: fixed;
+    left: 30px;
+    top: 10px;
+}
+
+.iconContainer {
+    position: fixed;
+    top: 20vh;
+}
+
+.containerLandingPage {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+}
+
+.titleLandingPage {
+    position: fixed;
+    left: 140px;
+    top: 55px;
+    color: #fff;
+    font-size: 2rem;
+}
+
+.stripLandingPage {
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+}
+
+.strip1 {
+    background-color: #EF7B30;
+}
+
+.strip2 {
+    background-color: #F3995E;
+}
+
+.strip3 {
+    background-color: #F6B68C;
+}
+
+.textAndButtonInStrip {
+    padding-bottom: 10vh;
+    padding-left: 4vw;
+}
+
+.buttonLandingPage {
+    background-color: #F6B68C;
+    border-color: transparent;
+    border-radius: 10px;
+    width: 10vw;
+    height: 3.1vw;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
