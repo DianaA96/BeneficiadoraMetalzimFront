@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+  }
+  
+  .login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    background-color: #1E1E1E;
+  }
+  
+  .img {
+    display: flex;
+
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+/* Rectangle 38 */
+
+box-sizing: border-box;
+
+width: 415px;
+height: 56px;
+left: 238px;
+top: 465px;
+
+background-color: #1E1E1E;
+
+
+
+
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 19px;
+
+color: #F8F8F8;
+
+margin-top:30px;
+padding: 20px;
+border: 2px solid #C1C1C1;
+border-radius: 10px;
+
+  }
+  
+  button {
+    margin: 10px 0;
+
+    width: 415px;
+    height: 68px;
+    left: 238px;
+    top: 687px;
+    
+    margin-top:70px;
+    background: #EF7B30;
+    border-radius: 10px;
+/* INGRESAR */
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+
+    color: #F8F8F8;
+
+    cursor: pointer;
+  }
+  
+  .textLogInFP {
+    font-weight: 600;
+    font-size: 12px;
+    /* identical to box height */
+    text-decoration-line: underline;
+
+    color: #C1C1C1;
+  }
+
+  button:hover {
+    background-color: #3e8e41;
+  }
