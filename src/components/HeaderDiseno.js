@@ -3,15 +3,18 @@ import "../styles/Headers.css"
 import DisenoHead from "../assets/HeaderDisenos/DisenoHead.svg"
 
 function HeaderDiseno() {
+    const titulo = "Reporte de laboratorio"
+    const subtitulo = "Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
+
     return (
         <header className="containerHeadDesign">
             <div className="containerHeaders">
-                <title>Reporte de laboratorio</title>
+                <title>{titulo}</title>
                 <div className="titleHeader">
-                    Reporte de laboratorio
+                    {titulo}
                 </div>
                 <p className="SubtitleleHeader">
-                    Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+                    {subtitulo}
                 </p>
             </div>
             <img src={DisenoHead}></img>
