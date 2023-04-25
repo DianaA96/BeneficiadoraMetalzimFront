@@ -4,6 +4,7 @@ import "../styles/ReporteBascula.css";
 import HeaderDiseno from "../components/HeaderDiseno";
 import GraficasPie from "../components/GraficasPie";
 import GraficasColumna from "../components/GraficasColumna";
+import Menu from "../components/Menu";
 
 const ReporteBascula = () => {
 
@@ -29,43 +30,43 @@ const ReporteBascula = () => {
     const [tableDataConc, setTableDataConc] = useState(getTableDataC());
 
     return (
-        <body className="mybody">
+        <><body className="mybody">
             <HeaderDiseno titulo={"Reporte diario Movimiento de mineral Báscula"} subtitulo={"24 de abril de 2023"} />
-            <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div className="mycard">
                     <Tabla tableData={tableData} />
                     <div className="containerGraficas">
                         <div className="graficaPie">
                             <p className="titulo">Existencia inicial</p>
-                            <GraficasPie tituloG={"Existencia inicial"}/>
+                            <GraficasPie tituloG={"Existencia inicial"} />
                         </div>
                         <div className="graficaPie">
                             <p className="titulo">Acarreo</p>
-                            <GraficasPie tituloG={"Acarreo"}/>
+                            <GraficasPie tituloG={"Acarreo"} />
                         </div>
                         <div className="graficaPie">
                             <p className="titulo">Trituradas</p>
-                            <GraficasPie tituloG={"Trituradas"}/>   
+                            <GraficasPie tituloG={"Trituradas"} />
                         </div>
                         <div className="graficaPie">
                             <p className="titulo">Existencia patios</p>
-                            <GraficasPie tituloG={"Existencia patios"}/>
+                            <GraficasPie tituloG={"Existencia patios"} />
                         </div>
                     </div>
                     <div className="division">
-                        <p style={{color:"#EF7B30", fontWeight:"bold", fontSize:"1.5rem"}}>Embarque de concentrados</p>
-                        <hr className="myhr"/>
+                        <p style={{ color: "#EF7B30", fontWeight: "bold", fontSize: "1.5rem" }}>Embarque de concentrados</p>
+                        <hr className="myhr" />
                     </div>
                     <div className="embarques">
-                        <GraficasColumna/>
+                        <GraficasColumna />
                         <Tabla tableData={tableDataConc} />
                     </div>
-                    
                 </div>
-                
             </div>
-            
         </body>
+        <footer>
+            <Menu rol={"admin"} />
+        </footer></>
     );
 };
 
