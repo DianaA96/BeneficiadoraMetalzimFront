@@ -54,9 +54,6 @@ function ListaReportes() {
                 <h4 className="negro">Todos los reportes</h4>
                 <div className="filtros-tabla">
                     <input type="text" className="busc-tabla" placeholder='Buscar por ID'/>
-                    <div className="btn-filtro">
-                        <p>Filtro</p>
-                    </div>
                 </div>
               </div>
 

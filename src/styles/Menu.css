@@ -14,22 +14,23 @@
 }
 
 .icon-menu{
+    width: 1.3rem;
+    color: var(--blanco);
+    margin-bottom: 0rem;
+}
+
+.icon-menu-fixed{
     width: 1.6rem;
     color: var(--blanco);
     margin-bottom: 0rem;
 }
 
-.icon-menu:hover{
-    cursor: pointer;
-    filter: invert(15%) sepia(95%) saturate(777%) hue-rotate(299deg) brightness(100%) contrast(96%);
-    width: 2rem;
-}
 
 .submenu{
-    width: 10%;
+    width: 30%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -37,8 +38,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    height: 4rem;
+    font-size: 0.8rem;
+    height: 2rem;
     padding: 0;
+}
+
+.titulo-menu{
+    font-family: 'Inter';
+    font-weight: 500;
+    margin-top: 0;
+}
+
+.submenu-item:hover .icon-menu{
+    cursor: pointer;
+    filter: invert(15%) sepia(95%) saturate(777%) hue-rotate(299deg) brightness(100%) contrast(96%);
+}
+
+.submenu-item:hover .titulo-menu{
+    color: var(--p400)
+}
+
+.submenu-item:hover{
+    cursor: pointer;
 }
