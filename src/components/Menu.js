@@ -9,9 +9,6 @@ import iconBack from "../assets/IconsLandingPages/BackIcon.svg"
 
 
 function Menu(props) {
-
-  
-
   var tabs = {
     laboratorista: [["Llenar reporte","science"], ["Historial", "history"]],
     admin: [["Reporte Gerencial","summarize"], ["Admin. Usuarios", "group"], ["Reporte Báscula","scale"], ["Créditos", "favorite"]],
