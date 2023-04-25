@@ -1,0 +1,26 @@
+.containerHeaders {
+    display: block;
+    font-family: "Inter", sans-serif;
+    padding: 2rem 5rem;
+}
+
+.titleHeader {
+    font-weight: bold;
+    color: var(--negro);
+    font-size: 2rem;
+}
+
+.SubtitleleHeader {
+    color: var(--negro);
+    margin-top: 5px;
+    width: 700px;
+}
+
+.containerHeadDesign {
+    display: flex;
+    background: #FBE2D1;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 12rem;
+    margin-bottom: 2rem;
+}
