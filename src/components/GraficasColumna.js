@@ -7,7 +7,7 @@ const yGrafica = "Mes"
 const opciones = ["Pb", "Cu", "Zn", "Au/Ag"]
 
 export const data = [
-    ["Element", "Enbarque de concentrados", { role: "style" }],
+    ["Element", "", { role: "style" }],
     [opciones[0], 8.94, "#F8C5A3"],
     [opciones[1], 10.49, "#F18B47"],
     [opciones[2], 19.3, "#F4A875"],

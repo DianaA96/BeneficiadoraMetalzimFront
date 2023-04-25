@@ -35,7 +35,7 @@ const ReporteLaboratorio = () => {
 
     return (
         <body style={{ backgroundColor:"#F8F8F8"}}>
-            <HeaderDiseno />
+            <HeaderDiseno titulo={"Reporte de laboratorio"} subtitulo={""} />
             <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
                 <div className="card">
                     <Tabla tableData={tableData} copyTableData={copyTableData} />
