@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Tabla from "../components/tablaLaboratorio";
+import TablaLaboratorio from "../components/TablaLaboratorio";
 import "../styles/analisisLab.css";
 import HeaderDiseno from "../components/HeaderDiseno";
 
@@ -38,9 +38,9 @@ const ReporteLaboratorio = () => {
             <HeaderDiseno />
             <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
                 <div className="card">
-                    <Tabla tableData={tableData} copyTableData={copyTableData} />
-                    <Tabla tableData={tableData} copyTableData={copyTableData} />
-                    <Tabla tableData={tableData} copyTableData={copyTableData} />
+                    <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
+                    <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
+                    <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
                 </div>
             </div>
         </body>
