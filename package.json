@@ -41,7 +41,6 @@
     ]
   },
   "description": "Material Design Line Chart",
-  "description": "Donut Chart",
   "main": "index.tsx",
   "dependencies": {
     "react": "17.0.2",
