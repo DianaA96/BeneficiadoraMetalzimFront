@@ -16,11 +16,12 @@
     align-items: center;
     font-size: 1.5rem;
     height: 4rem;
-    padding: 0rem 2rem;
+    padding: 0rem;
     margin-bottom: 2rem;
 }
 
 .busc-tabla{
+    width: 100%;
     font-family: 'Inter';
     background-color: unset;
     border-style: solid;
@@ -40,16 +41,9 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
    
 }
 
-.btn-filtro{
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--n500);
-}
 
 .btn-lista{
     border: none;
