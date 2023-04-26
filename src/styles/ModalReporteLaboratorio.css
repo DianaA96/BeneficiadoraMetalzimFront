@@ -1,0 +1,45 @@
+.modal{
+    background-color: #FDF0E8;
+    width: 55vw;
+    height: 70vh !important;
+    border-radius: 20px;
+    overflow-y: scroll;
+    padding: 10px;
+}
+
+.top{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    margin: 2.3vh;
+    padding-right: 2.3vh;
+}
+
+.buttonClose{
+    background-color: inherit;
+    border: none;
+}
+
+.material-symbols-outlined{
+    font-weight: bold;
+    font-size: 3.3vh;
+}
+
+.descripcion h1{
+    color:#EF7B30;
+}
+
+.descripcion{
+    width: 34vw;
+    margin-bottom: 2vh;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 2.3vh;
+}
