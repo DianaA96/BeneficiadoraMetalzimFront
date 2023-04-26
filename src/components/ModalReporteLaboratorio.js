@@ -46,7 +46,10 @@ const ModalReporteLaboratorio = () => {
                 </button>
             </div>
             <div className="content">
-                <HeaderSencillo />
+                <div className="descripcion">
+                    <h1>Reporte de Laboratorio</h1>
+                    <p>Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+                </div>
                 <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
                 <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
                 <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
