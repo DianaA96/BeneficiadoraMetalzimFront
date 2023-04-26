@@ -9,14 +9,11 @@ import iconBack from "../assets/IconsLandingPages/BackIcon.svg"
 
 
 function Menu(props) {
-
-  
-
   var tabs = {
     laboratorista: [["Llenar reporte","science"], ["Historial", "history"]],
     admin: [["Reporte Gerencial","summarize"], ["Admin. Usuarios", "group"], ["Reporte Báscula","scale"], ["Créditos", "favorite"]],
-    gerente: [["Llenar reporte","science"], ["Historial", "history"]],
-    bascula: [["Llenar reporte","science"], ["Historial", "history"]]
+    gerente: [["Reporte Gerencial","summarize"], ["Reporte Báscula", "scale"]],
+    bascula: [["Llenar reporte","scale"], ["Historial", "history"]]
   }
 
   let pestanas1 = tabs[props.rol].slice(0,(tabs[props.rol].length/2))
@@ -29,7 +26,7 @@ function Menu(props) {
           <div className='submenu'> 
           {
             pestanas1.map((items, i)=>
-              <div className='submenu-item'>
+              <div className={props.activeTab===items[1] ? 'submenu-item submenu-item-active' : 'submenu-item'}>
                 <span class="material-symbols-outlined icon-menu">{items[1]}</span>
                 <p className='titulo-menu blanco'>{items[0]}</p>
               </div>  
@@ -40,8 +37,8 @@ function Menu(props) {
           <div className='submenu'> 
           {
             pestanas2.map((items, i)=>
-              <div className='submenu-item'>
-                <span class="material-symbols-outlined icon-menu">history</span>
+              <div className={props.activeTab===items[1] ? 'submenu-item submenu-item-active' : 'submenu-item'}>
+                <span class="material-symbols-outlined icon-menu">{items[1]}</span>
                 <p className='titulo-menu blanco'>{items[0]}</p>
               </div>  
             )
