@@ -1,0 +1,27 @@
+.tablonaB{
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    width: 100%;
+    overflow: hidden;
+}
+.tablonaB td {
+    padding: 8px;
+    text-align: center;
+    border-top: 4px solid;
+    border-color: #FAD3BA;
+    font-size: 20px;
+}
+
+.tablonaB span{
+    color: black;
+    font-weight: 1;
+    display: grid;
+    font-style: oblique;
+    font-size: 16px;
+}
+
+.tablonaB td{
+    font-weight: 340;
+    font-size: 20px;
+}

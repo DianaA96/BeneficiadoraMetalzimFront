@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Tabla from "../components/tablaLaboratorio";
 import "../styles/analisisLab.css";
 import HeaderDiseno from "../components/HeaderDiseno";
+import Menu from "../components/Menu";
 
 const ReporteLaboratorio = () => {
 
@@ -14,7 +15,6 @@ const ReporteLaboratorio = () => {
             { id: 4, col0: "Colas", col1: "Value22", col2: "Value23", col3: "Value24", col4: "Value25", col5: "Value26", col6: "Value27", col7: "Value28" }
         ];
     };
-    //
 
     const [tableData, setTableData] = useState(getTableData());
 
@@ -34,9 +34,9 @@ const ReporteLaboratorio = () => {
     };
 
     return (
-        <body style={{ backgroundColor:"#F8F8F8"}}>
-            <HeaderDiseno />
-            <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+        <><body style={{ backgroundColor: "#F8F8F8" }}>
+            <HeaderDiseno titulo={"Reporte de laboratorio"} subtitulo={""} />
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div className="card">
                     <Tabla tableData={tableData} copyTableData={copyTableData} />
                     <Tabla tableData={tableData} copyTableData={copyTableData} />
@@ -44,6 +44,9 @@ const ReporteLaboratorio = () => {
                 </div>
             </div>
         </body>
+        <footer>
+            <Menu rol={"laboratorista"}/>
+        </footer></>
     );
 };
 
