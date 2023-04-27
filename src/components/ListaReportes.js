@@ -6,26 +6,9 @@ import "../styles/ListaReportes.css"
 
 import { DataGrid, esES, GridActionsCellItem } from '@mui/x-data-grid';
 
-function ListaReportes() {
+function ListaReportes(props) {
 
-    const columns = React.useMemo(()=>
-      [
-        { field: 'id', headerName: 'ID',flex:1, minWidth: 80 },
-        { field: 'fechaMuestreo', headerName: 'Fecha Muestreo', flex:1, minWidth: 20},
-        { field: 'fechaEnsaye', headerName: 'Fecha Ensaye', flex:1, minWidth: 100},
-        {
-            field: 'actions',
-            type: 'actions',
-            headerName: 'Acciones',
-            flex:1, 
-            minWidth: 100,
-            getActions: (params) => [
-                
-                <button className='btn-lista' to={`/proyecto/${params.id}`} target="_blank">Ver</button>,
-            ],
-          },
-      ],
-    );
+    
 
     const datagridStyles ={
           fontSize:'0.8rem',
@@ -40,28 +23,22 @@ function ListaReportes() {
           },
     }
 
-    const reportes = [
-        {id:"RE01", fechaMuestreo: "20/04/2023", fechaEnsaye: "20/04/2023"},
-        {id:"RE02", fechaMuestreo: "21/04/2023", fechaEnsaye: "20/04/2023"},
-        {id:"RE03", fechaMuestreo: "27/04/2023", fechaEnsaye: "20/04/2023"}
-
-    ]
+   
 
     return (
         <>
             <div className="cont-tabla">
               <div className="header-tabla">
-                <h4 className="negro">Todos los reportes</h4>
-                <div className="filtros-tabla">
+                <h4 className="negro">{props.titulo}</h4>
+                {/*<div className="filtros-tabla">
                     <input type="text" className="busc-tabla" placeholder='Buscar por ID'/>
-                </div>
+                </div>*/}
               </div>
-
 
               <DataGrid
                 autoHeight
-                rows={reportes}
-                columns={columns}
+                rows={props.data}
+                columns={props.columns}
                 sx={datagridStyles}
                 localeText={esES.components.MuiDataGrid.defaultProps.localeText}
               />

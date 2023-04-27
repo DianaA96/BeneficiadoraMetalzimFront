@@ -1,6 +1,7 @@
 import React from "react";
+import "../styles/tablaLab.css"
 
-const Tabla = ({ tableData, copyTableData }) => {
+const TablaLaboratorio = ({ tableData, copyTableData }) => {
     return (
         <>
             <div className="cabeza">
@@ -68,4 +69,4 @@ const Tabla = ({ tableData, copyTableData }) => {
     )
 }
 
-export default Tabla;
+export default TablaLaboratorio;
