@@ -1,0 +1,97 @@
+.divBox {
+/* Rectangle 5 */
+display: flex;
+justify-content: space-around;
+
+width: 80%;
+padding: 5%;
+background: #FFFFFF;
+border: 1px solid #DFE0EB;
+
+/* Card Shadow */
+
+box-shadow: 4px 11px 28px rgba(0, 0, 0, 0.08);
+border-radius:  0.5rem;
+}
+
+
+.inputRegistro {
+
+box-sizing: border-box;
+width: 25rem;
+height: 3.5rem;
+
+/* Negro/N200 */
+border: 3px solid #E6E5E5;
+border-radius: 15px;
+
+padding: 0.5rem;
+
+
+font-style: normal;
+font-weight: 700;
+font-size: 1rem;
+
+
+}
+
+.textInput {
+/* Nombre (s) */
+font-style: normal;
+font-weight: 700;
+font-size: 1.25rem;
+
+/* Primario/P700 */
+color: #F4A875;
+}
+
+.selectRegistro {
+    /* Rectangle 86 */
+
+box-sizing: border-box;
+
+width: 25rem;
+height: 3.5rem;
+
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 19px;
+
+background: #F8CBAE;
+border: 3px solid #F8CBAE;
+border-radius: 15px;
+
+}
+
+.formRegistro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  
+.buttonRegistro {
+    /* Rectangle 81 */
+
+width: 12rem;
+height: 3.5rem;
+
+
+font-style: normal;
+font-weight: 600;
+font-size: 16px;
+line-height: 19px;
+
+color: #F8F8F8;
+
+
+/* Primario/P1000 */
+background: #EF7B30;
+border-radius: 15px;
+
+}
+
+button:hover {
+    background-color: #f0b086;
+  }
