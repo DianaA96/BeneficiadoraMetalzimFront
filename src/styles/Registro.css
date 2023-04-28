@@ -92,6 +92,6 @@ border-radius: 15px;
 
 }
 
-button:hover {
+.buttonRegistro:hover {
     background-color: #f0b086;
   }
