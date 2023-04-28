@@ -9,12 +9,12 @@ function App() {
     <div className="App">
     <div class="container">
       <div class="login">
-        <form>
+        <form className="formLogin"> 
           <img src={logo} width="300px" height="100px"/> 
-          <input type="text" id="username" name="username" placeholder="Usuario"  required/>
-          <input type="password" id="password" name="password" placeholder="Contraseña" required/>
+          <input className='formLogin' type="text" id="username" name="username" placeholder="Usuario"  required/>
+          <input className='formLogin'  type="password" id="password" name="password" placeholder="Contraseña" required/>
           <p className="textLogInFP">¿Olvidaste tu contraseña? Haz clic aquí para restablecerla.</p>
-          <button type="submit" >INGRESAR</button>
+          <button className='buttonLogin' type="submit" >INGRESAR</button>
         </form>
       </div>
       <img class ="img" src={log}></img>

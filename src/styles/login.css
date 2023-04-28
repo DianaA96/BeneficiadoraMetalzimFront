@@ -1,8 +1,8 @@
-body {
+/*body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-  }
+  }*/
   
   .container {
     display: flex;
@@ -24,15 +24,13 @@ body {
 
   }
   
-  form {
+  .formLogin {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   
-  input[type="text"],
-  input[type="password"] {
-/* Rectangle 38 */
+  .inputLogin {
 
 box-sizing: border-box;
 
@@ -60,7 +58,7 @@ border-radius: 10px;
 
   }
   
-  button {
+  .buttonLogin {
     margin: 10px 0;
 
     width: 415px;
@@ -90,8 +88,4 @@ border-radius: 10px;
     text-decoration-line: underline;
 
     color: #C1C1C1;
-  }
-
-  button:hover {
-    background-color: #3e8e41;
   }
