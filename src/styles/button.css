@@ -16,10 +16,6 @@ button:active {
     transform: scale(.98);
 }
 
-button:focus {
-    outline: none;
-}
-
 button:disabled {
     cursor:not-allowed
 }
