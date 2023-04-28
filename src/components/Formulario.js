@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import "../styles/formulario.css"
 import "../styles/button.css"
-import "../styles/formItems.css"
 import "../styles/colors.css"
 
 import { CSSTransition } from 'react-transition-group';
@@ -11,12 +10,15 @@ const formularioSegundoNivel = [["Cabeza", "Concentración plomo" , "Concentraci
 const inputBase = [["Ag", "g/ton"], ["Pb", "%"], ["Zn", "%"], ["Cu", "%"], ["Fe", "%"], ["Sb", "%"], ["As", "%"], ["Cd", "%"], ["PbO", "%"], ["ZnO", "%"]]
 
 const inputs = []
+let aux = []
 
-for (let i = 0; i < (formularioPrimerNivel.length * formularioSegundoNivel[0].length); i++) {
-    inputs.push(inputBase)
-    console.log(inputs)
+for (let i = 0; i < (formularioPrimerNivel.length); i++) {
+    for(let p = 0; p < (formularioSegundoNivel[0].length); p++) {
+        aux.push(inputBase)
+    }
+    inputs.push(aux)
+    aux = []
 }
-
 
 
 function Formulario() {
@@ -116,16 +118,20 @@ function Formulario() {
                 {arrExpandido2[i][j] == true?(
                     <div className={"inputsFormulario " + arrExpandido[i].toString()}>
                     <div className="sangriaInputs"></div>
-                    {inputs.map((data, k) => 
+                    {inputs.map((subdata, k) => 
                         <>
-                        {data.map((input, l) =>
-                            i * 4 + j == l && k < inputs[0].length? (<div className='input'>
+                        {subdata.map((subinput, l) =>
+                            <>
+                            {subinput.map((input, m) =>
+                                k*100 + l*10  + m *1 < subinput.length ? (<div className='input'>
                                 <label>
-                                    <p className='elementoInput'>{inputs[l][k][0]}</p>
-                                    <p className='cantidadInput'>{inputs[l][k][1]}</p>
+                                    <p className='elementoInput'>{input[0]}</p>
+                                    <p className='cantidadInput'>{input[1]}</p>
                                 </label>
-                            <input className='inputGris'></input>
-                            </div>): null
+                                <input className='inputGris'></input>
+                                </div>)
+                            : null)} 
+                            </>
                         )} 
                         </>
                     )}
