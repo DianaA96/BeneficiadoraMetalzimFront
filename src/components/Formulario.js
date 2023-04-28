@@ -3,8 +3,6 @@ import "../styles/formulario.css"
 import "../styles/button.css"
 import "../styles/colors.css"
 
-import { CSSTransition } from 'react-transition-group';
-
 const formularioPrimerNivel = ["Primer turno", "Segundo turno", "Tercer turno"]
 const formularioSegundoNivel = [["Cabeza", "Concentración plomo" , "Concentración zinc", "Cola final"], ["Cabeza", "Concentración plomo" , "Concentración zinc", "Cola final"], ["Cabeza", "Concentración plomo" , "Concentración zinc", "Cola final"]]
 const inputBase = [["Ag", "g/ton"], ["Pb", "%"], ["Zn", "%"], ["Cu", "%"], ["Fe", "%"], ["Sb", "%"], ["As", "%"], ["Cd", "%"], ["PbO", "%"], ["ZnO", "%"]]
