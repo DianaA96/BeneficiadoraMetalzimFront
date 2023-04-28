@@ -48,8 +48,19 @@
 
 
 .btn-lista{
+    font-family: "Inter";
     border: none;
-    background-color: var(--p600);
+    background-color: var(--p800);
+    font-weight: 600;
+    border-radius: 5px;
+    color: var(--blanco);
+    padding: 0.5rem 1rem;
+}
+
+.btn-lista-elim{
+    font-family: "Inter";
+    border: none;
+    background-color: #F35E5E;
     font-weight: 600;
     border-radius: 5px;
     color: var(--blanco);

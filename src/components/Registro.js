@@ -1,7 +1,7 @@
-import logo from './logo.svg';
-import './styles/formItems.css';
-import HS from './components/HeaderSencillo'
-import MenuS from './components/Menu'
+import logo from '../logo.svg';
+import '../styles/Registro.css';
+import HS from '../components/HeaderSencillo'
+import MenuS from '../components/Menu'
 
 
 function App() {

@@ -7,6 +7,7 @@
     align-items: center;
     justify-content: space-around;
     bottom: 0;
+   
 }
 
 .logo-menu{
@@ -23,6 +24,7 @@
     width: 1.6rem;
     color: var(--blanco);
     margin-bottom: 0rem;
+    cursor: pointer;
 }
 
 
@@ -41,6 +43,7 @@
     font-size: 0.8rem;
     height: 2rem;
     padding: 0;
+    text-decoration: none;
 }
 
 .submenu-item-active .icon-menu{
