@@ -65,7 +65,7 @@ const ReporteBascula = () => {
             </div>
         </body>
         <footer>
-            <Menu rol={"admin"} />
+            <Menu rol={"admin"} activeTab="scale" landing="/laboratorio"/>
         </footer></>
     );
 };
