@@ -92,3 +92,29 @@
 .false {
     animation: fade-out 500ms forwards;
 }
+
+.inputGris {
+    background-color: transparent;
+    border-color: #E6E5E5;
+    border-width: 2px;
+    border-radius: 10px;
+    height: 30px;
+    border-style: solid;
+    width: 100%;
+}
+
+.inputsFormulario {
+    display: flex;
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
