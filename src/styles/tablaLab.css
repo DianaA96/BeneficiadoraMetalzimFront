@@ -2,11 +2,11 @@
     background-color: #575353;
     color: #FFFFFF;
     border-radius: 4px;
-    font-size: 20px;
+    font-size: 1.2rem;
     text-align: center;
     width: 10vw;
     min-height: fit-content;
-    height: 6vh;
+    height: 3rem;
 }
 
 .button-text {
