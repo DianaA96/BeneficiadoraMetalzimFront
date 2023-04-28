@@ -1,0 +1,54 @@
+.contGraficas{
+    background-color: #FFF;
+    width: 80%;
+    box-sizing: border-box;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 4px 11px 28px rgba(0, 0, 0, 0.08);
+    justify-content: center;
+    display: flex;
+    align-self: center;
+    margin-top: 2rem;
+}
+.titulo{
+    font-weight: bold;
+    margin: 0;
+}
+.myhr{
+    border: 1.5px solid;
+    width: 50%;
+    color: #EF7B30;
+}
+.division{
+    align-items: center;
+    justify-content: row;
+    align-content: center;
+    align-self: center;
+    margin-bottom: 10rem;
+}
+.myP{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 0rem;
+    color: #EF7B30;
+}
+.contPie{
+    background-color: #FFF;
+    width: 80%;
+    box-sizing: border-box;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 4px 11px 28px rgba(0, 0, 0, 0.08);
+    justify-content: center;
+    display: flex;
+    align-self: center;
+    margin-top: 2rem;
+}
+.containerPie{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}

@@ -4,10 +4,7 @@
     justify-content:space-between;
     width: 100%;
     margin-top: 5rem;
-}
-.graficaPie{
-    flex-direction: column;
-    width: 15rem;
+    align-items: center;
 }
 .titulo{
     font-weight: normal;
@@ -24,7 +21,7 @@
     color: #817C7C;
 }
 .division{
-    flex-direction: row;
+    flex-direction: column;
     display: flex;
     justify-content: center;
 }

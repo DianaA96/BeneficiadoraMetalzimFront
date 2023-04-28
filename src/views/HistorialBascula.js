@@ -2,7 +2,8 @@ import React from 'react'
 import HeaderDiseno from "../components/HeaderDiseno"
 import ListaReportes from "../components/ListaReportes"
 import Menu from "../components/Menu"
-
+import GraficasArea from "../components/GraficasArea"
+import GraficasLine from "../components/GraficasLine"
 
 function HistorialBascula() {
 
@@ -41,11 +42,24 @@ function HistorialBascula() {
     );
 
   return (
-    <>
-        <HeaderDiseno titulo="Historial - Reporte de Báscula" subtitulo="Consulta el historial de los reportes de báscula generados en esta ventana. Navega por la lista de reportes generados y consulta un reporte en específico"></HeaderDiseno>
-        <ListaReportes columns={columns} data={reportes} titulo="Todos los reportes"></ListaReportes>
-        <Menu rol="admin" activeTab="scale"></Menu>
-    </>
+    <><body>
+      <HeaderDiseno titulo="Historial - Reporte de Báscula" subtitulo="Consulta el historial de los reportes de báscula generados en esta ventana. Navega por la lista de reportes generados y consulta un reporte en específico"></HeaderDiseno>
+      <ListaReportes columns={columns} data={reportes} titulo="Todos los reportes"></ListaReportes>
+      <div className='division'>
+        <div style={{ width:"80%"}}>
+          <p className='myP'>Gráficas históricas</p>
+          <hr className='myhr' />
+        </div>
+        <div style={{ display: "flex", justifyContent:"space-between", alignItems: "center", flexDirection:"row", width:"80%"}}>
+          <GraficasArea titulo={"Acarreo"}></GraficasArea>
+          <GraficasArea titulo={"Trituradas"}></GraficasArea>
+        </div>
+        <GraficasLine titulo={"Concentrados"}></GraficasLine>
+      </div>
+    </body>
+    <footer>
+      <Menu rol="admin" activeTab="scale"></Menu>
+    </footer></>
   )
 }
 

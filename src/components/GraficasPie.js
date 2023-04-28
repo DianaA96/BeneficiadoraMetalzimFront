@@ -25,11 +25,16 @@ var titulo = ""
 function GraficasPie(props) {
   titulo = props.tituloG
   return (
+    <div className="contPie">
       <Chart
         chartType="PieChart"
+        width="100%"
         height="400px"
         data={data}
-        options={options} />
+        options={options}
+      />
+    </div>
+     
     
   );
 }

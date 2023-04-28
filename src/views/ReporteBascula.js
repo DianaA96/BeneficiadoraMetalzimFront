@@ -25,9 +25,18 @@ const ReporteBascula = () => {
             { id: 4, col0: "Total", col1: "Value13", col2: "Value14", col3: "Value15", col4: "Value16", col5:"Cu"}
         ];
     };
+    const getDataPie = () => {
+        return [
+            {id: 1, titulo: "Existencia inicial", descrip: "Toneladas"},
+            {id: 2, op: "Minesites", cant: 11},
+            {id: 3, op: "Balcones", cant: 5},
+            {id: 3, op: "Guadalupe", cant: 2}
+        ];
+    };
 
     const [tableData, setTableData] = useState(getTableData());
     const [tableDataConc, setTableDataConc] = useState(getTableDataC());
+    const [dataPie, setDataPie] = useState(getDataPie());
 
     return (
         <><body className="mybody">
@@ -35,32 +44,34 @@ const ReporteBascula = () => {
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div className="mycard">
                     <Tabla tableData={tableData} />
-                    <div className="containerGraficas">
-                        <div className="graficaPie">
+                    <div className="containerPie">
+                        <div>
                             <p className="titulo">Existencia inicial</p>
-                            <GraficasPie tituloG={"Existencia inicial"} />
+                            <GraficasPie tituloG={"Existencia inicial"} data={dataPie} />
                         </div>
-                        <div className="graficaPie">
+                        <div>
                             <p className="titulo">Acarreo</p>
                             <GraficasPie tituloG={"Acarreo"} />
                         </div>
-                        <div className="graficaPie">
+                        <div>
                             <p className="titulo">Trituradas</p>
                             <GraficasPie tituloG={"Trituradas"} />
                         </div>
-                        <div className="graficaPie">
+                        <div>
                             <p className="titulo">Existencia patios</p>
                             <GraficasPie tituloG={"Existencia patios"} />
                         </div>
                     </div>
-                    <div className="division">
-                        <p style={{ color: "#EF7B30", fontWeight: "bold", fontSize: "1.5rem" }}>Embarque de concentrados</p>
-                        <hr className="myhr" />
+                    <div style={{ width:"80%"}}>
+                        <p className='myP'>Embarque de concentrados</p>
+                        <hr className='myhr' />
                     </div>
                     <div className="embarques">
                         <GraficasColumna />
                         <Tabla tableData={tableDataConc} />
                     </div>
+                    
+                    
                 </div>
             </div>
         </body>

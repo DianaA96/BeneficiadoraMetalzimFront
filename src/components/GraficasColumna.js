@@ -16,12 +16,14 @@ export const data = [
 
 export function GraficasColumna() {
     return (
-      <Chart
-      chartType="ColumnChart"
-      width="80%"
-      height="400px"
-      data={data}
-      />
+      <div className="contPie">
+        <Chart
+        chartType="ColumnChart"
+        width="100%"
+        height="400px"
+        data={data}
+        />
+      </div>
     );
   }
 
