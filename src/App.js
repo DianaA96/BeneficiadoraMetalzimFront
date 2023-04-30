@@ -14,8 +14,8 @@ import HistorialGerencia from './views/HistorialGerencia';
 import LandingPage from './views/LandingPage'
 import ReporteBascula from './views/ReporteBascula'
 import ReporteLaboratorio from './views/ReporteLaboratorio'
-import Login from "./components/LogIn"
-import Registro from "./components/Registro"
+import Login from "./views/LogIn"
+import Registro from "./views/Registro"
 
 function App() {
   return (

@@ -7,7 +7,7 @@ import MenuS from '../components/Menu'
 function App() {
   return (
     <div>
-      <HS/>
+      <HS  titulo={"Agregar un nuevo usuaario"} subtitulo={""}/>
       <div style={{display:"flex", justifyContent: "center"}} >
         <div class="divBox">
           <form className='formRegistro'>
