@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import "../styles/formulario.css"
 import "../styles/button.css"
 import "../styles/colors.css"
@@ -76,11 +76,48 @@ function Formulario(props) {
         }
         
     }
+
+    function onKeyDown(event) {
+        event.preventDefault()
+        if(event.code == "ArrowUp") {
+            let nextItem = document.getElementById((parseInt(event.target.id) - 10).toString())
+            if (nextItem != null) {
+                nextItem.focus()
+            }
+        }
+        if(event.code == "ArrowDown") {
+            let nextItem = document.getElementById((parseInt(event.target.id) + 10).toString())
+            if (nextItem != null) {
+                nextItem.focus()
+            }
+        }
+        if(event.code == "ArrowLeft") {
+            let nextItem = document.getElementById((parseInt(event.target.id) - 1).toString())
+            if (nextItem != null) {
+                nextItem.focus()
+            }
+        }
+        if(event.code == "ArrowRight") {
+            let nextItem = document.getElementById((parseInt(event.target.id) + 1).toString())
+            if (nextItem != null) {
+                nextItem.focus()
+            }
+        }
+    }
+
+    useEffect(() => {
+        let allinputs = document.getElementsByClassName("inputGris")
+        Array.from(allinputs).map((item, a) => {
+            item.addEventListener('keydown', onKeyDown);
+            item.id = a
+        })
+        return () => {
+        };
+    }, [onKeyDown]);
     
     return (
         <div className='formulario'>
             {props.formularioPrimerNivel.map((data1, i) =>
-            
             <>
                 <div className="nivel1" id={tokenizeIDs(data1)} onClick={handleSetExpandido}>
                 <button className='formularioNivel1' id={tokenizeIDs(data1)}>
@@ -123,7 +160,7 @@ function Formulario(props) {
                                     <p className='elementoInput'>{input[0]}</p>
                                     <p className='cantidadInput'>{input[1]}</p>
                                 </label>
-                                <input className='inputGris'></input>
+                                <input className='inputGris' type="number" for={`${input[0]} ${input[1]}`}></input>
                                 </div>)
                             : null)} 
                             </>
@@ -132,7 +169,6 @@ function Formulario(props) {
                     )}
                     </div>
                     ):null}
-                
                 </>
                 </div>
             ):null}
@@ -141,6 +177,16 @@ function Formulario(props) {
             }
             </>
             )} 
+            <div className='stripBotones'>
+                <button className='guardarProgreso'>Guardar progreso
+                    <span className='separatorButton'/>
+                    <span class="material-symbols-outlined">sync_saved_locally</span>
+                </button>
+                <button className='enviar'>Enviar
+                    <span className='separatorButton'/>
+                    <span class="material-symbols-outlined">send</span>
+                </button>
+            </div>
         </div>
     )
 }
