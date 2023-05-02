@@ -17,6 +17,7 @@ import ReporteLaboratorio from './views/ReporteLaboratorio'
 import Login from "./views/LogIn"
 import Registro from "./views/Registro"
 import FormularioLaboratorio from './views/FormularioLaboratorio'
+import EditarUsuario from './views/EditarUsuario';
 
 function App() {
   return (
@@ -28,9 +29,7 @@ function App() {
       <Route path='/reporte-gerencial' element={<ReporteGerencial/>} />
       <Route path='/usuarios' element={<CRUDUsuarios/>} />
       <Route path='/agregar-usuario' element={<Registro/>} />
-      {/*Agregar ruta de editar usuario*/}
-      {/*<Route path='/editar-usuario' element={} /> */}
-
+      <Route path='/usuario/:idUsuario' element={<EditarUsuario/>} />
       <Route path='/reporte-laboratorio' element={<ReporteLaboratorio/>} />
       <Route path='/reporte-bascula' element={<ReporteBascula/>} />
       <Route path='/historial-bascula' element={<HistorialBascula/>} />
