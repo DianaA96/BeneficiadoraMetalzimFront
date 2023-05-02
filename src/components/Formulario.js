@@ -3,25 +3,22 @@ import "../styles/formulario.css"
 import "../styles/button.css"
 import "../styles/colors.css"
 
-const formularioPrimerNivel = ["Primer turno", "Segundo turno", "Tercer turno"]
-const formularioSegundoNivel = [["Cabeza", "Concentración plomo" , "Concentración zinc", "Cola final"], ["Cabeza", "Concentración plomo" , "Concentración zinc", "Cola final"], ["Cabeza", "Concentración plomo" , "Concentración zinc", "Cola final"]]
-const inputBase = [["Ag", "g/ton"], ["Pb", "%"], ["Zn", "%"], ["Cu", "%"], ["Fe", "%"], ["Sb", "%"], ["As", "%"], ["Cd", "%"], ["PbO", "%"], ["ZnO", "%"]]
-
-const inputs = []
-let aux = []
-
-for (let i = 0; i < (formularioPrimerNivel.length); i++) {
-    for(let p = 0; p < (formularioSegundoNivel[0].length); p++) {
-        aux.push(inputBase)
+function Formulario(props) {
+    
+    const inputs = []
+    let aux = []
+    
+    for (let i = 0; i < (props.formularioPrimerNivel.length); i++) {
+        for(let p = 0; p < (props.formularioSegundoNivel[0].length); p++) {
+            aux.push(props.inputBase)
+        }
+        inputs.push(aux)
+        aux = []
     }
-    inputs.push(aux)
-    aux = []
-}
 
 
-function Formulario() {
-    let settingStateExpand = [...formularioPrimerNivel]
-    let settingStateExpand2 = JSON.parse(JSON.stringify(formularioSegundoNivel))
+    let settingStateExpand = [...props.formularioPrimerNivel]
+    let settingStateExpand2 = JSON.parse(JSON.stringify(props.formularioSegundoNivel))
     settingStateExpand = settingStateExpand.fill(true, 0, settingStateExpand.length)
 
     settingStateExpand2.map((pestana, a) => {
@@ -44,10 +41,10 @@ function Formulario() {
         if(id.includes(" ")) {
             let words = id.split(" ")
             const func1 = (element) => tokenizeIDs(element) == words[1]
-            let idx1 = formularioPrimerNivel.findIndex(func1)
+            let idx1 = props.formularioPrimerNivel.findIndex(func1)
 
             const func2 = (element) => tokenizeIDs(element) == words[0]
-            let idx2 = formularioSegundoNivel[idx1].findIndex(func2)
+            let idx2 = props.formularioSegundoNivel[idx1].findIndex(func2)
 
             let temp = JSON.parse(JSON.stringify(arrExpandido2))
             temp[idx1][idx2] = !temp[idx1][idx2]
@@ -64,7 +61,7 @@ function Formulario() {
         }
         else {
             const func = (element) => tokenizeIDs(element) == id
-            let idx = formularioPrimerNivel.findIndex(func)
+            let idx = props.formularioPrimerNivel.findIndex(func)
             let temp = JSON.parse(JSON.stringify(arrExpandido))
             temp[idx] = !temp[idx]
             const funcMap2 = arrExpandido.map((c, i) => {
@@ -82,7 +79,7 @@ function Formulario() {
     
     return (
         <div className='formulario'>
-            {formularioPrimerNivel.map((data1, i) =>
+            {props.formularioPrimerNivel.map((data1, i) =>
             
             <>
                 <div className="nivel1" id={tokenizeIDs(data1)} onClick={handleSetExpandido}>
@@ -94,7 +91,7 @@ function Formulario() {
                     <div className='barraPestañaFormN1' id={tokenizeIDs(data1)}></div>
                 </button>
                 </div>
-                {formularioSegundoNivel[i].map((data2, j) => 
+                {props.formularioSegundoNivel[i].map((data2, j) => 
                 <>
                 {arrExpandido[i] == true?(
                     
