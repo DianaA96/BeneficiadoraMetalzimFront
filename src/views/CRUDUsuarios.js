@@ -13,6 +13,12 @@ function CRUDUsuarios() {
 const [status, setStatus ] = useState('idle')
 const [error, setError] = useState(null);;
 const [userList, setUserList] = useState(null);
+  /* Reemplazar el arreglo de objetos por lo que se obtenga del endpoint */
+    const usuarios = [
+        {id: 2,nombre:"Benito Martínez Ocasio", rol: "Administrador", lastLogin: "10 de abril del 2023, 18:23"},
+        {id: 4,nombre:"Carlos Calderón Rosario", rol: "Laboratorio", lastLogin: "8 de abril del 2023, 10:15"},
+        {id: 5,nombre:"Ramón Luis Ayala Rodríguez", rol: "Báscula", lastLogin: "10 de abril del 2023, 14:10"},
+    ]
 
 let user = [];
 let i =0; 
@@ -32,6 +38,21 @@ let i =0;
       })
   },[])
 
+let user = [];
+let i =0; 
+
+  useEffect(()=>{
+    setStatus('loading')
+    axios.get(`http://localhost:3050/admin/List`)
+      .then((result)=>{
+        setStatus('resolved')
+        setUserList(result.data)
+      })
+      .catch((error)=>{
+        setError(error)
+        setStatus('error')
+      })
+  },[])
 
   //const usuarios = user;
     const columns = React.useMemo(()=>
