@@ -23,3 +23,7 @@ button:focus {
 button:disabled {
     cursor:not-allowed
 }
+
+.link-decoration{
+    text-decoration: none;
+}

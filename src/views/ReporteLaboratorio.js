@@ -45,7 +45,7 @@ const ReporteLaboratorio = () => {
             </div>
         </body>
         <footer>
-            <Menu rol={"laboratorista"}/>
+            <Menu rol={"laboratorista"} landing="/laboratorio"/>
         </footer></>
     );
 };

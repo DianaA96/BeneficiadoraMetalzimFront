@@ -1,9 +1,9 @@
 .tablonaB{
     margin-top: 20px;
-    width: 100%;
+    width: 60%;
     border-collapse: collapse;
-    width: 100%;
     overflow: hidden;
+    justify-content: center;
 }
 .tablonaB td {
     padding: 8px;

@@ -37,8 +37,7 @@
 }
 .contPie{
     background-color: #FFF;
-    width: 80%;
-    box-sizing: border-box;
+    width: 100%;
     padding: 2rem;
     border-radius: 1.5rem;
     box-shadow: 4px 11px 28px rgba(0, 0, 0, 0.08);
@@ -46,9 +45,4 @@
     display: flex;
     align-self: center;
     margin-top: 2rem;
-}
-.containerPie{
-    width: 100%;
-    display: flex;
-    align-items: center;
 }

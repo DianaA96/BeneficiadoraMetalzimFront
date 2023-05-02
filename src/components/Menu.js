@@ -7,11 +7,16 @@ import iconLab from "../assets/IconsLandingPages/labFormIcon.svg"
 import iconLogout from "../assets/IconsLandingPages/logoutIcon.svg"
 import iconBack from "../assets/IconsLandingPages/BackIcon.svg"
 
+import { useNavigate, Link } from 'react-router-dom';
+import { aria } from 'aria-query'
 
 function Menu(props) {
+
+  const navigate = useNavigate();
+
   var tabs = {
     laboratorista: [["Llenar reporte","science"], ["Historial", "history"]],
-    admin: [["Reporte Gerencial","summarize"], ["Admin. Usuarios", "group"], ["Reporte Báscula","scale"], ["Créditos", "favorite"]],
+    admin: [["Reporte Gerencial","summarize", "/reporte-gerencial"], ["Admin. Usuarios", "group", '/usuarios'], ["Reporte Báscula","scale", '/reporte-bascula'], ["Créditos", "favorite"]],
     gerente: [["Reporte Gerencial","summarize"], ["Reporte Báscula", "scale"]],
     bascula: [["Llenar reporte","scale"], ["Historial", "history"]]
   }
@@ -22,25 +27,29 @@ function Menu(props) {
   return (
     <>
         <div className='cont-menu'>
-        <img src={iconBack} className='icon-menu-fixed'></img>
+        <img src={iconBack} className='icon-menu-fixed' onClick={() => navigate(-1) } title='Atrás'></img>
           <div className='submenu'> 
           {
             pestanas1.map((items, i)=>
-              <div className={props.activeTab===items[1] ? 'submenu-item submenu-item-active' : 'submenu-item'}>
+              <Link to={items[2]} className={props.activeTab===items[1] ? 'submenu-item submenu-item-active' : 'submenu-item'}>
                 <span class="material-symbols-outlined icon-menu">{items[1]}</span>
                 <p className='titulo-menu blanco'>{items[0]}</p>
-              </div>  
+              </Link>  
             )
           }                                        
           </div>
-          <img src={LogoBM} className='logo-menu'></img>
+          
+          <Link to={props.landing}>
+            <img src={LogoBM} className='logo-menu'></img>
+          </Link>
+          
           <div className='submenu'> 
           {
             pestanas2.map((items, i)=>
-              <div className={props.activeTab===items[1] ? 'submenu-item submenu-item-active' : 'submenu-item'}>
+              <Link to={items[2]} className={props.activeTab===items[1] ? 'submenu-item submenu-item-active' : 'submenu-item'}>
                 <span class="material-symbols-outlined icon-menu">{items[1]}</span>
                 <p className='titulo-menu blanco'>{items[0]}</p>
-              </div>  
+              </Link>  
             )
           }
           </div>

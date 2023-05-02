@@ -43,24 +43,22 @@ const ReporteBascula = () => {
             <HeaderDiseno titulo={"Reporte diario Movimiento de mineral Báscula"} subtitulo={"24 de abril de 2023"} />
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div className="mycard">
-                    <Tabla tableData={tableData} />
-                    <div className="containerPie">
-                        <div>
+                    <div style={{display:"flex", justifyContent:"center"}}>
+                        <Tabla tableData={tableData} />
+                    </div >
+                    <div>
                             <p className="titulo">Existencia inicial</p>
-                            <GraficasPie tituloG={"Existencia inicial"} data={dataPie} />
-                        </div>
-                        <div>
                             <p className="titulo">Acarreo</p>
-                            <GraficasPie tituloG={"Acarreo"} />
-                        </div>
-                        <div>
                             <p className="titulo">Trituradas</p>
-                            <GraficasPie tituloG={"Trituradas"} />
-                        </div>
-                        <div>
                             <p className="titulo">Existencia patios</p>
-                            <GraficasPie tituloG={"Existencia patios"} />
                         </div>
+                    <div className="contentPie">
+                        
+                            
+                            <GraficasPie tituloG={"Existencia inicial"} data={dataPie} />
+                            <GraficasPie tituloG={"Acarreo"} />
+                            <GraficasPie tituloG={"Trituradas"} />
+                            <GraficasPie tituloG={"Existencia patios"} />
                     </div>
                     <div style={{ width:"80%"}}>
                         <p className='myP'>Embarque de concentrados</p>
@@ -76,7 +74,7 @@ const ReporteBascula = () => {
             </div>
         </body>
         <footer>
-            <Menu rol={"admin"} />
+            <Menu rol={"admin"} activeTab="scale" landing="/laboratorio"/>
         </footer></>
     );
 };

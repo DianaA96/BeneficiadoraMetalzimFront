@@ -25,7 +25,7 @@ var titulo = ""
 function GraficasPie(props) {
   titulo = props.tituloG
   return (
-    <div className="contPie">
+    <div className="contGraficas">
       <Chart
         chartType="PieChart"
         width="100%"
