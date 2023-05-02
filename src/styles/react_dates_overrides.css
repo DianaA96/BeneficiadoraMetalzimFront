@@ -171,9 +171,9 @@
 }
 
 .CalendarDay__blocked_out_of_range, .CalendarDay__blocked_out_of_range:active, .CalendarDay__blocked_out_of_range:hover {
-    background: #fff;
+    background: #f9caac;
     border: 1px solid transparent;
-    color: #cacccd;
+    color: white;
 }
 
 .CalendarDay__selected_end  {
