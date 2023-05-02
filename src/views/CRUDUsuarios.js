@@ -14,6 +14,7 @@ const [status, setStatus ] = useState('idle')
 const [error, setError] = useState(null);
 const [userList, setUserList] = useState(null);
 let user = [];
+var check=0;
 
   useEffect(()=>{
     setStatus('loading')
@@ -26,20 +27,25 @@ let user = [];
         setError(error)
         setStatus('error')
       })
-  },[])
+  },[check]);
 
-  useEffect(()=>{
+  function handleDelete (id){
     setStatus('loading')
-    axios.get(`http://localhost:3050/admin/List`)
-      .then((result)=>{
+    axios.delete(`http://localhost:3050/admin/borrar/${id}`,)
+    .then((result)=>{
         setStatus('resolved')
-        setUserList(result.data)
+        alert("Usuario: " + result.data.nombre + " deshabilitado")
+        
       })
       .catch((error)=>{
         setError(error)
         setStatus('error')
+        alert("Error " + error)
+        
       })
-  },[])
+            
+      window.location.reload(true)
+  }
 
   //const usuarios = user;
     const columns = React.useMemo(()=>
@@ -56,14 +62,16 @@ let user = [];
             minWidth: 100,
             getActions: (params) => [
                 <Link className='btn-lista link-decoration' to={`/usuario/${params.id}`} target="_blank">Actualizar</Link>,
-                <Link className='btn-lista-elim link-decoration' to={`/usuario/${params.id}`} target="_blank">Eliminar</Link>,
+                <button className='btn-lista-elim link-decoration' onClick={() => handleDelete(params.id)} target="_blank">Eliminar</button>,
             ],
           },
       ],
     );
 
     if(status === 'idle' || status === 'loading'){
-      <div>Loading</div>//Cambiar por icono de loading
+      return (
+        <div>Loading</div>//Cambiar por icono de loading
+      )
   }
   
   
@@ -77,11 +85,11 @@ let user = [];
     {
       var temp;
       for (var i = 0; i < userList.length ;i++ ) {
-        if(userList[i].idRol === 1) {
+        if(userList[i].idRol === 3) {
           temp = "Labratorista"
-        } else if (userList[i].idRol == 2) {
+        } else if (userList[i].idRol == 4) {
           temp = "Operario Bacula"
-        } else 
+        } else  if (userList[i].idRol == 2)
         temp="Gerente"
         console.log(userList[i].idRol)
         user [i] =  {

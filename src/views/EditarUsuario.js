@@ -34,7 +34,7 @@ function EditarUsuario() {
 
   const handleSubmit = (event) => {
     console.log("HEEEEEEEEEEEEY")
-
+    event.preventDefault();
     axios({
       method: 'patch',
       url: `http://localhost:3050/admin/editar/${params.idUsuario}`,
@@ -61,17 +61,19 @@ function EditarUsuario() {
     const { name, value } = event.target;
     console.log(value);
     if(value == "Gerente"){
-      setFormValues({ ...formValues, [name]: 1 });
-
-    }
-    else if (value == "Laboratorista"){
       setFormValues({ ...formValues, [name]: 2 });
 
     }
-    else {
+    else if (value == "Laboratorista"){
       setFormValues({ ...formValues, [name]: 3 });
+
+    }
+    else if (value == "Operario Bascula") {
+      setFormValues({ ...formValues, [name]: 4 });
     }
     //setFormValues({ ...formValues, [name]: value });
+
+    console.log(formValues)
   }
 
   if(status === 'idle' || status === 'loading'){
@@ -89,12 +91,12 @@ function EditarUsuario() {
 
   const checkId = (id) => {
     console.log(id);
-    if(id === 1) {
+    if(id === 2) {
+      return "Gerente"
+    } else if (id == 3) {
       return "Laboratorista"
-    } else if (id == 2) {
-      return "Operario Bascula"
-    } else 
-    return "Gerente"
+    } else if (id == 4) {}
+    return "Operario Bascula"
   } 
   
   if (status == 'resolved') 
