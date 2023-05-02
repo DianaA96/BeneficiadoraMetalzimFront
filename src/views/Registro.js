@@ -8,7 +8,7 @@ import axios from 'axios'
 
 
 
-function Registro(props) {
+function Registro() {
 
   const [formValues, setFormValues] = useState({
     nombre: "",
@@ -71,7 +71,7 @@ function Registro(props) {
 
   return (
     <div>
-      <HS  titulo={"Agregar un nuevo usuaario"} subtitulo={""}/>
+      <HS  titulo={"Agregar un nuevo usuario"} subtitulo={""}/>
       <div style={{display:"flex", justifyContent: "center"}} >
         <div class="divBox">
           <form className='formRegistro' onSubmit={handleSubmit}>
