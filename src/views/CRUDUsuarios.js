@@ -11,13 +11,9 @@ import axios from 'axios'
 function CRUDUsuarios() {
 
 const [status, setStatus ] = useState('idle')
-const [error, setError] = useState(null);;
+const [error, setError] = useState(null);
 const [userList, setUserList] = useState(null);
-
 let user = [];
-let i =0; 
-
-
 
   useEffect(()=>{
     setStatus('loading')
@@ -54,28 +50,28 @@ let i =0;
       ],
     );
 
-  if(status === 'idle' || status === 'loading'){
-      return <Menu rol="admin" activeTab="group"></Menu>
+    if(status === 'idle' || status === 'loading'){
+      <div>Loading</div>//Cambiar por icono de loading
   }
   
   
   if(status === 'error'){
       return (
-        <Menu rol="admin" activeTab="group"></Menu>
+        <div>Error</div> //Cambiar por alerta de error
       )
   }
   
     if (status == 'resolved') 
     {
       var temp;
-      for (i ; i < userList.length ;i++ ) {
+      for (var i = 0; i < userList.length ;i++ ) {
         if(userList[i].idRol === 1) {
           temp = "Labratorista"
         } else if (userList[i].idRol == 2) {
           temp = "Operario Bacula"
         } else 
         temp="Gerente"
-
+        console.log(userList[i].idRol)
         user [i] =  {
           id: userList[i].idUsuario,
           nombre: userList[i].nombre +" "+userList[i].apellidoP+" "+ userList[i].apellidoM,
