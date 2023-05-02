@@ -1,0 +1,235 @@
+/*This stylesheet will override the styles provided by default in the react-dates library*/
+
+.DateRangePickerInput{
+    background-color: transparent;
+}
+
+.DateInput {
+    background: transparent;
+    display: contents;
+    text-align: -webkit-center;
+    padding: 0px;
+}
+
+.DateInput_input {
+    background-color: transparent;
+    border-color: transparent;
+    border-left: 0;
+    border-radius: 10px;
+    caret-color: transparent;
+    cursor: pointer;
+    font-family: Lato, sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    height: 2em;
+    padding: 11px 11px 9px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 35px !important;
+    padding: 0px;
+}
+
+.DateInput_fang {
+    left: auto; 
+}
+
+.SingleDatePickerInput__withBorder {
+    border-radius: 10px;
+    height: 35px;
+    width: 320px;
+    padding: 0px;
+    background-color: #f9caac;
+}
+
+.DateInput_input::placeholder {
+    color: #EF7B30;
+}
+
+.DateRangePickerInput__withBorder {
+    display: flex;
+    width: 33vw;
+    border: 1px solid #dbdbdb;
+    justify-content: space-evenly;
+    padding: 0px 0px 0px 0px;
+    align-items: center;
+    border-radius: 8px;
+    height: 2.5em;
+}
+
+.DayPicker__withBorder {
+    border-radius: 20px;
+    top: 0vh;
+    border-color: transparent;
+    background-color: #f9caac;
+}
+
+.CalendarDay__default {
+    background: #f9caac;
+}
+
+.CalendarDay__selected, .CalendarDay__selected:active, .CalendarDay__selected:hover {
+    background-color: #EF7B30;
+    border-radius: 50px;
+}
+
+.DateRangePicker_picker__directionLeft{
+    border-radius: 20px;
+    top: 0vh;
+    left: -3vw;
+    background-color: transparent;
+    border-color: transparent;
+    z-index: 5;
+}
+
+.CalendarDay__default {
+    border: 1px solid transparent;
+    font-family: Inter;
+    font-weight: 500;
+    border-bottom-width: 2px;
+}
+
+.CalendarDay__default:hover {
+    background: #EF7B30;
+    border-radius: 50px;
+    border-color: transparent;
+}
+
+.DayPickerNavigation_leftButton__horizontalDefault {
+    border-color: transparent;
+    background-color: #f9caac;
+}
+
+.DayPickerNavigation_leftButton__horizontalDefault:hover {
+    border-color: transparent;
+}
+
+.DayPickerNavigation_rightButton__horizontalDefault {
+    border-color: transparent;
+    background-color: #f9caac;
+}
+
+.DayPickerNavigation_rightButton__horizontalDefault:hover {
+    border-color: transparent;
+}
+
+.DayPickerNavigation_svg__horizontal {
+    fill: black;
+}
+
+.DateInput_fangStroke {
+    stroke: transparent;
+    fill: #f9caac;
+}
+
+.DayPicker_weekHeader_li {
+    font-family: Inter;
+    font-weight: 500;
+}
+
+.CalendarMonth_caption {
+    font-family: Inter;
+    color: black;
+}
+
+.CalendarDay__selected_span {
+    background: #EF7B30;
+    color:white;
+    font-weight: 300;
+}
+
+.CalendarDay__selected_span:hover {
+    background: #EF7B30;
+    color: white;
+    font-weight: 300;
+}
+
+.CalendarDay__default:hover {
+    background: #EF7B30;
+    color: white;
+}
+ 
+.CalendarDay__hovered_span:hover, .CalendarDay__hovered_span {
+    background: #EF7B30;
+    color: white;
+}
+
+.DayPickerKeyboardShortcuts_show__bottomRight::before {
+    border-top: 26px solid transparent;
+    border-right: 33px solid transparent;
+    color: black;
+    bottom: 0;
+    right: 0;
+}
+
+.DayPickerKeyboardShortcuts_show__bottomRight:hover::before {
+    border-right: 33px solid transparent;
+    color: black;
+}
+
+.CalendarDay__blocked_out_of_range, .CalendarDay__blocked_out_of_range:active, .CalendarDay__blocked_out_of_range:hover {
+    background: #fff;
+    border: 1px solid transparent;
+    color: #cacccd;
+}
+
+.CalendarDay__selected_end  {
+    border-bottom-right-radius: 2em;
+    border-top-right-radius: 2em;
+    background: #EF7B30;
+    color: white;
+    font-weight: 300;
+}
+
+.CalendarDay__selected_start {
+    border-bottom-left-radius: 2em;
+    border-top-left-radius: 2em;
+    background: black;
+    color: white;
+    font-weight: 300;
+}
+
+.buttonsDatePresets {
+    color: #EF7B30;
+    font-size: 1em;
+    font-weight: 600;
+    border-color: #EF7B30;
+    border-width: 3px;
+    border-radius: 21px;
+    padding: 5% 0% 5% 0%;
+    width: 7vw;
+}
+
+.buttonsDatePresets:hover {
+    background-color: #EF7B30;
+    color: white;
+}
+
+#clicked {
+    background-color: #EF7B30;
+    color: white;
+}
+
+.DayPicker_transitionContainer {
+    height: 350px !important;
+}
+
+.DayPicker_transitionContainer__horizontal {
+    height: 350px !important;
+}
+
+.CalendarMonthGrid {
+    background: transparent;
+    text-align: left;
+    z-index: 0;
+}
+
+.CalendarMonth {
+    background-color: transparent;
+}
+
+.SingleDatePicker_picker {
+    background-color: transparent; 
+}
