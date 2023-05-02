@@ -16,6 +16,7 @@ import ReporteBascula from './views/ReporteBascula'
 import ReporteLaboratorio from './views/ReporteLaboratorio'
 import Login from "./views/LogIn"
 import Registro from "./views/Registro"
+import FormularioLaboratorio from './views/FormularioLaboratorio'
 
 function App() {
   return (
