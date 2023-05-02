@@ -40,7 +40,6 @@ function HistorialAnalisis() {
           <p className='myP'>Gráficas históricas</p>
           <hr className='myhr' />
         </div>
-        
         <GraficasLine titulo={"Concentrados"}></GraficasLine>
       </div>
       
