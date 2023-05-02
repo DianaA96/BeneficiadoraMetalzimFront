@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import Formulario from "../components/Formulario";
 import "../styles/formularioLaboratorio.css";
 import HeaderSencillo from "../components/HeaderSencillo";
@@ -29,6 +29,14 @@ function FormularioLaboratorio() {
         { value: '1', label: 'Uno' },
         { value: '2', label: 'Dos' },
     ];
+
+    const [ heightSize, setHeightSize ] = useState(0)
+
+    useEffect(() => {
+        setHeightSize(window.innerWidth)
+        return () => {
+        };
+    }, []);
 
     return(
         <>
@@ -136,6 +144,7 @@ function FormularioLaboratorio() {
                             inputBase={inputBase}/>
                         </div>
                     </div>
+                    <footer style={{ height: `20vh` }}/>
                 </div>
                 <div className="bandaDerecha">
                     <div className="imagenPatron" style={{ backgroundImage: `url(${Pattern})` }}>
