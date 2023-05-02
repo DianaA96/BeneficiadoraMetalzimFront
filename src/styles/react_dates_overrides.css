@@ -18,7 +18,7 @@
     border-radius: 10px;
     caret-color: transparent;
     cursor: pointer;
-    font-family: Lato, sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 1em;
     font-weight: 600;
     height: 2em;
@@ -38,6 +38,7 @@
 
 .SingleDatePickerInput__withBorder {
     border-radius: 10px;
+    border-color: transparent;
     height: 35px;
     width: 320px;
     padding: 0px;
