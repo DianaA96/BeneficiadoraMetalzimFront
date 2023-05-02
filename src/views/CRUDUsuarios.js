@@ -38,6 +38,21 @@ let i =0;
       })
   },[])
 
+let user = [];
+let i =0; 
+
+  useEffect(()=>{
+    setStatus('loading')
+    axios.get(`http://localhost:3050/admin/List`)
+      .then((result)=>{
+        setStatus('resolved')
+        setUserList(result.data)
+      })
+      .catch((error)=>{
+        setError(error)
+        setStatus('error')
+      })
+  },[])
 
   //const usuarios = user;
     const columns = React.useMemo(()=>
