@@ -133,8 +133,8 @@ function FormularioLaboratorio() {
                                         }),
                                     }}
                                     />
-                                <CalendarDatePicker tipoDeCalendario={"Muestreo: "}/>
-                                <CalendarDatePicker tipoDeCalendario={"Ensaye: "}/>
+                                <CalendarDatePicker idCalendario={"Muestreo"} tipoDeCalendario={"Muestreo: "}/>
+                                <CalendarDatePicker idCalendario={"Ensaye"} tipoDeCalendario={"Ensaye: "}/>
                             </div>
                         </div>
                         <div className="formularioContenedor">
