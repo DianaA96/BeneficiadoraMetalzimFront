@@ -78,26 +78,29 @@ function Formulario(props) {
     }
 
     function onKeyDown(event) {
-        event.preventDefault()
         if(event.code == "ArrowUp") {
-            let nextItem = document.getElementById((parseInt(event.target.id) - 10).toString())
+            event.preventDefault()
+            let nextItem = document.getElementById((parseInt(event.target.id) - props.cantidadDeElementosEnFila).toString())
             if (nextItem != null) {
                 nextItem.focus()
             }
         }
         if(event.code == "ArrowDown") {
-            let nextItem = document.getElementById((parseInt(event.target.id) + 10).toString())
+            event.preventDefault()
+            let nextItem = document.getElementById((parseInt(event.target.id) + props.cantidadDeElementosEnFila).toString())
             if (nextItem != null) {
                 nextItem.focus()
             }
         }
         if(event.code == "ArrowLeft") {
+            event.preventDefault()
             let nextItem = document.getElementById((parseInt(event.target.id) - 1).toString())
             if (nextItem != null) {
                 nextItem.focus()
             }
         }
         if(event.code == "ArrowRight") {
+            event.preventDefault()
             let nextItem = document.getElementById((parseInt(event.target.id) + 1).toString())
             if (nextItem != null) {
                 nextItem.focus()
@@ -160,7 +163,7 @@ function Formulario(props) {
                                     <p className='elementoInput'>{input[0]}</p>
                                     <p className='cantidadInput'>{input[1]}</p>
                                 </label>
-                                <input className='inputGris' type="number" for={`${input[0]} ${input[1]}`}></input>
+                                <input className='inputGris' type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} onChange={props.handleInputChange}></input>
                                 </div>)
                             : null)} 
                             </>
@@ -182,7 +185,7 @@ function Formulario(props) {
                     <span className='separatorButton'/>
                     <span class="material-symbols-outlined">sync_saved_locally</span>
                 </button>
-                <button className='enviar'>Enviar
+                <button className='enviar' onClick={props.handleSendForm}>Enviar
                     <span className='separatorButton'/>
                     <span class="material-symbols-outlined">send</span>
                 </button>
