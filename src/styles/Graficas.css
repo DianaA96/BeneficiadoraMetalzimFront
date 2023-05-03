@@ -1,14 +1,12 @@
 .contGraficas{
-    background-color: #FFF;
-    width: 80%;
+    background-color: #EF7B30;
     box-sizing: border-box;
-    padding: 2rem;
-    border-radius: 1.5rem;
+    border-radius: 1rem;
     box-shadow: 4px 11px 28px rgba(0, 0, 0, 0.08);
     justify-content: center;
     display: flex;
     align-self: center;
-    margin-top: 2rem;
+    margin: 5rem;
 }
 .titulo{
     font-weight: bold;
@@ -36,8 +34,9 @@
     color: #EF7B30;
 }
 .contPie{
+    scroll-margin-inline: 0;
     background-color: #FFF;
-    width: 100%;
+    width: 50%;
     padding: 2rem;
     border-radius: 1.5rem;
     box-shadow: 4px 11px 28px rgba(0, 0, 0, 0.08);

@@ -42,10 +42,7 @@
     flex-direction: row;
 }
 .contentPie{
-    width: auto;
+
     display: flex;
-    align-items: center;
-    justify-content:center;
-    flex-direction:row;
-    scroll-behavior:auto;
+    overflow-x: scroll;
 }

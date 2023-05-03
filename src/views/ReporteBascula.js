@@ -53,12 +53,18 @@ const ReporteBascula = () => {
                             <p className="titulo">Existencia patios</p>
                         </div>
                     <div className="contentPie">
-                        
-                            
+                        <div>
                             <GraficasPie tituloG={"Existencia inicial"} data={dataPie} />
+                        </div>
+                        <div>
                             <GraficasPie tituloG={"Acarreo"} />
+                        </div>
+                        <div>
                             <GraficasPie tituloG={"Trituradas"} />
+                        </div>
+                        <div>
                             <GraficasPie tituloG={"Existencia patios"} />
+                        </div>
                     </div>
                     <div style={{ width:"80%"}}>
                         <p className='myP'>Embarque de concentrados</p>
