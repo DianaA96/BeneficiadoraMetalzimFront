@@ -16,8 +16,6 @@ import "react-dates/lib/css/_datepicker.css";
 import "../styles/react_dates_overrides.css";
 import "../styles/botonesDatePicker.css";
 
-
-
 // CALENDAR DATE PICKER COMPONENT-------------------------------------------
 function CalendarDatePicker(props) {
   
@@ -54,6 +52,7 @@ function CalendarDatePicker(props) {
       setAyer(false)
       setHoy(false)
       setFocused(false)
+      props.setFecha(moment().subtract(2, "days").format("YYYY-MM-DD"))
     }
     else if(event.target.name === 'Ayer') {
       setDatePickerSelection(moment().subtract(1, "days").format("YYYY-MM-DD"))
@@ -62,6 +61,7 @@ function CalendarDatePicker(props) {
       setAntier(false)
       setHoy(false)
       setFocused(false)
+      props.setFecha(moment().subtract(1, "days").format("YYYY-MM-DD"))
     }
     else if(event.target.name === 'Hoy') {
       setDatePickerSelection(moment().format("YYYY-MM-DD"))
@@ -70,6 +70,7 @@ function CalendarDatePicker(props) {
       setAyer(false)
       setAntier(false)
       setFocused(false)
+      props.setFecha(moment().format("YYYY-MM-DD"))
     }
   }
 
@@ -78,7 +79,7 @@ function CalendarDatePicker(props) {
             <SingleDatePicker
                 numberOfMonths={1}
                 date={date}
-                onDateChange={event => {setDate(event); setDatePickerSelection(event.format("YYYY-MM-DD"));}}
+                onDateChange={event => {setDate(event); setDatePickerSelection(event.format("YYYY-MM-DD")); props.setFecha(event.format("YYYY-MM-DD"))}}
                 focused={focused}
                 focusedInput={focused}
                 onFocusChange={(focusedInput) => {setFocused(focusedInput.focused)}}
