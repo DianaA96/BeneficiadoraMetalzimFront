@@ -4,7 +4,7 @@ import HeaderSencillo from "./HeaderSencillo";
 import TablaLaboratorio from "./TablaLaboratorio";
 import "../styles/analisisLab.css"
 
-const ModalReporteLaboratorio = () => {
+const ModalReporteLaboratorio = (props) => {
 
     var titulo = "Reporte de Laboratorio"
     var subtitulo = "Horem ipsum dolor sit amet, consectetur adipiscing elit.Nunc vulputate libero et velit interdum, ac aliquet odio mattis.Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
@@ -37,24 +37,31 @@ const ModalReporteLaboratorio = () => {
         document.body.removeChild(textarea);
     };
 
-    return (
+    function hideModal(){
+        props.setModalVisibility(false)
+    }
 
-        <div className="modal">
-            <div className="top">
-                <button className="buttonClose">
-                    <span className="material-symbols-outlined">close</span>
-                </button>
-            </div>
-            <div className="content">
-                <div className="descripcion">
-                    <h1>Reporte de Laboratorio</h1>
-                    <p>Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+    return (
+        <div className="modal-overlay">
+            <div className="modal">
+                <div className="top">
+                    <button className="buttonClose" onClick={hideModal}>
+                        <span className="material-symbols-outlined">close</span>
+                    </button>
                 </div>
-                <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
-                <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
-                <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
+                <div className="content">
+                    <div className="descripcion">
+                        <h1>Reporte de Laboratorio</h1>
+                        <h3 className="n500">Mina Guadalupe | Miércoles, 13 de abril de 2023</h3>
+                        <p>Copia los valores de cada turno a partir de los botones.</p>
+                    </div>
+                    <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
+                    <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
+                    <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
+                </div>
             </div>
         </div>
+       
     );
 };
 
