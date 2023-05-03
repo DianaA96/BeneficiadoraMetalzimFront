@@ -10,21 +10,21 @@ import ScaleView from "../assets/IconsLandingPages/scale_view.png"
 import Scale from "../assets/IconsLandingPages/scale.png"
 import ScaleEdit from "../assets/IconsLandingPages/ScaleEdit.png"
 import LogoMini from "../assets/IconsLandingPages/LogoMini.png"
+import {Link} from "react-router-dom"
 
 // El rol se define pasando por props la variable y cambiando strips por el rol (del 0 al 3)
-let strips = 2
 
-function LandingPage() {
-
+function LandingPage(props) {
+    let strips = props.strips;
     const roles = ["laboratorista", "administrador", "gerente", "operario de báscula"]
 
     const opciones  = [[
-        ["Registro de análisis de muestras", "F4A470", Science, 2],
-        ["Consulta análisis de laboratorio", "F7B990", History, 2]
+        ["Registro de análisis de muestras", "F4A470", Science, 2,"/formulario-laboratorio"],
+        ["Consulta análisis de laboratorio", "F7B990", History, 2,"/reporte-laboratorio"]
     ], [
-        ["Reporte gerencial", "EF7B30", Paid, 2],
-        ["Administración de usuarios", "F3995E", Group, 2],
-        ["Reporte de báscula", "F6B68C", Scale, 2]
+        ["Reporte gerencial", "EF7B30", Paid, 2, "/formulario-gerencial"],
+        ["Administración de usuarios", "F3995E", Group, 2, "/usuarios"],
+        ["Reporte de báscula", "F6B68C", Scale, 2, "/reporte-bascula"]
     ], [
         ["Visualizar reporte gerencial", "F4A470", PaidAwesome, 2],
         ["Visualizar reporte de báscula", "F7B990", ScaleView, 2]
@@ -47,7 +47,10 @@ function LandingPage() {
                         </div>
                         <div className="textAndButtonInStrip">    
                             <p>{option[0]}</p>
-                            <button className={`buttonLandingPage ${strips == 1 && i == 2 ? "buttonLandingPage2": ""}`}><span className='textoEnBotonLP'>Ir</span></button>
+                            <Link to={option[4]}>
+                                <button className={`buttonLandingPage ${strips == 1 && i == 2 ? "buttonLandingPage2": ""}`}><span className='textoEnBotonLP'>Ir</span></button>
+                            </Link>
+                            
                             <p className='iconButtonLandingPage'><span className="material-symbols-outlined">expand_more</span></p>
                         </div>
                     </div>
