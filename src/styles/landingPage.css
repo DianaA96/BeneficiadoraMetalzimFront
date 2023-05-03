@@ -1,90 +1,96 @@
 .iconLandingPage {
-    height: 55vh;
+  height: 40vh;
+}
+
+.dimVar {
+  width: 28vw;
 }
 
 .iconButtonLandingPage {
-    display: flex;
-    padding: 0px;
-    width: 130px;
-    margin: 0px;
-    justify-content: center;
+  display: flex;
+  padding: 0px;
+  width: 130px;
+  margin: 0px;
+  justify-content: center;
 }
 
 .buttonLogOutLP {
-    font-size: 2rem;
-    background-color: transparent;
-    border-radius: 10px;
-    border-color: transparent;
-    color: #fff;
+  font-size: 2rem;
+  background-color: transparent;
+  border-radius: 10px;
+  border-color: transparent;
+  color: #fff;
 }
 
 .miniLogo {
-    position: fixed;
-    left: 30px;
-    top: 10px;
-}
-
-.iconContainer {
-    position: fixed;
-    top: 20vh;
+  position: fixed;
+  left: 30px;
+  top: 10px;
 }
 
 .containerLandingPage {
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.3rem;
-    font-family: "Inter", sans-serif;
-    font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.3rem;
+  font-family: "Inter", sans-serif;
+  font-weight: bold;
 }
 
 .titleLandingPage {
-    position: fixed;
-    left: 140px;
-    top: 52px;
-    color: #fff;
-    font-size: 2rem;
+  position: fixed;
+  left: 140px;
+  top: 52px;
+  color: #fff;
+  font-size: 2rem;
 }
 
 .stripLandingPage {
-    height: 100vh;
-    display: flex;
-    align-items: flex-end;
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-direction: column;
 }
 
 .strip1 {
-    background-color: #EF7B30;
+  background-color: #EF7B30;
 }
 
 .strip2 {
-    background-color: #F3995E;
+  background-color: #F3995E;
 }
 
 .strip3 {
-    background-color: #F6B68C;
+  background-color: #F6B68C;
 }
 
 .textAndButtonInStrip {
-    padding-bottom: 10vh;
-    padding-left: 4vw;
+  padding-bottom: 10vh;
+  padding-left: 4vw;
+  width: 35%;
 }
 
 .buttonLandingPage {
-    border-color: transparent;
-    border-radius: 10px;
-    background-color: #F6B68C;
-    width: 130px;
-    height: 40px;
-    line-height: 42px;
-    font-size: 1rem;
-    padding: 0;
-    border: none;
+  border-color: transparent;
+  border-radius: 10px;
+  background-color: #F6B68C;
+  width: 130px;
+  height: 40px;
+  line-height: 42px;
+  font-size: 1rem;
+  padding: 0;
+  border: none;
+}
+
+.buttonLandingPage2 {
+  background-color: #F3995E;
 }
 
 .buttonLandingPage .textoEnBotonLP {
-    position: relative;
-    display: block;
-    width: 100%;
-    height: 100%;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .buttonLandingPage:before,
@@ -93,8 +99,13 @@
   content: "";
   right: 0;
   top: 0;
-    background: #F6B68C;
+  background: #F6B68C;
   transition: all 0.3s ease;
+}
+
+.buttonLandingPage2:before,
+.buttonLandingPage2:after {
+  background: #F3995E;
 }
 
 .buttonLandingPage:before {
@@ -108,7 +119,7 @@
 }
 
 .buttonLandingPage:hover{
-   background: transparent;
+  background: transparent;
   box-shadow: none;
 }
 
@@ -130,8 +141,12 @@
   content: "";
   left: 0;
   bottom: 0;
-   background: #F6B68C;
+  background: #F6B68C;
   transition: all 0.3s ease;
+}
+.buttonLandingPage2 .textoEnBotonLP:before,
+.buttonLandingPage2 .textoEnBotonLP:after {
+  background: #F3995E;
 }
 
 .buttonLandingPage .textoEnBotonLP:before {
