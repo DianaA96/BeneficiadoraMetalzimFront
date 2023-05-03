@@ -10,8 +10,9 @@ import Select from 'react-select';
 import CardPrecioMetal from '../components/CardPrecioMetal'
 import ModalReporteLaboratorio from '../components/ModalReporteLaboratorio'
 import Formulario from "../components/Formulario";
+import Menu from '../components/Menu'
 
-function ReporteGerencial() {
+function FormularioGerencial() {
     const formularioPrimerNivel = ["Hoy", "Acumulado"]
     const formularioSegundoNivel = [["Cabeza", "Concentración plomo" , "Concentración zinc", "Colas"], ["Cabeza", "Concentración plomo" , "Concentración zinc", "Colas"]]
     const inputBase = [["TMS", "↓"],["Ag", "g/ton"], ["Cu", "%"], ["Zn", "%"], ["Pb", "%"], ["Fe", "%"], ["Sb", "%"], ["Cd", "%"]]
@@ -33,7 +34,7 @@ function ReporteGerencial() {
     }
   return (
     <>
-        <HeaderDiseno titulo="Reporte Gerencial" subtitulo="Llena los campos en cada sección para generar el reporte gerencial."></HeaderDiseno>
+        <HeaderDiseno titulo="Formulario para Reporte Gerencial" subtitulo="Llena los campos en cada sección para generar el reporte gerencial."></HeaderDiseno>
         <div className="header-reporte">
             <Select
                 defaultValue={selectedOption}
@@ -246,10 +247,11 @@ function ReporteGerencial() {
                 </div>
             </div>
         </div>
+        <Menu rol={"admin"} activeTab="summarize" landing="/admin"/>
         {modalVisibility ? <ModalReporteLaboratorio setModalVisibility = {setModalVisibility}></ModalReporteLaboratorio>:null}
                                    
     </>
   )
 }
 
-export default ReporteGerencial
+export default FormularioGerencial
