@@ -17,6 +17,7 @@ import ReporteLaboratorio from './views/ReporteLaboratorio'
 import Login from "./views/LogIn"
 import Registro from "./views/Registro"
 import EditarUsuario from './views/EditarUsuario';
+import FormularioLaboratorio from './views/FormularioLaboratorio';
 
 function App() {
   return (
