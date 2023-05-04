@@ -1,0 +1,110 @@
+.card-precio{
+    margin-right: 1rem;
+}
+.card-precio-top{
+    font-family: 'Inter';
+    background-color: var(--p700);
+    border-radius: 15px 15px 0 0;
+    width: 6.8rem;
+    height: 6rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-shadow: 9px 11px 33px -8px rgba(0, 0, 0, 0.25);
+}
+
+.card-precio-top-dark{
+    font-family: 'Inter';
+    background-color: var(--n700);
+    border-radius: 15px 15px 0 0;
+    width: 6.8rem;
+    height: 6rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-shadow: 9px 11px 33px -8px rgba(0, 0, 0, 0.25);
+}
+
+.card-precio-bottom{
+    background-color: var(--n200);
+    border-radius: 0 0 15px 15px ;
+    width: 6.8rem;
+    height: 3rem;
+    padding: 0.3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 9px 11px 33px -8px rgba(0, 0, 0, 0.25);
+}
+
+.header-precio{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1.2rem;
+    height: 2rem;
+    
+}
+
+
+.icono-tendencia{
+    font-size: 1.4rem;
+    margin-right: 0.4rem;
+    color: #9df8a4;
+    font-weight: bolder;
+}
+
+.nombre-mineral{
+    margin: 0;
+}
+
+.btn-actualizar-precio{
+    width: 90%;
+    border-style: none;
+    background-color: var(--negro);
+    font-family: 'Inter';
+    font-weight: bold;
+    color: var(--blanco);
+    padding: 0.5rem;
+    border-radius: 15rem;
+}
+
+.btn-guardar-precio{
+    width: 90%;
+    border-style: none;
+    background-color: #668a69;
+    font-family: 'Inter';
+    font-weight: bold;
+    color: var(--blanco);
+    padding: 0.5rem;
+    border-radius: 15rem;
+}
+
+
+.input-preciometal{
+    font-size: 1.2rem;
+    color: var(--blanco);
+    font-weight: bold;
+    width: 70%;
+    background-color: #ffffff00;
+    border-style: none;
+    border-bottom: 2px solid var(--n200);
+}
+
+.input-preciometal:focus{
+    border-style: none;
+    border: 0px;
+    outline: none;
+    border-bottom: 2px solid var(--n200);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button 
+{
+    -webkit-appearance: none;
+}

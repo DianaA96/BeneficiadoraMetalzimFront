@@ -102,3 +102,37 @@
     justify-content: space-around;
     padding-right: 40px;
 }
+
+.stripBotones {
+    height: 20vh;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+    width: 70%;
+}
+
+.stripBotones button {
+    height: 5vh;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-color: transparent;
+}
+
+.separatorButton {
+    width: 10px;
+}
+
+.guardarProgreso {
+    background-color: var(--p800);
+}
+
+.enviar {
+    background-color: var(--p1000);
+}

@@ -1,8 +1,10 @@
 .header-seccion-reporte{
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+    font-family: 'Inter';
 }
 
 .seccion-reporte{
@@ -11,32 +13,65 @@
 }
 
 .secc-1{
-    width: 75%;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.secc-1-full{
+    width: 110%;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.sep-seccion{
-    width: 60%;
-    height: 0.3rem;
-    background-color: var(--n600);
-    border-radius: 2.5rem;
-    margin-right: 4rem;
-    margin-left: 1rem;
-}
-
-.btn-detalles-seccion{
-    cursor: pointer;
+.secc-1-center{
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    text-align: center;
+}
+
+.secc-1-center .sep-seccion{
+    margin-right: 0 !important;
+    width: 40%;
+}
+
+
+.sep-seccion{
+    width: 65%;
+    height: 0.3rem;
+    background-color: var(--n600);
+    border-radius: 2.5rem;
+    margin-right: 3rem;
+}
+
+.sep-seccion-full{
+    width: 80%;
+    height: 0.3rem;
+    background-color: var(--n600);
+    border-radius: 2.5rem;
+    margin-left: 1rem;
+}
+
+
+.btn-detalles-seccion{
+    width: 20%;
+    font-family: 'Inter';
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
     background-color: var(--n600);
     border-radius: 8px;
     padding: 0.8rem;
     height: 1rem;
-    font-weight: bold;
+    font-weight: 600 !important;
     color: var(--blanco);
 }
 
@@ -46,7 +81,124 @@
 }
 
 .texto-btn{
-    font-size: 0.8rem;
-    font-weight: 500;
-    margin-left: 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
 }
+
+.movmineral{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.movmineral-item{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.movmineral-2{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.movmineral-subitem{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+
+.subtitulo-movmineral{
+    margin-bottom: -0.5rem;
+}
+
+.header-reporte{
+    margin: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 2.5rem;
+    padding: 1rem 0;
+}
+
+.cont-preciosmetal{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 2rem 0;
+}
+
+.subcont-preciosmetal{
+    margin-left: 2.5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.liquidacion-cont{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 2rem 0;
+}
+
+.liquidacion-item{
+    width: 30%;
+}
+
+.vertical-sep{
+    border: none;
+    border-left: 5px dotted var(--p600);
+    width: 0rem;
+    margin: 0;
+    padding: 0;
+    writing-mode: vertical-rl;
+}
+
+
+.btn-detalles-seccion:hover {
+    background-color: var(--n800);
+    scale: 1.06;/* Cambiar el color de fondo del botón */
+    animation-name: example; /* Agregar una animación */
+    animation-duration: 0.3s; /* Establecer la duración de la animación en segundos */
+    animation-timing-function: ease-in-out;
+  }
+  
+  /* Definir la animación */
+  @keyframes example {
+    from {background-color: var(--n600); scale: 1;} /* Establecer el color de fondo inicial */
+    to {background-color: var(--n800); scale: 1.06;} /* Establecer el color de fondo final */
+  }
+
+  .cont-valormineral{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--p700);
+    border-radius: 15px;
+    height: 8rem;
+  }
+
+  .item-valormineral{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .item-valormineral h1{
+    margin-bottom: 0;
+  }

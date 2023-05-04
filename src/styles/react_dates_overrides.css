@@ -18,7 +18,7 @@
     border-radius: 10px;
     caret-color: transparent;
     cursor: pointer;
-    font-family: Lato, sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 1em;
     font-weight: 600;
     height: 2em;
@@ -38,6 +38,7 @@
 
 .SingleDatePickerInput__withBorder {
     border-radius: 10px;
+    border-color: transparent;
     height: 35px;
     width: 320px;
     padding: 0px;
@@ -170,9 +171,9 @@
 }
 
 .CalendarDay__blocked_out_of_range, .CalendarDay__blocked_out_of_range:active, .CalendarDay__blocked_out_of_range:hover {
-    background: #fff;
+    background: #f9caac;
     border: 1px solid transparent;
-    color: #cacccd;
+    color: white;
 }
 
 .CalendarDay__selected_end  {
@@ -217,7 +218,7 @@
 }
 
 .DayPicker_transitionContainer__horizontal {
-    height: 350px !important;
+    height: 290px !important;
 }
 
 .CalendarMonthGrid {

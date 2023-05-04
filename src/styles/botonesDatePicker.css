@@ -1,0 +1,26 @@
+.botonesDatePicker {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 6vh;
+    padding-bottom: 4vh;
+}
+
+.botonDatePicker {
+    background-color: transparent;
+    color: black;
+    border: 2px solid black;
+    border-radius: 25px;
+    width: 80px;
+    font-family: Inter, sans-serif;
+    font-size: 1rem;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.botonDatePicker:hover {
+    cursor: pointer !important;
+    background-color: black !important;
+    color: white !important;
+}
