@@ -6,6 +6,7 @@ function GraficasColumna(props) {
   var options = {
     title: "Total de embarque de concentrados",
     legend: { position: "top", maxLines: 5 },
+    chartArea: {width: '70%', height: '70%'},
   };
 
   const data = [

@@ -19,10 +19,10 @@ function EditarUsuario() {
 
   useEffect(()=>{
     setStatus('loading')
-    axios.get(`http://localhost:3050/admin/individual/${params.idUsuario}`)
+    axios.get(`http://localhost:3050/admin/getEdit/${params.idUsuario}`)
       .then((result)=>{
         setStatus('resolved')
-        setFormValues(result.data)
+        setFormValues(result.data[0])
       })
       .catch((error)=>{
         setError(error)
@@ -31,9 +31,7 @@ function EditarUsuario() {
   },[])
 
 
-
   const handleSubmit = (event) => {
-    console.log("HEEEEEEEEEEEEY")
     event.preventDefault();
     axios({
       method: 'patch',
@@ -44,10 +42,12 @@ function EditarUsuario() {
       }
     })
     .then((result)=>{
-        alert('Receptor actualizado correctamente');
+        alert('Usuario actualizado correctamente');
+        console.log("HEEEEEEEEEEEEY -->", formValues, params.idUsuario)
+
     })
     .catch(error =>{
-        alert('No se pudo actualizar el receptor:', error);
+        alert('No se pudo actualizar el usuario:', error);
     })
 
   }
@@ -59,21 +59,15 @@ function EditarUsuario() {
   
   const handleChangeSelect = (event) => {
     const { name, value } = event.target;
-    console.log(value);
     if(value == "Gerente"){
       setFormValues({ ...formValues, [name]: 2 });
-
     }
     else if (value == "Laboratorista"){
       setFormValues({ ...formValues, [name]: 3 });
-
     }
     else if (value == "Operario Bascula") {
       setFormValues({ ...formValues, [name]: 4 });
     }
-    //setFormValues({ ...formValues, [name]: value });
-
-    console.log(formValues)
   }
 
   if(status === 'idle' || status === 'loading'){
@@ -101,6 +95,7 @@ function EditarUsuario() {
   
   if (status == 'resolved') 
   {
+
     return (
       <div>
         <HS

@@ -53,15 +53,15 @@ function Registro() {
     const { name, value } = event.target;
     console.log(value);
     if(value == "Gerente"){
-      setFormValues({ ...formValues, [name]: 1 });
-
-    }
-    else if (value == "Laboratorista"){
       setFormValues({ ...formValues, [name]: 2 });
 
     }
-    else {
+    else if (value == "Laboratorista"){
       setFormValues({ ...formValues, [name]: 3 });
+
+    }
+    else {
+      setFormValues({ ...formValues, [name]: 4 });
     }
     //setFormValues({ ...formValues, [name]: value });
   }

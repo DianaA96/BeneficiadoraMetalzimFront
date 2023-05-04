@@ -105,15 +105,19 @@ const ReporteBascula = () => {
                 </div>
                
             </div>
-            <div style={{marginBottom:"5rem", justifyContent:"center", display:"flex"}}>
-                <button className='buttonLogin' style={{width:"15rem", backgroundColor:"#817C7C"}} type="submit">Imprimir</button>
-                <a>
-                    <button className='buttonLogin' style={{width:"15rem", marginLeft:"5%"}}>Ir a historial</button>
-                </a>
-            </div>
+
+            <div className='stripBotones' style={{marginBottom:"5rem", justifyContent:"center", display:"flex", width:"100%"}}>
+                <button className='guardarProgreso' style={{width:"15rem", backgroundColor:"#817C7C"}}>Imprimir
+                    <span className='separatorButton'/>
+                    <span class="material-symbols-outlined">sync_saved_locally</span>
+                </button>
+                <button className='enviar' style={{width:"15rem", marginLeft:"5%"}}>Ir a historial
+                </button>
+            </div> 
+            
         </body>
         <footer>
-            <Menu rol={"admin"} activeTab="scale" landing="/laboratorio"/>
+            <Menu rol={"admin"} activeTab="scale" landing="/admin"/>
         </footer></>
     );
 };

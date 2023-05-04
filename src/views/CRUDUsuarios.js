@@ -43,7 +43,7 @@ var check=0;
         alert("Error " + error)
         
       })
-            
+
       window.location.reload(true)
   }
 
@@ -100,7 +100,7 @@ var check=0;
         }
       }
 
-      console.log(user)
+      console.log(userList)
 
       return (
         <>
