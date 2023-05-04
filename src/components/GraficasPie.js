@@ -2,30 +2,23 @@ import React from "react";
 import "../styles/ReporteBascula.css";
 import { Chart } from "react-google-charts";
 
-
-const descripcion = "en toneladas"
-const yGrafica = "Mes"
-const opciones = ["Minesites", "Balcones", "Guadalupe"]
-
-const data = [
-  ["Task", "Hours per Day"],
-  [opciones[0], 11],
-  [opciones[1], 2],
-  [opciones[2], 2],// CSS-style declaration
-];
-
-const options = {
-  title: titulo,
-  pieHole: 0.6,
-  is3D: false,
-};
-
-var titulo = ""
-
 function GraficasPie(props) {
-  titulo = props.tituloG
+
+  var options = {
+    title: props.tituloG,
+    pieHole: 0.5,
+    legend: { position: "top", maxLines: 5 },
+  };
+
+  var data = [
+    ["Compañia minera", "Toneladas"],
+    ["Minesites", 11],
+    ["Balcones", 2],
+    ["Guadalupe", 2],
+  ];
+
   return (
-    <div className="contGraficas">
+    <div className="contGraficasPie">
       <Chart
         chartType="PieChart"
         width="100%"

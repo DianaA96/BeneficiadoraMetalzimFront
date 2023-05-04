@@ -43,19 +43,27 @@ function HistorialBascula() {
 
   return (
     <><body>
-      <HeaderDiseno titulo="Historial - Reporte de Báscula" subtitulo="Consulta el historial de los reportes de báscula generados en esta ventana. Navega por la lista de reportes generados y consulta un reporte en específico"></HeaderDiseno>
+      <HeaderDiseno
+      titulo="Historial - Reporte de Báscula"
+      subtitulo="Consulta el historial de los reportes de báscula generados en esta ventana. Navega por la lista de reportes generados y consulta un reporte en específico"
+      isDate={false}
+      />
       <ListaReportes columns={columns} data={reportes} titulo="Todos los reportes"></ListaReportes>
-      <div className='division'>
-        <div style={{ width:"80%"}}>
+
+      <div style={{display:"flex", justifyContent:"center", flexDirection:"column",  width:"100%", marginBottom:"5rem"}}>
+
+        <div className='division' style={{display:"flex", alignSelf:"center", width:"80%"}}>
           <p className='myP'>Gráficas históricas</p>
-          <hr className='myhr' />
+          <hr className='myhr' style={{color:"#EF7B30", width: "80%"}} />
         </div>
-        <div style={{ display: "flex", justifyContent:"space-between", alignItems: "center", flexDirection:"row", width:"80%"}}>
-          <GraficasArea titulo={"Acarreo"}></GraficasArea>
-          <GraficasArea titulo={"Trituradas"}></GraficasArea>
-        </div>
-        <GraficasLine titulo={"Concentrados"}></GraficasLine>
+      
+        <div style={{ display: "flex", justifyContent:"center", flexDirection:"row", width:"100%"}}>
+          <GraficasArea titulo={"Acarreo"} class="contGraficasPie"></GraficasArea>
+          <GraficasArea titulo={"Trituradas"} class="contGraficasPie"></GraficasArea>
+        </div >
+          <GraficasLine titulo={"Concentrados"}></GraficasLine>
       </div>
+
     </body>
     <footer>
       <Menu rol="admin" activeTab="scale"></Menu>

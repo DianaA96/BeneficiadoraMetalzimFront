@@ -104,7 +104,11 @@ var check=0;
 
       return (
         <>
-            <HeaderDiseno titulo="Administración de usuarios" subtitulo="Consulta los usuarios registrados en el sistema y gestiona sus permisos."></HeaderDiseno>
+            <HeaderDiseno
+            titulo="Administración de usuarios"
+            subtitulo="Consulta los usuarios registrados en el sistema y gestiona sus permisos."
+            isDate={true}
+            />
             <div className="header-crud-btn">
               <Link to="/agregar-usuario" className="btn-agregar link-decoration">Agregar Usuario</Link>
             </div>

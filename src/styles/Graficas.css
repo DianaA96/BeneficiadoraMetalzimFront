@@ -1,47 +1,33 @@
 .contGraficas{
-    background-color: #EF7B30;
+    box-sizing: border-box;
+    width: 80%;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: 4px 11px 28px rgba(0, 0, 0, 0.08);
+    justify-content: center;
+    display: flex;
+    align-self: center;
+    margin: 1rem;
+}
+.contGraficasPie{
     box-sizing: border-box;
     border-radius: 1rem;
     box-shadow: 4px 11px 28px rgba(0, 0, 0, 0.08);
     justify-content: center;
     display: flex;
     align-self: center;
-    margin: 5rem;
+    margin: 1rem;
 }
-.titulo{
-    font-weight: bold;
-    margin: 0;
-}
-.myhr{
-    border: 1.5px solid;
-    width: 50%;
-    color: #EF7B30;
-}
-.division{
-    align-items: center;
-    justify-content: row;
-    align-content: center;
-    align-self: center;
-    margin-bottom: 10rem;
-}
-.myP{
+.containerGraficas{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content:space-between;
+    width: 100%;
+    margin-top: 5rem;
     align-items: center;
-    font-size: 1.5rem;
-    padding: 0rem;
-    color: #EF7B30;
 }
-.contPie{
-    scroll-margin-inline: 0;
-    background-color: #FFF;
-    width: 50%;
-    padding: 2rem;
-    border-radius: 1.5rem;
-    box-shadow: 4px 11px 28px rgba(0, 0, 0, 0.08);
-    justify-content: center;
+.contentPie{
+
     display: flex;
-    align-self: center;
-    margin-top: 2rem;
+    overflow-x: scroll;
 }

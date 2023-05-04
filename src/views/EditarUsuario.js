@@ -103,7 +103,11 @@ function EditarUsuario() {
   {
     return (
       <div>
-        <HS  titulo={"Edita al usuario" } subtitulo={""}/>
+        <HS
+        titulo={"Edita al usuario" }
+        subtitulo={"Llena los campos que quieres editar y guarda los cambios."}
+        isDate={true}
+        />
         <div style={{display:"flex", justifyContent: "center"}} >
           <div class="divBox">
             <form className='formRegistro' onSubmit={handleSubmit}>

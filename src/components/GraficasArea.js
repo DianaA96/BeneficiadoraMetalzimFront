@@ -2,37 +2,33 @@ import React from "react";
 import { Chart } from "react-google-charts";
 import "../styles/Graficas.css";
 
-const yGrafica = "Año"
+function GraficasArea(props) {
 
-export function GraficasArea(props) {
-
-  const options = {
-    chart: {
-      title: props.titulo,
-    },
+  var options = {
     isStacked: true,
-    height: 300,
+    height: 350,
     legend: { position: "top", maxLines: 5 },
     vAxis: { minValue: 0 },
+    hAxis: {title: 'Año',  titleTextStyle: {color: '#333'}},
   };
 
   const data = [
-    [yGrafica, props.titulo],
-    ["Enero", 1000],
-    ["Febero", 1170],
-    ["Marzo", 660],
-    ["Abril", 1030],
-    ["Junio", 1020],
-    ["Julio", 1800],
-    ["Agosto", 1930],
-    ["Septiembre", 2330],
-    ["Ocrtubre", 1000],
-    ["Noviembre", 1170],
-    ["Diciembre", 660],
+    ["Año", props.titulo, { role: "style" }],
+    ["Enero", 1000, "#F8C5A3"],
+    ["Febero", 1170, "#F8C5A3"],
+    ["Marzo", 660, "#F8C5A3"],
+    ["Abril", 1030, "#F8C5A3"],
+    ["Junio", 1020, "#F8C5A3"],
+    ["Julio", 1800, "#F8C5A3"],
+    ["Agosto", 1930, "#F8C5A3"],
+    ["Septiembre", 2330, "#F8C5A3"],
+    ["Ocrtubre", 1000, "#F8C5A3"],
+    ["Noviembre", 1170, "#F8C5A3"],
+    ["Diciembre", 660, "#F8C5A3"],
   ];
 
   return (
-    <div className="contGraficas">
+    <div className={props.class}>
       <Chart
         chartType="AreaChart"
         width="100%"

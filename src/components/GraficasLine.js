@@ -2,15 +2,21 @@ import React from "react";
 import { Chart } from "react-google-charts";
 import "../styles/Graficas.css";
 
-const yGrafica = "Mes"
-const opciones = ["Pb", "Cu", "Zn"]
+function GraficasLine(props) {
 
-const data = [
+  const options = {
+    chart: {
+      title: props.titulo,
+      subtitle: props.descripcion,
+    },
+  };
+
+  const data = [
     [
-      yGrafica,
-      opciones[0],
-      opciones[1],
-      opciones[2],
+      "Mes",
+      "Pb",
+      "Cu",
+      "Zn",
     ],
     ["Enero", 37.8, 80.8, 41.8],
     ["Febrero", 30.9, 69.5, 32.4],
@@ -24,16 +30,7 @@ const data = [
     ["Octubre", 12.8, 30.9, 11.6],
     ["Noviembre", 5.3, 7.9, 4.7],
     ["Diciembre", 6.6, 8.4, 5.2],
-];
-  
-export function GraficasLine(props) {
-
-  const options = {
-    chart: {
-      title: props.titulo,
-      subtitle: props.descripcion,
-    },
-  };
+  ];
 
     return (
       <div className="contGraficas">

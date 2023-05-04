@@ -11,72 +11,105 @@ const ReporteBascula = () => {
     //quitar y cambiar por el fetch
     const getTableData = () => {
         return [
-            { id: 1, col0: "Minesites", col1: "Value1", col2: "Value2", col3: "Value3", col4: "Value4", col5:"Estancia inicial"},
-            { id: 2, col0: "Guadalupe", col1: "Value5", col2: "Value6", col3: "Value7", col4: "Value8", col5:"Acarreo"},
-            { id: 3, col0: "Balcones", col1: "Value9", col2: "Value10", col3: "Value11", col4: "Value12", col5:"Trituradas"},
-            { id: 4, col0: "Total", col1: "Value13", col2: "Value14", col3: "Value15", col4: "Value16", col5:"Estancia patios"}
+            { id: 1, col0: "Minesites", col1: "1.523", col2: "4.336", col3: "6.354", col4: "5.214", col5:"Estancia inicial"},
+            { id: 2, col0: "Guadalupe", col1: "3.269", col2: "6.215", col3: "5.268", col4: "1.258", col5:"Acarreo"},
+            { id: 3, col0: "Balcones", col1: "5.288", col2: "2.154", col3: "9.584", col4: "4.685", col5:"Trituradas"},
+            { id: 4, col0: "Total", col1: "10.256", col2: "13.245", col3: "23.584", col4: "11.623", col5:"Estancia patios"}
         ];
     };
     const getTableDataC = () => {
         return [
-            { id: 1, col0: "Minesites", col1: "Value1", col2: "Value2", col3: "Value3", col4: "Value4", col5:"Ag"},
-            { id: 2, col0: "Guadalupe", col1: "Value5", col2: "Value6", col3: "Value7", col4: "Value8", col5:"Pb"},
-            { id: 3, col0: "Balcones", col1: "Value9", col2: "Value10", col3: "Value11", col4: "Value12", col5:"Zn"},
-            { id: 4, col0: "Total", col1: "Value13", col2: "Value14", col3: "Value15", col4: "Value16", col5:"Cu"}
+            { id: 1, col0: "Minesites", col1: "15.23", col2: "84.57", col3: "95.64", col4: "75.25", col5:"Ag"},
+            { id: 2, col0: "Guadalupe", col1: "36.25", col2: "32.45", col3: "64.35", col4: "13.25", col5:"Pb"},
+            { id: 3, col0: "Balcones", col1: "32.15", col2: "32.54", col3: "78.52", col4: "45.68", col5:"Zn"},
+            { id: 4, col0: "Total", col1: "102.32", col2: "213.56", col3: "320.52", col4: "360.54", col5:"Cu"}
         ];
     };
-    const getDataPie = () => {
+    const getDataPieExisIn = () => {
         return [
-            {id: 1, titulo: "Existencia inicial", descrip: "Toneladas"},
-            {id: 2, op: "Minesites", cant: 11},
-            {id: 3, op: "Balcones", cant: 5},
-            {id: 3, op: "Guadalupe", cant: 2}
+            ["Minesites", 11],
+            ["Balcones", 5],
+            ["Guadalupe", 2],
+        ];
+    };
+    const getDataPieAcarreo = () => {
+        return [
+            ["Minesites", 11],
+            ["Balcones", 5],
+            ["Guadalupe", 2],
+        ];
+    };
+    const getDataPieTritu = () => {
+        return [
+            ["Minesites", 11],
+            ["Balcones", 5],
+            ["Guadalupe", 2],
+        ];
+    };
+
+    const getDataPieExisPat = () => {
+        return [
+            ["Minesites", 11],
+            ["Balcones", 5],
+            ["Guadalupe", 2],
         ];
     };
 
     const [tableData, setTableData] = useState(getTableData());
     const [tableDataConc, setTableDataConc] = useState(getTableDataC());
-    const [dataPie, setDataPie] = useState(getDataPie());
+    const [dataPieExisIn, setDataPieExisIn] = useState(getDataPieExisIn());
+    const [dataPieAcarreo, setDataPieAcarreo] = useState(getDataPieAcarreo());
+    const [dataPieTritu, setDataPieTritu] = useState(getDataPieTritu());
+    const [dataPieExisPat, setDataPieExistPat] = useState(getDataPieExisPat());
 
     return (
         <><body className="mybody">
-            <HeaderDiseno titulo={"Reporte diario Movimiento de mineral Báscula"} subtitulo={"24 de abril de 2023"} />
+            <HeaderDiseno
+            titulo={"Reporte diario Movimiento de mineral Báscula"}
+            subtitulo={""}
+            isDate={true}
+            />
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div className="mycard">
                     <div style={{display:"flex", justifyContent:"center"}}>
                         <Tabla tableData={tableData} />
                     </div >
-                    <div>
-                            <p className="titulo">Existencia inicial</p>
-                            <p className="titulo">Acarreo</p>
-                            <p className="titulo">Trituradas</p>
-                            <p className="titulo">Existencia patios</p>
-                        </div>
+
                     <div className="contentPie">
                         <div>
-                            <GraficasPie tituloG={"Existencia inicial"} data={dataPie} />
+                            <GraficasPie tituloG={"Existencia inicial"} data={dataPieExisIn} />
                         </div>
                         <div>
-                            <GraficasPie tituloG={"Acarreo"} />
+                            <GraficasPie tituloG={"Acarreo"} data={dataPieAcarreo}/>
                         </div>
                         <div>
-                            <GraficasPie tituloG={"Trituradas"} />
+                            <GraficasPie tituloG={"Trituradas"} data={dataPieTritu}/>
                         </div>
                         <div>
-                            <GraficasPie tituloG={"Existencia patios"} />
+                            <GraficasPie tituloG={"Existencia patios"} data={dataPieExisPat}/>
                         </div>
                     </div>
-                    <div style={{ width:"80%"}}>
+
+                    <div className='division'>
                         <p className='myP'>Embarque de concentrados</p>
                         <hr className='myhr' />
                     </div>
+
                     <div className="embarques">
                         <GraficasColumna />
-                        <Tabla tableData={tableDataConc} />
+                        <div style={{display:"flex", justifyContent:"center", height:"22rem"}}>
+                            <Tabla tableData={tableDataConc} />
+                        </div>
                     </div>
                     
-                    
                 </div>
+               
+            </div>
+            <div style={{marginBottom:"5rem", justifyContent:"center", display:"flex"}}>
+                <button className='buttonLogin' style={{width:"15rem", backgroundColor:"#817C7C"}} type="submit">Imprimir</button>
+                <a>
+                    <button className='buttonLogin' style={{width:"15rem", marginLeft:"5%"}}>Ir a historial</button>
+                </a>
             </div>
         </body>
         <footer>

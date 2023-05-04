@@ -1,27 +1,29 @@
 import React from "react";
 import { Chart } from "react-google-charts";
 
-const titulo = "Concentrados de Plomo"
-const descripcion = "en toneladas"
-const yGrafica = "Mes"
-const opciones = ["Pb", "Cu", "Zn", "Au/Ag"]
+function GraficasColumna(props) {
 
-export const data = [
-    ["Element", "", { role: "style" }],
-    [opciones[0], 8.94, "#F8C5A3"],
-    [opciones[1], 10.49, "#F18B47"],
-    [opciones[2], 19.3, "#F4A875"],
-    [opciones[3], 21.45, "#EF7B30"], // CSS-style declaration
+  var options = {
+    title: "Total de embarque de concentrados",
+    legend: { position: "top", maxLines: 5 },
+  };
+
+  const data = [
+    ["Element", "Toneladas", { role: "style" }],
+    ["Ag", 8.94, "#F8C5A3"],
+    ["Pb", 10.49, "#F18B47"],
+    ["Zn", 19.3, "#F4A875"],
+    ["Cu", 21.45, "#EF7B30"],
   ];
 
-export function GraficasColumna() {
     return (
-      <div className="contPie">
+      <div className="contGraficas">
         <Chart
         chartType="ColumnChart"
         width="100%"
         height="400px"
         data={data}
+        options={options}
         />
       </div>
     );

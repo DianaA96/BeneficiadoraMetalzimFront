@@ -10,7 +10,11 @@ import "../styles/Registro.css"
 function ReporteGerencial() {
   return (
     <>
-        <HeaderDiseno titulo="Reporte Gerencial" subtitulo="Llena los campos en cada sección para generar el reporte gerencial."></HeaderDiseno>
+        <HeaderDiseno
+        titulo={"Reporte Gerencial"}
+        subtitulo={"Llena los campos en cada sección para generar el reporte gerencial."}
+        isDate={true}
+        />
         <div className="cont-tabla">
             <div className="seccion-reporte">
                 <div className="header-seccion-reporte">
