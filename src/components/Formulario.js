@@ -163,7 +163,7 @@ function Formulario(props) {
                                     <p className='elementoInput'>{input[0]}</p>
                                     <p className='cantidadInput'>{input[1]}</p>
                                 </label>
-                                <input className='inputGris' type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} onChange={props.handleInputChange}></input>
+                                <input className='inputGris' type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} onChange={props.handleInputChange} placeholder={0.000}></input>
                                 </div>)
                             : null)} 
                             </>
@@ -180,16 +180,18 @@ function Formulario(props) {
             }
             </>
             )} 
-            <div className='stripBotones'>
-                <button className='guardarProgreso'>Guardar progreso
-                    <span className='separatorButton'/>
-                    <span class="material-symbols-outlined">sync_saved_locally</span>
-                </button>
-                <button className='enviar' onClick={props.handleSendForm}>Enviar
-                    <span className='separatorButton'/>
-                    <span class="material-symbols-outlined">send</span>
-                </button>
-            </div>
+            {props.mostrarBotones ? <>
+                <div className='stripBotones'>
+                    <button className='guardarProgreso'>Guardar progreso
+                        <span className='separatorButton'/>
+                        <span class="material-symbols-outlined">sync_saved_locally</span>
+                    </button>
+                    <button className='enviar' onClick={props.handleSendForm}>Enviar
+                        <span className='separatorButton'/>
+                        <span class="material-symbols-outlined">send</span>
+                    </button>
+                </div>
+            </> : null}
         </div>
     )
 }
