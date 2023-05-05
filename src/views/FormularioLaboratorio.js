@@ -602,15 +602,11 @@ function FormularioLaboratorio(props) {
             <div className="pageFormularioLab">
                 <div className="formYHeaderFormLab">
                     <div className="headerFormLaboratorio">
-                        <HeaderSencillo titulo="Formulario de laboratorio" subtitulo="Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."/>
-                        <div className="fechaFormLab">
-                            <div className="fechaFormularioLab">
-                                <span className="material-symbols-outlined iconFecha">calendar_today</span>
-                                <div className="divFechaEspacio"></div>
-                                <p>{fecha}</p>
-                            </div>
-                            <div className="lineaFechaFL"></div>
-                        </div>
+                        <HeaderSencillo
+                        titulo="Formulario de laboratorio"
+                        subtitulo="Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
+                        isDate={true}
+                        />
                     </div>
                     <div className="divFormulario">
                         <div className="inputsContenedor">

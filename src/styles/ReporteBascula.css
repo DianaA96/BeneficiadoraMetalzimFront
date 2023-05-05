@@ -1,37 +1,13 @@
-.containerGraficas{
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-    width: 100%;
-    margin-top: 5rem;
-}
-.graficaPie{
-    flex-direction: column;
-    width: 15rem;
-}
-.titulo{
-    font-weight: normal;
-    color: var(--negro);
-    margin: 0;
-}
 .mybody{
     background:"#F8F8F8";
     font-family: "Inter", sans-serif;
 }
-.myhr{
-    border: 1.5px solid;
-    width: 60%;
-    color: #817C7C;
-}
-.division{
-    flex-direction: row;
-    display: flex;
-    justify-content: center;
-}
 .mycard {
+    flex-direction: column;
+    display: flex;
+    justify-items: center;
     padding: 75px;
     margin-top: 54px;
-    margin-bottom: 54px;
     background-color: #FFFFFF;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -40,4 +16,22 @@
 .embarques{
     display: flex;
     flex-direction: row;
+}
+.myhr{
+    border: 1.5px solid;
+    width: 62%;
+    color: #817C7C;
+}
+.division{
+    display: flex;
+    justify-content: row;
+}
+.myP{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 0rem;
+    color: #EF7B30;
 }

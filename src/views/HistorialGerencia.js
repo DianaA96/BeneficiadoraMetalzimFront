@@ -1,6 +1,8 @@
 import React from 'react'
+import GraficasArea from '../components/GraficasArea';
 import HeaderDiseno from "../components/HeaderDiseno"
 import ListaReportes from "../components/ListaReportes"
+import GraficasLine from "../components/GraficasLine"
 import Menu from "../components/Menu"
 
 function HistorialGerencia() {
@@ -44,11 +46,30 @@ function HistorialGerencia() {
     );
 
   return (
-    <>
-        <HeaderDiseno titulo="Historial - Reporte gerencial" subtitulo="Consulta el historial de los reportes gerenciales generados en esta ventana. Navega por la lista de reportes generados y consulta un reporte en específico"></HeaderDiseno>
-        <ListaReportes columns={columns} data={reportes} titulo="Todos los reportes"></ListaReportes>
-        <Menu rol="admin" activeTab="summarize"></Menu>
-    </>
+    <><body>
+      <HeaderDiseno
+      titulo={"Historial - Reporte gerencial"}
+      subtitulo={"Consulta el historial de los reportes gerenciales generados en esta ventana. Navega por la lista de reportes generados y consulta un reporte en específico"}
+      isDate={false}
+      />
+      <ListaReportes columns={columns} data={reportes} titulo="Todos los reportes"></ListaReportes>
+
+      <div style={{display:"flex", justifyContent:"center", flexDirection:"column",  width:"100%", marginBottom:"5rem"}}>
+        
+        <div className='division' style={{display:"flex", alignSelf:"center", width:"80%"}}>
+          <p className='myP'>Gráficas históricas</p>
+          <hr className='myhr' style={{color:"#EF7B30", width: "80%"}} />
+        </div>
+
+        <GraficasLine titulo="Recuperación de minerales" descripcion="en toneladas"></GraficasLine>
+        <GraficasLine titulo="Precios de los metales" descripcion="(USD)"></GraficasLine>
+        <GraficasArea titulo="Valor del mineral (USD)" class="contGraficas"></GraficasArea>
+
+      </div>
+    </body>
+    <footer>
+      <Menu rol="admin" activeTab="summarize"></Menu>
+    </footer></>
   )
 }
 

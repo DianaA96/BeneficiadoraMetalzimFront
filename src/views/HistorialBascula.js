@@ -2,7 +2,8 @@ import React from 'react'
 import HeaderDiseno from "../components/HeaderDiseno"
 import ListaReportes from "../components/ListaReportes"
 import Menu from "../components/Menu"
-
+import GraficasArea from "../components/GraficasArea"
+import GraficasLine from "../components/GraficasLine"
 
 function HistorialBascula() {
 
@@ -41,11 +42,32 @@ function HistorialBascula() {
     );
 
   return (
-    <>
-        <HeaderDiseno titulo="Historial - Reporte de Báscula" subtitulo="Consulta el historial de los reportes de báscula generados en esta ventana. Navega por la lista de reportes generados y consulta un reporte en específico"></HeaderDiseno>
-        <ListaReportes columns={columns} data={reportes} titulo="Todos los reportes"></ListaReportes>
-        <Menu rol="admin" activeTab="scale"></Menu>
-    </>
+    <><body>
+      <HeaderDiseno
+      titulo="Historial - Reporte de Báscula"
+      subtitulo="Consulta el historial de los reportes de báscula generados en esta ventana. Navega por la lista de reportes generados y consulta un reporte en específico"
+      isDate={false}
+      />
+      <ListaReportes columns={columns} data={reportes} titulo="Todos los reportes"></ListaReportes>
+
+      <div style={{display:"flex", justifyContent:"center", flexDirection:"column",  width:"100%", marginBottom:"5rem"}}>
+
+        <div className='division' style={{display:"flex", alignSelf:"center", width:"80%"}}>
+          <p className='myP'>Gráficas históricas</p>
+          <hr className='myhr' style={{color:"#EF7B30", width: "80%"}} />
+        </div>
+      
+        <div style={{ display: "flex", justifyContent:"center", flexDirection:"row", width:"100%"}}>
+          <GraficasArea titulo={"Acarreo"} class="contGraficasPie"></GraficasArea>
+          <GraficasArea titulo={"Trituradas"} class="contGraficasPie"></GraficasArea>
+        </div >
+          <GraficasLine titulo={"Concentrados"}></GraficasLine>
+      </div>
+
+    </body>
+    <footer>
+      <Menu rol="admin" activeTab="scale"></Menu>
+    </footer></>
   )
 }
 

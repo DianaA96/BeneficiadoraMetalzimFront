@@ -2,6 +2,9 @@ import React from 'react'
 import HeaderDiseno from "../components/HeaderDiseno"
 import ListaReportes from "../components/ListaReportes"
 import Menu from "../components/Menu"
+import GraficasLine from "../components/GraficasLine"
+import "../styles/Graficas.css"
+import { textAlign } from '@mui/system'
 
 function HistorialAnalisis() {
     const reportes = [
@@ -29,11 +32,27 @@ function HistorialAnalisis() {
       ],
     );
   return (
-    <>
-        <HeaderDiseno titulo="Historial de análisis" subtitulo="Consulta el historial de los análisis de laboratorio realizados en esta ventana. Navega por la lista de reportes generados y consulta un reporte en específico"></HeaderDiseno>
-        <ListaReportes columns={columns} data={reportes} titulo="Todos los reportes"></ListaReportes>
-        <Menu rol="laboratorista" activeTab="science"></Menu>
-    </>
+    <><body >
+      <HeaderDiseno
+      titulo="Historial de análisis"
+      subtitulo="Consulta el historial de los análisis de laboratorio realizados en esta ventana. Navega por la lista de reportes generados y consulta un reporte en específico"
+      isDate={false}
+      />
+      <ListaReportes columns={columns} data={reportes} titulo="Todos los reportes"></ListaReportes>
+
+      <div style={{display:"flex", justifyContent:"center", flexDirection:"column",  width:"100%", marginBottom:"5rem"}}>
+
+        <div className='division' style={{display:"flex", alignSelf:"center", width:"80%"}}>
+          <p className='myP'>Gráficas históricas</p>
+          <hr className='myhr' style={{color:"#EF7B30", width: "80%"}} />
+        </div>
+        <GraficasLine titulo={"Concentrados"}></GraficasLine>
+      </div>
+  
+    </body>
+    <footer>
+      <Menu rol="laboratorista" activeTab="science"></Menu>
+    </footer></>
   )
 }
 

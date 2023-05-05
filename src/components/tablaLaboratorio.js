@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/tablaLab.css"
+import "../styles/TablaLab.css"
 
 const TablaLaboratorio = ({ tableData, copyTableData }) => {
     return (

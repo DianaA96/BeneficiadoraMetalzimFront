@@ -1,0 +1,33 @@
+.contGraficas{
+    box-sizing: border-box;
+    width: 80%;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    box-shadow: 4px 11px 28px rgba(0, 0, 0, 0.08);
+    justify-content: center;
+    display: flex;
+    align-self: center;
+    margin: 1rem;
+}
+.contGraficasPie{
+    box-sizing: border-box;
+    border-radius: 1rem;
+    box-shadow: 4px 11px 28px rgba(0, 0, 0, 0.08);
+    justify-content: center;
+    display: flex;
+    align-self: center;
+    margin: 1rem;
+}
+.containerGraficas{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    width: 100%;
+    margin-top: 5rem;
+    align-items: center;
+}
+.contentPie{
+
+    display: flex;
+    overflow-x: scroll;
+}

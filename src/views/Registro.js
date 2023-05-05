@@ -71,7 +71,11 @@ function Registro() {
 
   return (
     <div>
-      <HS  titulo={"Agregar un nuevo usuario"} subtitulo={""}/>
+      <HS
+      titulo={"Agregar un nuevo usuario"}
+      subtitulo={"Llena los campos con la información del usuario nuevo y guarda los cambios."}
+      isDate={true}
+      />
       <div style={{display:"flex", justifyContent: "center"}} >
         <div class="divBox">
           <form className='formRegistro' onSubmit={handleSubmit}>
