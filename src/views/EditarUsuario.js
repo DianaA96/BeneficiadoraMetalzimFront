@@ -63,7 +63,7 @@ function EditarUsuario() {
       setFormValues({ ...formValues, [name]: 2 });
     }
     else if (value == "Laboratorista"){
-      setFormValues({ ...formValues, [name]: 3 });
+      setFormValues({ ...formValues, [name]: 1 });
     }
     else if (value == "Operario Bascula") {
       setFormValues({ ...formValues, [name]: 4 });
@@ -87,7 +87,7 @@ function EditarUsuario() {
     console.log(id);
     if(id === 2) {
       return "Gerente"
-    } else if (id == 3) {
+    } else if (id == 1) {
       return "Laboratorista"
     } else if (id == 4) {}
     return "Operario Bascula"
