@@ -93,3 +93,10 @@ border-radius: 10px;
   .buttonLogin:hover {
     background-color: #f0b086;
   }
+
+
+  .mensaje-error-login{
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #f79a9a;
+  }
