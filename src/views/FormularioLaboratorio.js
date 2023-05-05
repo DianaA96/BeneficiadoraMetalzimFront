@@ -6,12 +6,17 @@ import Menu from "../components/Menu";
 import Pattern from "../assets/PatternsPages/pattern1.png"
 import CalendarDatePicker from "../components/calendarDatePicker";
 import Select from 'react-select';
+import axios from "axios";
 
 const formularioPrimerNivel = ["Primer turno", "Segundo turno", "Tercer turno"]
 const formularioSegundoNivel = [["Cabeza", "Concentración plomo" , "Concentración zinc", "Cola final"], ["Cabeza", "Concentración plomo" , "Concentración zinc", "Cola final"], ["Cabeza", "Concentración plomo" , "Concentración zinc", "Cola final"]]
 const inputBase = [["Ag", "g/ton"], ["Pb", "%"], ["Zn", "%"], ["Cu", "%"], ["Fe", "%"], ["Sb", "%"], ["As", "%"], ["Cd", "%"], ["PbO", "%"], ["ZnO", "%"]]
 
 function FormularioLaboratorio(props) {
+
+    let usuario = props.idUsuario
+
+    usuario = 2
     
     const date = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -42,7 +47,8 @@ function FormularioLaboratorio(props) {
     }, []);
 
     function handleInputChange(event) {
-        //console.log(event.target.valueAsNumber)
+        event.target.defaultValue = null
+        console.log(event)
         if(event.target.name.includes("Primer turno")) {
             if(event.target.name.includes("Cabeza")) {
                 if(event.target.name.includes("Ag")) {
@@ -436,7 +442,7 @@ function FormularioLaboratorio(props) {
     }
 
     let formularioParaPost = {
-        "idUsuario": props.idUsuario,
+        "idUsuario": usuario,
         "idMina": mina.value,
         "idPlanta": planta.value,
         "fechaMuestreo": fechaMuestreo,
@@ -595,6 +601,17 @@ function FormularioLaboratorio(props) {
 
     function handleSendForm() {
         console.log(formularioParaPost)
+        axios({
+            method: 'post',
+            url: `http://localhost:3050/lab/labReport`,
+            data: {...formularioParaPost}
+        })
+        .then((result)=>{
+            alert('¡Información enviada!');
+        })
+        .catch(error =>{
+            alert('Algo malo pasó:', error);
+        })
     }
 
     return(
@@ -604,7 +621,7 @@ function FormularioLaboratorio(props) {
                     <div className="headerFormLaboratorio">
                         <HeaderSencillo
                         titulo="Formulario de laboratorio"
-                        subtitulo="Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
+                        subtitulo="Registra los resultados obtenidos durante el análisis de laboratorio por turno. Selecciona la mina, la planta y las fechas, luego ingresa los valores obtenidos. Usa las flechas para desplazarte a las casillas continuas."
                         isDate={true}
                         />
                     </div>
@@ -699,7 +716,8 @@ function FormularioLaboratorio(props) {
                             inputBase={inputBase}
                             cantidadDeElementosEnFila={10}
                             handleInputChange={handleInputChange}
-                            handleSendForm={handleSendForm}/>
+                            handleSendForm={handleSendForm}
+                            mostrarBotones={true}/>
                         </div>
                     </div>
                     <footer style={{ height: `20vh` }}/>
