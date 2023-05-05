@@ -113,7 +113,7 @@ var check=0;
               <Link to="/agregar-usuario" className="btn-agregar link-decoration">Agregar Usuario</Link>
             </div>
             <ListaReportes columns={columns} data={user} titulo="Todos los usuarios"></ListaReportes>
-            <Menu rol="admin" activeTab="group"></Menu>
+            <Menu rol="admin" activeTab="group" landing='/admin'></Menu>
         </>
       )
     }

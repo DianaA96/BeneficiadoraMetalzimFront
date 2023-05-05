@@ -3,7 +3,7 @@ import TablaLaboratorio from "../components/TablaLaboratorio";
 import "../styles/analisisLab.css";
 import HeaderDiseno from "../components/HeaderDiseno";
 import Menu from "../components/Menu";
-
+import { Link } from "react-router-dom";
 const ReporteLaboratorio = () => {
 
     //quitar y cambiar por el fetch
@@ -34,23 +34,34 @@ const ReporteLaboratorio = () => {
     };
 
     return (
-        <><body style={{ backgroundColor: "#F8F8F8" }}>
-            <HeaderDiseno
-            titulo={"Reporte de laboratorio"}
-            subtitulo={""}
-            isDate={true}
-            />
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <div className="card">
-                    <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
-                    <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
-                    <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
+        <>
+            <body style={{ backgroundColor: "#F8F8F8" }}>
+                <HeaderDiseno
+                titulo={"Reporte de laboratorio"}
+                subtitulo={"Mina Guadalupe | Planta 1"}
+                isDate={true}
+                />
+                <div className="header-reporte">
+                    <Link to='/historial-analisis'>
+                        <button className='btn-lista' style={{width: "12rem"}}>Ir al historial</button>
+                    </Link>
                 </div>
-            </div>
-        </body>
-        <footer>
-            <Menu rol={"laboratorista"} landing="/laboratorio"/>
-        </footer></>
+                
+                <div style={{ display: "flex", flexDirection: 'column', justifyContent: "center", alignItems: "center" }}>
+                    <div className="card">
+                        <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
+                        <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
+                        <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
+                        
+                    </div>
+                    
+                </div>
+                <footer style={{height:'10rem'}}></footer>
+            </body>
+            
+            
+            <Menu rol={"laboratorista"} landing="/laboratorio" activeTab='history'/>
+        </>
     );
 };
 

@@ -15,7 +15,7 @@ function Menu(props) {
   const navigate = useNavigate();
 
   var tabs = {
-    laboratorista: [["Llenar reporte","science"], ["Historial", "history"]],
+    laboratorista: [["Llenar reporte","science", '/formulario-laboratorio'], ["Historial", "history", '/reporte-laboratorio']],
     admin: [["Reporte Gerencial","summarize", "/formulario-gerencial"], ["Admin. Usuarios", "group", '/usuarios'], ["Reporte Báscula","scale", '/reporte-bascula'], ["Créditos", "favorite"]],
     gerente: [["Reporte Gerencial","summarize"], ["Reporte Báscula", "scale"]],
     bascula: [["Llenar reporte","scale"], ["Historial", "history"]]
