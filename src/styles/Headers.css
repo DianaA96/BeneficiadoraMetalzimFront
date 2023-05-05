@@ -1,7 +1,8 @@
 .containerHeaders {
-    display: block;
+    display: flex;
     font-family: "Inter", sans-serif;
     padding: 2rem 5rem;
+    flex-direction: column;
 }
 
 .titleHeader {
