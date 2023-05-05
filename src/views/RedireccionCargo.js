@@ -9,7 +9,7 @@ function RedireccionCargo() {
     console.log(cargo)
     let navigate = useNavigate();
 
-    if(cargo === 1){
+    if(cargo === 3){
          // setTimeout may cause an error
         setTimeout(() => {
             navigate('/admin')
@@ -23,7 +23,7 @@ function RedireccionCargo() {
         }, 10)
     }
 
-    else if (cargo===3){
+    else if (cargo===1){
         // setTimeout may cause an error
         setTimeout(() => {
            navigate('/laboratorio')

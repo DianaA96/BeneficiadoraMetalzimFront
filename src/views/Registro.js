@@ -57,7 +57,7 @@ function Registro() {
 
     }
     else if (value == "Laboratorista"){
-      setFormValues({ ...formValues, [name]: 3 });
+      setFormValues({ ...formValues, [name]: 1 });
 
     }
     else {
