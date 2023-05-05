@@ -10,11 +10,20 @@ import ScaleView from "../assets/IconsLandingPages/scale_view.png"
 import Scale from "../assets/IconsLandingPages/scale.png"
 import ScaleEdit from "../assets/IconsLandingPages/ScaleEdit.png"
 import LogoMini from "../assets/IconsLandingPages/LogoMini.png"
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
+import { useAuth } from '../auth-context'
 
 // El rol se define pasando por props la variable y cambiando strips por el rol (del 0 al 3)
 
 function LandingPage(props) {
+    const {logout} = useAuth();
+
+    function handleLogout(){
+        logout()
+        navigate("/")
+    }
+    
+    let navigate = useNavigate()
     let strips = props.strips;
     const roles = ["laboratorista", "administrador", "gerente", "operario de báscula"]
 
@@ -37,7 +46,10 @@ function LandingPage(props) {
             <body className="containerLandingPage">
                 <div>
                     <img className="miniLogo" src={LogoMini}/>
-                    <header className="titleLandingPage">Bienvenido, {roles[strips]} <button className='buttonLogOutLP'><span class="material-symbols-outlined">logout</span></button></header>
+                    <header className="titleLandingPage">Bienvenido, {roles[strips]}
+                        {/*TODO: Reemplazar por logica logout */} 
+                        <button className='buttonLogOutLP' onClick={handleLogout}><span class="material-symbols-outlined">logout</span></button>
+                    </header>
                     
                 </div>
                 {opciones[strips].map((option, i) =>

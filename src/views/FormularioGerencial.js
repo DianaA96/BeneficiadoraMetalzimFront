@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import { Link } from 'react-router-dom'
 import HeaderDiseno from "../components/HeaderDiseno"
 import "../styles/colors.css"
 import "../styles/button.css"
@@ -11,6 +12,7 @@ import CardPrecioMetal from '../components/CardPrecioMetal'
 import ModalReporteLaboratorio from '../components/ModalReporteLaboratorio'
 import Formulario from "../components/Formulario";
 import Menu from '../components/Menu'
+
 
 function FormularioGerencial() {
     const formularioPrimerNivel = ["Hoy", "Acumulado"]
@@ -34,7 +36,7 @@ function FormularioGerencial() {
     }
   return (
     <>
-        <HeaderDiseno titulo="Formulario para Reporte Gerencial" subtitulo="Llena los campos en cada sección para generar el reporte gerencial."></HeaderDiseno>
+        <HeaderDiseno titulo="Formulario para Reporte Gerencial" isDate={true} subtitulo="Llena los campos en cada sección para generar el reporte gerencial."></HeaderDiseno>
         <div className="header-reporte">
             <Select
                 defaultValue={selectedOption}
@@ -75,7 +77,10 @@ function FormularioGerencial() {
                     }),
                 }}
                 />
-                <button className='btn-lista' style={{width: "12rem"}}>Ir al historial</button>
+                <Link to='/historial-gerencia'>
+                    <button className='btn-lista' style={{width: "12rem"}}>Ir al historial</button>
+                </Link>
+                
         </div>
         
         <div className="cont-tabla">
@@ -85,12 +90,12 @@ function FormularioGerencial() {
                         <h3 className="p1000 titulo-seccion">Movimiento de mineral</h3>
                         <div className="sep-seccion"></div>
                     </div>
-                    <div className="btn-detalles-seccion">
+                    <Link to='/reporte-bascula' className="btn-detalles-seccion link-decoration">
                         <span class="material-symbols-outlined">
                         visibility
                         </span>
                         <p className="blanco texto-btn">Reporte de báscula</p>
-                    </div>                    
+                    </Link>                    
                 </div>
                 <div className="movmineral">
                     
@@ -246,7 +251,18 @@ function FormularioGerencial() {
 
                 </div>
             </div>
+            <div className='stripBotones'>
+                <button className='guardarProgreso'>Guardar progreso
+                    <span className='separatorButton'/>
+                    <span class="material-symbols-outlined">sync_saved_locally</span>
+                </button>
+                <button className='enviar'>Enviar
+                    <span className='separatorButton'/>
+                    <span class="material-symbols-outlined">send</span>
+                </button>
+            </div>
         </div>
+        <footer style={{height:'10rem'}}></footer>
         <Menu rol={"admin"} activeTab="summarize" landing="/admin"/>
         {modalVisibility ? <ModalReporteLaboratorio setModalVisibility = {setModalVisibility}></ModalReporteLaboratorio>:null}
                                    

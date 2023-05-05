@@ -17,13 +17,16 @@ import Login from "./views/LogIn"
 import Registro from "./views/Registro"
 import EditarUsuario from './views/EditarUsuario';
 import FormularioLaboratorio from './views/FormularioLaboratorio';
+import RedireccionCargo from './views/RedireccionCargo';
 
 function App() {
   return (
     <>
     <Routes>
-      <Route path='/' element={<Login/>} />
+      {/*TODO: Proteger rutas*/}
       
+      <Route path='/' element={<Login/>} />
+      <Route path='/redirect' element={<RedireccionCargo/>} />
       {/*Flujo Admin*/}
       <Route path='/formulario-gerencial' element={<FormularioGerencial/>} />
       <Route path='/usuarios' element={<CRUDUsuarios/>} />

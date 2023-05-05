@@ -9,13 +9,14 @@ import iconBack from "../assets/IconsLandingPages/BackIcon.svg"
 
 import { useNavigate, Link } from 'react-router-dom';
 import { aria } from 'aria-query'
+import { useAuth } from '../auth-context'
 
 function Menu(props) {
-
+  const {logout} = useAuth();
   const navigate = useNavigate();
 
   var tabs = {
-    laboratorista: [["Llenar reporte","science"], ["Historial", "history"]],
+    laboratorista: [["Llenar reporte","science", '/formulario-laboratorio'], ["Historial", "history", '/reporte-laboratorio']],
     admin: [["Reporte Gerencial","summarize", "/formulario-gerencial"], ["Admin. Usuarios", "group", '/usuarios'], ["Reporte Báscula","scale", '/reporte-bascula'], ["Créditos", "favorite"]],
     gerente: [["Reporte Gerencial","summarize"], ["Reporte Báscula", "scale"]],
     bascula: [["Llenar reporte","scale"], ["Historial", "history"]]
@@ -24,6 +25,10 @@ function Menu(props) {
   let pestanas1 = tabs[props.rol].slice(0,(tabs[props.rol].length/2))
   let pestanas2 = tabs[props.rol].slice(tabs[props.rol].length/2, tabs[props.rol].length)
 
+  function handleLogout(){
+    logout()
+    navigate("/")
+  }
   return (
     <>
         <div className='cont-menu'>
@@ -53,7 +58,9 @@ function Menu(props) {
             )
           }
           </div>
-          <img src={iconLogout} className='icon-menu-fixed'></img>
+          {/*TODO: Reemplazar por logica logout */}
+          <img src={iconLogout} className='icon-menu-fixed' onClick={handleLogout}></img>
+          
         </div>
     </>
   )
