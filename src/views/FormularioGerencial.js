@@ -169,6 +169,7 @@ function FormularioGerencial() {
                     formularioSegundoNivel={formularioSegundoNivel} 
                     inputBase={inputBase}
                     cantidadDeElementosEnFila={8}
+                    mostrarBotones={false}
                 ></Formulario>
                 
             </div>
@@ -181,14 +182,14 @@ function FormularioGerencial() {
                 </div>
 
                 <div className="cont-preciosmetal">
-                    <CardPrecioMetal style='light' precio='23.65' mineral='Oro (Kitco)'></CardPrecioMetal>
-                    <CardPrecioMetal style='light' precio='23.65' mineral='Oro (Kitco)'></CardPrecioMetal>
+                    <CardPrecioMetal style='light' precio='40.65' mineral='Oro (Kitco)'></CardPrecioMetal>
+                    <CardPrecioMetal style='light' precio='36.1' mineral='Plata (Kitco)'></CardPrecioMetal>
                     
 
                     <div className="subcont-preciosmetal">
-                    <CardPrecioMetal style='dark' precio='23.65' mineral='Oro (Kitco)'></CardPrecioMetal>
-                    <CardPrecioMetal style='dark' precio='23.65' mineral='Oro (Kitco)'></CardPrecioMetal>
-                    <CardPrecioMetal style='dark' precio='23.65' mineral='Oro (Kitco)'></CardPrecioMetal>
+                    <CardPrecioMetal style='dark' precio='28.12' mineral='Plomo (LME)'></CardPrecioMetal>
+                    <CardPrecioMetal style='dark' precio='18.23' mineral='Zinc (LME)'></CardPrecioMetal>
+                    <CardPrecioMetal style='dark' precio='26.65' mineral='Cobre (LME)'></CardPrecioMetal>
                     </div>
                 </div>
                 
@@ -213,6 +214,7 @@ function FormularioGerencial() {
                             <input type="text" className='inputGris'/>
                             <p className="n700">Concentrado Cobre (Cu)</p>
                             <input type="text" className='inputGris'/>
+                            <p className="n800 bold">Total: $0.00</p>
                         </div> 
                     </div>
 
@@ -225,6 +227,7 @@ function FormularioGerencial() {
                             <input type="text" className='inputGris'/>
                             <p className="n700">Concentrado Cobre (Cu)</p>
                             <input type="text" className='inputGris'/>
+                            <p className="n800 bold">Total: $0.00</p>
                         </div> 
                     </div>
 

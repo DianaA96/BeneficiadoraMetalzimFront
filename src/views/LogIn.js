@@ -45,7 +45,7 @@ function App() {
             <input className='inputLogin'  type="password" id="password" name="password" placeholder="Contraseña" required onChange={handleChange}/>
             {/* <p className="textLogInFP">¿Olvidaste tu contraseña? Haz clic aquí para restablecerla.</p> */}
            
-            {isErrorMessageVisible ? <p className="mensaje-error-login" style={{textAlign:'center'}}>{`Correo o contraseña inválidos.`}<br/><p className="mensaje-error-login">{`Porfavor revisa los datos para ingresar.`}</p> </p> : null}
+            {isErrorMessageVisible ? <p className="mensaje-error-login" style={{textAlign:'center'}}>{`Correo o contraseña inválidos.`}<br/><p className="mensaje-error-login">{`Por favor revisa los datos para ingresar.`}</p> </p> : null}
             <button  className='buttonLogin' type="submit" onClick={handleLogin}>INGRESAR</button>
         </div>
         <img class ="img" src={log}></img>
