@@ -85,12 +85,14 @@ var check=0;
     {
       var temp;
       for (var i = 0; i < userList.length ;i++ ) {
-        if(userList[i].idRol === 3) {
-          temp = "Labratorista"
+        if(userList[i].idRol === 1) {
+          temp = "Laboratorista"
         } else if (userList[i].idRol == 4) {
-          temp = "Operario Bacula"
+          temp = "Operario Bascula"
         } else  if (userList[i].idRol == 2)
         temp="Gerente"
+         else 
+          temp="Administrador"
         console.log(userList[i].idRol)
         user [i] =  {
           id: userList[i].idUsuario,
