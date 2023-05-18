@@ -9,10 +9,10 @@ const ReporteLaboratorio = () => {
     //quitar y cambiar por el fetch
     const getTableData = () => {
         return [
-            { id: 1, col0: "Cabeza", col1: "Value1", col2: "Value2", col3: "Value3", col4: "Value4", col5: "Value5", col6: "Value6", col7: "Value7" },
-            { id: 2, col0: "Conc. Plomo", col1: "Value8", col2: "Value9", col3: "Value10", col4: "Value11", col5: "Value12", col6: "Value13", col7: "Value14" },
-            { id: 3, col0: "Conc. Zinc", col1: "Value15", col2: "Value16", col3: "Value17", col4: "Value18", col5: "Value19", col6: "Value20", col7: "Value21" },
-            { id: 4, col0: "Colas", col1: "Value22", col2: "Value23", col3: "Value24", col4: "Value25", col5: "Value26", col6: "Value27", col7: "Value28" }
+            { id: 1, col0: "Cabeza", col1: "0", col2: "0", col3: "0", col4: "0", col5: "0", col6: "0", col7: "0" },
+            { id: 2, col0: "Conc. Plomo", col1: "0", col2: "0", col3: "0", col4: "0", col5: "0", col6: "0", col7: "0" },
+            { id: 3, col0: "Conc. Zinc", col1: "0", col2: "0", col3: "0", col4: "0", col5: "0", col6: "0", col7: "0" },
+            { id: 4, col0: "Colas", col1: "0", col2: "0", col3: "0", col4: "0", col5: "0", col6: "0", col7: "0" }
         ];
     };
 
@@ -49,9 +49,9 @@ const ReporteLaboratorio = () => {
                 
                 <div style={{ display: "flex", flexDirection: 'column', justifyContent: "center", alignItems: "center" }}>
                     <div className="card">
-                        <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
-                        <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
-                        <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} />
+                        <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} turno="Primer Turno"/>
+                        <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} turno="Segundo Turno"/>
+                        <TablaLaboratorio tableData={tableData} copyTableData={copyTableData} turno="Tercer Turno"/>
                         
                     </div>
                     

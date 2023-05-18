@@ -16,8 +16,6 @@ function HistorialBascula() {
         {id:"RE05", fecha: "12/04/2023", existenciaInicial: 412, acarreo: 562, trituradas: 343, patios: 623},
         {id:"RE06", fecha: "15/04/2023", existenciaInicial: 412, acarreo: 562, trituradas: 343, patios: 623},
         {id:"RE07", fecha: "21/04/2023", existenciaInicial: 412, acarreo: 562, trituradas: 343, patios: 623},
-
-    
     ]
 
     const columns = React.useMemo(()=>
