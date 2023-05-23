@@ -18,6 +18,7 @@ import Registro from "./views/Registro"
 import EditarUsuario from './views/EditarUsuario';
 import FormularioLaboratorio from './views/FormularioLaboratorio';
 import RedireccionCargo from './views/RedireccionCargo';
+import MovimientoMineral from './views/MovimientoMineral';
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
       <Route path='/usuario/:idUsuario' element={<EditarUsuario/>} />
       <Route path='/historial-bascula_adminview' element={<HistorialBascula rol="admin"/>} />
       <Route path='/reporte-bascula_adminview' element={<ReporteBascula rol="admin"/>} />
+     
     
       {/*Flujo Gerente*/}
       <Route path='/gerencia' element={<LandingPage strips={2}/> } />
@@ -54,6 +56,7 @@ function App() {
       <Route path='/bascula' element={<LandingPage strips={3}/> } />
       <Route path='/reporte-bascula_basculaview' element={<ReporteBascula rol="bascula"/>} />
       <Route path='/historial-bascula_basculaview' element={<HistorialBascula rol="bascula"/>} />
+      <Route path='/reporte-movimiento-mineral' element={<MovimientoMineral/>} />
       
     </Routes>
     </>
