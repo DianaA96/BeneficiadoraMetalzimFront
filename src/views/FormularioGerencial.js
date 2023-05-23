@@ -10,6 +10,7 @@ import "../styles/Registro.css"
 import Select from 'react-select';
 import CardPrecioMetal from '../components/CardPrecioMetal'
 import ModalReporteLaboratorio from '../components/ModalReporteLaboratorio'
+import ModalExito from '../components/ModalDinamico'
 import Formulario from "../components/Formulario";
 import Menu from '../components/Menu'
 
@@ -29,10 +30,15 @@ function FormularioGerencial() {
         { value: 'Balcones', label: 'Balcones' },
     ];
 
+    const [modalTablaVisibility, setModalTablaVisibility] = useState(false)
     const [modalVisibility, setModalVisibility] = useState(false)
 
     function showModal(){
         setModalVisibility(true)
+    }
+
+    function showModalTabla(){
+        setModalTablaVisibility(true)
     }
   return (
     <>
@@ -49,7 +55,7 @@ function FormularioGerencial() {
                         fontFamily: 'Inter',
                         borderColor: state.isFocused ? '#EF7B30' : 'transparent',
                         backgroundColor: '#f9caac',
-                        borderRadius: "10px",
+                        borderRadius: "8px",
                         width: "12rem",
                     }),
                     menu: (baseStyles, state) => ({
@@ -77,8 +83,8 @@ function FormularioGerencial() {
                     }),
                 }}
                 />
-                <Link to='/historial-gerencia'>
-                    <button className='btn-lista' style={{width: "12rem"}}>Ir al historial</button>
+                <Link to='/historial-gerencia_adminview'>
+                    <button className='btn-lista' style={{width: "12rem", fontSize: "1rem"}}>Ir al historial</button>
                 </Link>
                 
         </div>
@@ -156,7 +162,7 @@ function FormularioGerencial() {
                         <h3 className="p1000 titulo-seccion">Balance metalúrgico</h3>
                         <div className="sep-seccion"></div>
                     </div>
-                    <div className="btn-detalles-seccion" onClick={showModal}>
+                    <div className="btn-detalles-seccion" onClick={showModalTabla}>
                         <span class="material-symbols-outlined">
                         visibility
                         </span>
@@ -254,21 +260,23 @@ function FormularioGerencial() {
 
                 </div>
             </div>
-            <div className='stripBotones'>
+
+            <div className='stripBotones' style={{width:"100%"}}>
                 <button className='guardarProgreso'>Guardar progreso
                     <span className='separatorButton'/>
                     <span class="material-symbols-outlined">sync_saved_locally</span>
                 </button>
-                <button className='enviar'>Enviar
+                <button className='enviar' onClick={showModal}>Enviar
                     <span className='separatorButton'/>
                     <span class="material-symbols-outlined">send</span>
                 </button>
             </div>
+            
         </div>
         <footer style={{height:'10rem'}}></footer>
         <Menu rol={"admin"} activeTab="summarize" landing="/admin"/>
-        {modalVisibility ? <ModalReporteLaboratorio setModalVisibility = {setModalVisibility}></ModalReporteLaboratorio>:null}
-                                   
+        {modalTablaVisibility ? <ModalReporteLaboratorio setModalVisibility = {setModalTablaVisibility}></ModalReporteLaboratorio>:null}
+        {modalVisibility ? <ModalExito setModalVisibility = {setModalVisibility} tipo="exito" titulo="Confirma los datos" mensaje="¿Estás seguro que deseas continuar? Asegura que todos los datos introducidos sean correctos."></ModalExito>:null}
     </>
   )
 }

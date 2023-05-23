@@ -27,21 +27,34 @@ function App() {
       
       <Route path='/' element={<Login/>} />
       <Route path='/redirect' element={<RedireccionCargo/>} />
+
+      {/*Flujo Laboratorista*/}
+      <Route path='/laboratorio' element={<LandingPage strips={0}/>} />
+      <Route path='/reporte-laboratorio' element={<ReporteLaboratorio/>} />
+      <Route path='/formulario-laboratorio' element={<FormularioLaboratorio/>} />
+      <Route path='/historial-analisis' element={<HistorialAnalisis/>} />
+
       {/*Flujo Admin*/}
+      <Route path='/admin' element={<LandingPage strips={1}/> } />
       <Route path='/formulario-gerencial' element={<FormularioGerencial/>} />
+      <Route path='/historial-gerencia_adminview' element={<HistorialGerencia rol="admin"/>} />
       <Route path='/usuarios' element={<CRUDUsuarios/>} />
       <Route path='/agregar-usuario' element={<Registro/>} />
       <Route path='/usuario/:idUsuario' element={<EditarUsuario/>} />
-      <Route path='/reporte-laboratorio' element={<ReporteLaboratorio/>} />
-      <Route path='/reporte-bascula' element={<ReporteBascula/>} />
-      <Route path='/historial-bascula' element={<HistorialBascula/>} />
-      <Route path='/historial-gerencia' element={<HistorialGerencia/>} />
-      <Route path='/historial-analisis' element={<HistorialAnalisis/>} />
-      <Route path='/formulario-laboratorio' element={<FormularioLaboratorio/>} />
-      <Route path='/laboratorio' element={<LandingPage strips={0}/>} />
-      <Route path='/admin' element={<LandingPage strips={1}/> } />
-      <Route path='/gerente' element={<LandingPage strips={2}/> } />
+      <Route path='/historial-bascula_adminview' element={<HistorialBascula rol="admin"/>} />
+      <Route path='/reporte-bascula_adminview' element={<ReporteBascula rol="admin"/>} />
+    
+      {/*Flujo Gerente*/}
+      <Route path='/gerencia' element={<LandingPage strips={2}/> } />
+      <Route path='/historial-bascula_managerview' element={<HistorialBascula rol="gerente"/>} />
+      <Route path='/historial-gerencia_managerview' element={<HistorialGerencia rol="gerente"/>} />
+      <Route path='/reporte-bascula_managerview' element={<ReporteBascula rol="gerente"/>} />
+
+      {/*Flujo Bascula*/}
       <Route path='/bascula' element={<LandingPage strips={3}/> } />
+      <Route path='/reporte-bascula_basculaview' element={<ReporteBascula rol="bascula"/>} />
+      <Route path='/historial-bascula_basculaview' element={<HistorialBascula rol="bascula"/>} />
+      
     </Routes>
     </>
   );
