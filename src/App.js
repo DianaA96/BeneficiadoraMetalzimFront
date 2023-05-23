@@ -18,6 +18,7 @@ import Registro from "./views/Registro"
 import EditarUsuario from './views/EditarUsuario';
 import FormularioLaboratorio from './views/FormularioLaboratorio';
 import RedireccionCargo from './views/RedireccionCargo';
+import MovimientoMineral from './views/MovimientoMineral';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
       <Route path='/usuario/:idUsuario' element={<EditarUsuario/>} />
       <Route path='/reporte-laboratorio' element={<ReporteLaboratorio/>} />
       <Route path='/reporte-bascula' element={<ReporteBascula/>} />
+      <Route path='/reporte-movimiento-mineral' element={<MovimientoMineral/>} />
       <Route path='/historial-bascula' element={<HistorialBascula/>} />
       <Route path='/historial-gerencia' element={<HistorialGerencia/>} />
       <Route path='/historial-analisis' element={<HistorialAnalisis/>} />
