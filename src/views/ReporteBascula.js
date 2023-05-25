@@ -5,6 +5,8 @@ import HeaderDiseno from "../components/HeaderDiseno";
 import GraficasPie from "../components/GraficasPie";
 import GraficasColumna from "../components/GraficasColumna";
 import Menu from "../components/Menu";
+import { Link } from 'react-router-dom'
+import "../styles/button.css"
 
 const ReporteBascula = () => {
 
@@ -111,8 +113,10 @@ const ReporteBascula = () => {
                     <span className='separatorButton'/>
                     <span class="material-symbols-outlined">sync_saved_locally</span>
                 </button>
-                <button className='enviar' style={{width:"15rem", marginLeft:"5%"}}>Ir a historial
-                </button>
+                
+                <Link to='/historial-bascula'>
+                    <button className='btn-lista' style={{width: "12rem"}}>Ir al historial</button>
+                </Link>
             </div> 
             
         </body>
