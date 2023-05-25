@@ -4,9 +4,9 @@ import ListaReportes from "../components/ListaReportes"
 import Menu from "../components/Menu"
 import GraficasArea from "../components/GraficasArea"
 import GraficasLine from "../components/GraficasLine"
+import { Link } from 'react-router-dom'
 
-function HistorialBascula() {
-
+function HistorialBascula({rol}) {
 
     const reportes = [
         {id:"RE01", fecha: "26/04/2023", existenciaInicial: 412, acarreo: 562, trituradas: 343, patios: 623},
@@ -16,8 +16,6 @@ function HistorialBascula() {
         {id:"RE05", fecha: "12/04/2023", existenciaInicial: 412, acarreo: 562, trituradas: 343, patios: 623},
         {id:"RE06", fecha: "15/04/2023", existenciaInicial: 412, acarreo: 562, trituradas: 343, patios: 623},
         {id:"RE07", fecha: "21/04/2023", existenciaInicial: 412, acarreo: 562, trituradas: 343, patios: 623},
-
-    
     ]
 
     const columns = React.useMemo(()=>
@@ -35,7 +33,7 @@ function HistorialBascula() {
             flex:1, 
             minWidth: 100,
             getActions: (params) => [
-                <button className='btn-lista' to={`/reporte/${params.id}`} target="_blank">Ver</button>,
+                <Link className='btn-lista link-decoration' to={`/reporte-bascula_adminview`} target="_blank">Ver</Link>,
             ],
           },
       ],
@@ -66,7 +64,21 @@ function HistorialBascula() {
 
     </body>
     <footer>
-      <Menu rol="admin" activeTab="scale"></Menu>
+      {
+          /**Menu Admin */
+         rol == "admin" ? <Menu rol="admin" activeTab="scale" landing="/admin"></Menu> : null
+      }
+
+      {
+          /**Menu Gerente */
+         rol == "gerente" ? <Menu rol="gerente" activeTab="scale" landing="/gerencia"></Menu> : null
+      }
+      
+      {
+          /**Menu Bascula */
+          rol == "bascula" ? <Menu rol="bascula" activeTab="history" landing="/bascula"></Menu> : null
+      }
+     
     </footer></>
   )
 }

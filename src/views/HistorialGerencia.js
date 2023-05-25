@@ -5,7 +5,7 @@ import ListaReportes from "../components/ListaReportes"
 import GraficasLine from "../components/GraficasLine"
 import Menu from "../components/Menu"
 
-function HistorialGerencia() {
+function HistorialGerencia({rol}) {
 
     const currencyFormatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -68,7 +68,14 @@ function HistorialGerencia() {
       </div>
     </body>
     <footer>
-      <Menu rol="admin" activeTab="summarize"></Menu>
+      {
+          /**Menu Admin */
+         rol == "admin" ? <Menu rol="admin" activeTab="summarize" landing="/admin"></Menu> : null
+      }
+      {
+          /**Menu Gerente */
+         rol == "gerente" ? <Menu rol="gerente" activeTab="summarize" landing="/gerencia"></Menu> : null
+      }
     </footer></>
   )
 }

@@ -17,8 +17,8 @@ function Menu(props) {
 
   var tabs = {
     laboratorista: [["Llenar reporte","science", '/formulario-laboratorio'], ["Historial", "history", '/reporte-laboratorio']],
-    admin: [["Reporte Gerencial","summarize", "/formulario-gerencial"], ["Admin. Usuarios", "group", '/usuarios'], ["Reporte Báscula","scale", '/reporte-bascula'], ["Créditos", "favorite"]],
-    gerente: [["Reporte Gerencial","summarize"], ["Reporte Báscula", "scale"]],
+    admin: [["Reporte Gerencial","summarize", "/formulario-gerencial"], ["Admin. Usuarios", "group", '/usuarios'], ["Reporte Báscula","scale", '/historial-bascula_adminview'], ["Créditos", "favorite"]],
+    gerente: [["Reporte Gerencial","summarize", "/historial-gerencia_managerview"], ["Reporte Báscula", "scale","/historial-bascula_managerview"]],
     bascula: [["Llenar reporte","scale"], ["Historial", "history"]]
   }
 

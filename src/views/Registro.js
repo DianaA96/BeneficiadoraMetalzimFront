@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import logo from '../logo.svg';
 import '../styles/Registro.css';
 import HS from '../components/HeaderSencillo'
-import MenuS from '../components/Menu'
+import Menu from '../components/Menu'
 import axios from 'axios'
 
 
@@ -60,8 +60,12 @@ function Registro() {
       setFormValues({ ...formValues, [name]: 1 });
 
     }
-    else {
+    else if(value == "Operario Bascula") {
       setFormValues({ ...formValues, [name]: 4 });
+    }
+    else {
+      setFormValues({ ...formValues, [name]: 3 });
+
     }
     //setFormValues({ ...formValues, [name]: value });
   }
@@ -108,12 +112,14 @@ function Registro() {
                       <option value="Gerente">Gerente</option>
                     </select>
               </div>
+            <div for="nombres" class="textInput" >Password</div>
+            <input type="text"  className="inputRegistro" onChange={handleChange} id="password"  placeholder='Password'  name="password"/>
             </div>
-
             <button className='buttonRegistro' style={{marginTop:"1rem", marginLeft:"80%"}} type="submit">Registrar</button>
           </form>
         </div>
       </div>
+      <Menu rol="admin" activeTab="group" landing='/admin'></Menu>
     </div>
   );
 }

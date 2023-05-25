@@ -4,8 +4,10 @@ import {useParams} from 'react-router-dom';
 import logo from '../logo.svg';
 import '../styles/Registro.css';
 import HS from '../components/HeaderSencillo'
-import MenuS from '../components/Menu'
+import Menu from '../components/Menu'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+
 
 
 
@@ -89,8 +91,11 @@ function EditarUsuario() {
       return "Gerente"
     } else if (id == 1) {
       return "Laboratorista"
-    } else if (id == 4) {}
-    return "Operario Bascula"
+    } else if (id == 4) {
+      return "Operario Bascula"
+    }
+    else if (id == 3)
+      return "Administrador"
   } 
   
   if (status == 'resolved') 
@@ -134,6 +139,10 @@ function EditarUsuario() {
                         <option value="Operario Bascula">Operario Báscula</option>
                         <option value="Gerente">Gerente</option>
                       </select>
+
+                      <div for="nombres">Password</div>
+                      <input type="text"  className="inputRegistro" onChange={handleChange} id="password"  placeholder='New Password'  name="password"/>
+                        
                 </div>
               </div>
 
@@ -141,7 +150,9 @@ function EditarUsuario() {
             </form>
           </div>
         </div>
+        <Menu rol="admin" activeTab="group" landing='/admin'></Menu>
       </div>
+      
     );
   }
 }
