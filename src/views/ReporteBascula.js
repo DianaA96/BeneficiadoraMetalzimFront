@@ -7,7 +7,7 @@ import GraficasColumna from "../components/GraficasColumna";
 import Menu from "../components/Menu";
 import { Link } from "react-router-dom";
 
-const ReporteBascula = () => {
+const ReporteBascula = ({rol}) => {
 
     //quitar y cambiar por el fetch
     const getTableData = () => {
@@ -121,7 +121,21 @@ const ReporteBascula = () => {
             
         </body>
         <footer>
-            <Menu rol={"admin"} activeTab="scale" landing="/admin"/>
+        {
+          /**Menu Admin */
+         rol == "admin" ? <Menu rol="admin" activeTab="scale" landing="/admin"></Menu> : null
+        }
+
+        {
+          /**Menu Gerente */
+         rol == "gerente" ? <Menu rol="gerente" activeTab="scale" landing="/gerencia"></Menu> : null
+        }
+
+        {
+          /**Menu Bascula */
+          rol == "bascula" ? <Menu rol="bascula" activeTab="history" landing="/bascula"></Menu> : null
+        }
+
         </footer></>
     );
 };

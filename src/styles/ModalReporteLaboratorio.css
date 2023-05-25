@@ -82,3 +82,89 @@
   .modal::-webkit-scrollbar-thumb:hover {
     background-color: rgba(0,0,0,0.5); 
   }
+
+  .modal-warn{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Inter";
+    width: 30%;
+    background-color: #fff;
+    border-radius: 25px;
+    padding: 1.3rem 1rem;
+  }
+
+  .modal-header{
+    height: 2rem;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .modal-header1{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 1rem;
+  }
+
+  .icon-modal{
+    font-size: 1.8rem;
+    margin-right: 0.5rem;
+  }
+  
+  .modal-title h3{
+    color: var(--n700);
+  }
+
+  .modal-content{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  .modal-mensaje{
+    font-size: 0.9rem;
+    width: 80%;
+  }
+
+  .modal-btns{
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-around;
+  }   
+
+  .btn-modal-cancelar{
+    border: none;
+    background-color: var(--n400);
+    color: #fff;
+    padding: 0.7rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 8px;
+  }
+
+  .btn-modal-exito{
+    border: none;
+    background-color: var(--p900);
+    color: #fff;
+    padding: 0.7rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 8px;
+    width: 50%;
+  }
+
+  .modal-sep{
+    margin-top: 0.5rem;
+    width: 95%;
+    height: 0.15rem;
+    border-radius: 10rem;
+  }
