@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TablaLaboratorio from "../components/TablaLaboratorio";
+import TablaLaboratorio from "../components/tablaLaboratorio";
 import "../styles/analisisLab.css";
 import HeaderDiseno from "../components/HeaderDiseno";
 import Menu from "../components/Menu";
