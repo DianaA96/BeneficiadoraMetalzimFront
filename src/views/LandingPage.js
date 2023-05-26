@@ -29,17 +29,17 @@ function LandingPage(props) {
 
     const opciones  = [[
         ["Registro de análisis de muestras", "F4A470", Science, 2,"/formulario-laboratorio"],
-        ["Consulta análisis de laboratorio", "F7B990", History, 2,"/reporte-laboratorio"]
+        ["Consulta historial de análisis", "F7B990", History, 2,"/historial-analisis"]
     ], [
         ["Reporte gerencial", "EF7B30", Paid, 2, "/formulario-gerencial"],
         ["Administración de usuarios", "F3995E", Group, 2, "/usuarios"],
-        ["Reporte de báscula", "F6B68C", Scale, 2, "/reporte-bascula"]
+        ["Reportes de báscula", "F6B68C", Scale, 2, "/historial-bascula_adminview"]
     ], [
-        ["Visualizar reporte gerencial", "F4A470", PaidAwesome, 2],
-        ["Visualizar reporte de báscula", "F7B990", ScaleView, 2]
+        ["Visualizar reporte gerencial", "F4A470", PaidAwesome, 2, "/historial-gerencia_managerview"],
+        ["Visualizar reporte de báscula", "F7B990", ScaleView, 2, "/historial-bascula_managerview"]
     ], [
         ["Registro de movimiento de mineral", "F4A470", ScaleEdit, 2],
-        ["Consulta historial de movimiento de báscula", "F7B990", History, 2]
+        ["Consulta historial de movimiento de báscula", "F7B990", History, 2, "/historial-bascula_basculaview"]
     ]]
 
         return (

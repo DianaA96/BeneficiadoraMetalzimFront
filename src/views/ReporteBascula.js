@@ -5,8 +5,9 @@ import HeaderDiseno from "../components/HeaderDiseno";
 import GraficasPie from "../components/GraficasPie";
 import GraficasColumna from "../components/GraficasColumna";
 import Menu from "../components/Menu";
+import { Link } from "react-router-dom";
 
-const ReporteBascula = () => {
+const ReporteBascula = ({rol}) => {
 
     //quitar y cambiar por el fetch
     const getTableData = () => {
@@ -65,8 +66,8 @@ const ReporteBascula = () => {
     return (
         <><body className="mybody">
             <HeaderDiseno
-            titulo={"Reporte diario Movimiento de mineral Báscula"}
-            subtitulo={""}
+            titulo={"Reporte movimiento de mineral báscula"}
+            subtitulo={"Consulta el movimiento del área de recepción registrado diariamente por el operario de báscula."}
             isDate={true}
             />
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -111,13 +112,30 @@ const ReporteBascula = () => {
                     <span className='separatorButton'/>
                     <span class="material-symbols-outlined">sync_saved_locally</span>
                 </button>
-                <button className='enviar' style={{width:"15rem", marginLeft:"5%"}}>Ir a historial
-                </button>
+                <Link to='/historial-bascula' className="link-decoration">
+                    <button className='enviar' style={{width:"15rem", marginLeft:"5%"}}>Ir a historial
+                    </button>
+                </Link>
+                
             </div> 
             
         </body>
         <footer>
-            <Menu rol={"admin"} activeTab="scale" landing="/admin"/>
+        {
+          /**Menu Admin */
+         rol == "admin" ? <Menu rol="admin" activeTab="scale" landing="/admin"></Menu> : null
+        }
+
+        {
+          /**Menu Gerente */
+         rol == "gerente" ? <Menu rol="gerente" activeTab="scale" landing="/gerencia"></Menu> : null
+        }
+
+        {
+          /**Menu Bascula */
+          rol == "bascula" ? <Menu rol="bascula" activeTab="history" landing="/bascula"></Menu> : null
+        }
+
         </footer></>
     );
 };

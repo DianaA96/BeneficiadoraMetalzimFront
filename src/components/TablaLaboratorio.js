@@ -1,11 +1,11 @@
 import React from "react";
 import "../styles/tablaLab.css"
 
-const TablaLaboratorio = ({ tableData, copyTableData }) => {
+const TablaLaboratorio = ({ tableData, copyTableData, turno}) => {
     return (
         <>
             <div className="cabeza">
-                <span className="turno">Primer Turno</span>
+                <span className="turno">{turno}</span>
                 <button className="custom-button" onClick={copyTableData}>
                     <div className="button-content">
                         <span class="material-symbols-outlined"> content_copy</span>

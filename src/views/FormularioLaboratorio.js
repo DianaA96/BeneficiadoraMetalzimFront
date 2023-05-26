@@ -443,8 +443,8 @@ function FormularioLaboratorio(props) {
 
     let formularioParaPost = {
         "idUsuario": usuario,
-        "idMina": mina.value,
-        "idPlanta": planta.value,
+        "idMina": parseInt(mina.value),
+        "idPlanta": parseInt(planta.value),
         "fechaMuestreo": fechaMuestreo,
         "fechaEnsaye": fechaEnsaye,
         "primerT":{
@@ -460,7 +460,7 @@ function FormularioLaboratorio(props) {
             "PbO": 0,
             "ZnO": 0
         },
-        "cPlomo": {
+        "Pb": {
             "Ag": 0,
             "Pb": 0,
             "Zn": 0,
@@ -472,7 +472,7 @@ function FormularioLaboratorio(props) {
             "PbO": 0,
             "ZnO": 0
         },
-        "cZinc": {
+        "Zn": {
             "Ag": 0,
             "Pb": 0,
             "Zn": 0,
@@ -484,57 +484,7 @@ function FormularioLaboratorio(props) {
             "PbO": 0,
             "ZnO": 0
         },
-        "Cola": {
-            "Ag": 0,
-            "Pb": 0,
-            "Zn": 0,
-            "Cu": 0,
-            "Fe": 0,
-            "Sb": 0,
-            "As": 0,
-            "Cd": 0,
-            "PbO": 0,
-            "ZnO": 0
-        }
-        },
-        "segT":{
-            "Cabeza": {
-            "Ag": 0,
-            "Pb": 0,
-            "Zn": 0,
-            "Cu": 0,
-            "Fe": 0,
-            "Sb": 0,
-            "As": 0,
-            "Cd": 0,
-            "PbO": 0,
-            "ZnO": 0
-        },
-        "cPlomo": {
-            "Ag": 0,
-            "Pb": 0,
-            "Zn": 0,
-            "Cu": 0,
-            "Fe": 0,
-            "Sb": 0,
-            "As": 0,
-            "Cd": 0,
-            "PbO": 0,
-            "ZnO": 0
-        },
-        "cZinc": {
-            "Ag": 0,
-            "Pb": 0,
-            "Zn": 0,
-            "Cu": 0,
-            "Fe": 0,
-            "Sb": 0,
-            "As": 0,
-            "Cd": 0,
-            "PbO": 0,
-            "ZnO": 0
-        },
-        "Cola": {
+        "Colas": {
             "Ag": 0,
             "Pb": 0,
             "Zn": 0,
@@ -547,7 +497,7 @@ function FormularioLaboratorio(props) {
             "ZnO": 0
         }
         },
-        "terT":{
+        "segundoT":{
             "Cabeza": {
             "Ag": 0,
             "Pb": 0,
@@ -560,7 +510,7 @@ function FormularioLaboratorio(props) {
             "PbO": 0,
             "ZnO": 0
         },
-        "cPlomo": {
+        "Pb": {
             "Ag": 0,
             "Pb": 0,
             "Zn": 0,
@@ -572,7 +522,7 @@ function FormularioLaboratorio(props) {
             "PbO": 0,
             "ZnO": 0
         },
-        "cZinc": {
+        "Zn": {
             "Ag": 0,
             "Pb": 0,
             "Zn": 0,
@@ -584,7 +534,57 @@ function FormularioLaboratorio(props) {
             "PbO": 0,
             "ZnO": 0
         },
-        "Cola": {
+        "Colas": {
+            "Ag": 0,
+            "Pb": 0,
+            "Zn": 0,
+            "Cu": 0,
+            "Fe": 0,
+            "Sb": 0,
+            "As": 0,
+            "Cd": 0,
+            "PbO": 0,
+            "ZnO": 0
+        }
+        },
+        "tercerT":{
+            "Cabeza": {
+            "Ag": 0,
+            "Pb": 0,
+            "Zn": 0,
+            "Cu": 0,
+            "Fe": 0,
+            "Sb": 0,
+            "As": 0,
+            "Cd": 0,
+            "PbO": 0,
+            "ZnO": 0
+        },
+        "Pb": {
+            "Ag": 0,
+            "Pb": 0,
+            "Zn": 0,
+            "Cu": 0,
+            "Fe": 0,
+            "Sb": 0,
+            "As": 0,
+            "Cd": 0,
+            "PbO": 0,
+            "ZnO": 0
+        },
+        "Zn": {
+            "Ag": 0,
+            "Pb": 0,
+            "Zn": 0,
+            "Cu": 0,
+            "Fe": 0,
+            "Sb": 0,
+            "As": 0,
+            "Cd": 0,
+            "PbO": 0,
+            "ZnO": 0
+        },
+        "Colas": {
             "Ag": 0,
             "Pb": 0,
             "Zn": 0,
@@ -604,7 +604,10 @@ function FormularioLaboratorio(props) {
         axios({
             method: 'post',
             url: `http://localhost:3050/lab/labReport`,
-            data: {...formularioParaPost}
+            data: {...formularioParaPost},
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            }
         })
         .then((result)=>{
             alert('¡Información enviada!');

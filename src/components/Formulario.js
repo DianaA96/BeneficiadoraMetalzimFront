@@ -16,7 +16,6 @@ function Formulario(props) {
         aux = []
     }
 
-
     let settingStateExpand = [...props.formularioPrimerNivel]
     let settingStateExpand2 = JSON.parse(JSON.stringify(props.formularioSegundoNivel))
     settingStateExpand = settingStateExpand.fill(true, 0, settingStateExpand.length)
@@ -59,6 +58,7 @@ function Formulario(props) {
 
             setArrExpandido2(temp)
         }
+
         else {
             const func = (element) => tokenizeIDs(element) == id
             let idx = props.formularioPrimerNivel.findIndex(func)
@@ -126,7 +126,7 @@ function Formulario(props) {
                 <button className='formularioNivel1' id={tokenizeIDs(data1)}>
                     <div className='pestañaSuperiorForm' id={tokenizeIDs(data1)}>
                         <div id={tokenizeIDs(data1)}><p id={tokenizeIDs(data1)}>{data1}</p></div>
-                        <div id={tokenizeIDs(data1)}><span className="material-symbols-outlined" id={tokenizeIDs(data1)}>expand_more</span></div>
+                        <div id={tokenizeIDs(data1)}><span className={`material-symbols-outlined ${arrExpandido[i] == true ? " active":" inactive"} `} id={tokenizeIDs(data1)}>expand_more</span></div>
                     </div>
                     <div className='barraPestañaFormN1' id={tokenizeIDs(data1)}></div>
                 </button>
@@ -137,12 +137,13 @@ function Formulario(props) {
                     
                 <div>
                     <div className="nivel2" id={`${tokenizeIDs(data2)} ${tokenizeIDs(data1)}`} onClick={handleSetExpandido}>
-                    <button className='formularioNivel2' id={`${tokenizeIDs(data2)} ${tokenizeIDs(data1)}`}>
-                        <div className='pestañaSuperiorForm' id={`${tokenizeIDs(data2)} ${tokenizeIDs(data1)}`}>
+                    <button className={`formularioNivel2 ${data2 == "Total" ? "Total" : ""}`} id={`${tokenizeIDs(data2)} ${tokenizeIDs(data1)}`}>
+                        <div className='sangriaPestanaa'></div>
+                        <div className={`pestañaSuperiorForm ${data2 == "Total" ? "spanTotalGris" : ""}`} id={`${tokenizeIDs(data2)} ${tokenizeIDs(data1)}`}>
                             <div className="sangriaFormulario" id={`${tokenizeIDs(data2)} ${tokenizeIDs(data1)}`}></div>
                             <div className='contenidopestaña' id={`${tokenizeIDs(data2)} ${tokenizeIDs(data1)}`}>
                                 <div id={`${tokenizeIDs(data2)} ${data1}`}><p id={`${tokenizeIDs(data2)} ${tokenizeIDs(data1)}`}>{data2}</p></div>
-                                <div id={`${tokenizeIDs(data2)} ${data1}`}><span className="material-symbols-outlined" id={`${tokenizeIDs(data2)} ${tokenizeIDs(data1)}`}>expand_more</span></div>
+                                <div id={`${tokenizeIDs(data2)} ${data1}`}><span className={`material-symbols-outlined ${arrExpandido2[i][j] == true ? " active":" inactive"}`} id={`${tokenizeIDs(data2)} ${tokenizeIDs(data1)}`}>expand_more</span></div>
                             </div>
                         </div>
                         <div className='barraPestañaFormN2' id={`${data2} ${data1}`}></div>
@@ -151,7 +152,7 @@ function Formulario(props) {
                     
                 <>
                 {arrExpandido2[i][j] == true?(
-                    <div className={"inputsFormulario " + arrExpandido[i].toString()}>
+                    <div className={"inputsFormulario " + arrExpandido[i].toString() + (data2 == "Total" ? " inputsTotal" : "")}>
                     <div className="sangriaInputs"></div>
                     {inputs.map((subdata, k) => 
                         <>
@@ -160,10 +161,14 @@ function Formulario(props) {
                             {subinput.map((input, m) =>
                                 k*100 + l*10  + m *1 < subinput.length ? (<div className='input'>
                                 <label>
-                                    <p className='elementoInput'>{input[0]}</p>
-                                    <p className='cantidadInput'>{input[1]}</p>
+                                    <p className={`elementoInput ${input[0] == "Aca" || input[0] == "Tritu" || input[0].includes("Conc") ? "alinearDer" : input[0] == "rreo" || input[0] == "radas" || input[0].includes("Ton")? "alinearIzq": ""}`}>{input[0]}</p>
+                                    <p className={`cantidadInput`}>{input[1]}</p>
                                 </label>
-                                <input className='inputGris' type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} onChange={props.handleInputChange} placeholder={0.000}></input>
+                                {props.tipoFormulario == "MovimientoMineral" & (input[0].includes("final") || data2.includes("Total"))? 
+                                    <input className='inputGris' type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} placeholder={0.000} readOnly={true} onWheel={ event => event.currentTarget.blur() }></input>
+                                :
+                                    <input className='inputGris' type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} onChange={props.handleInputChange} placeholder={0.000} onWheel={ event => event.currentTarget.blur() }></input>
+                                }
                                 </div>)
                             : null)} 
                             </>
@@ -171,7 +176,33 @@ function Formulario(props) {
                         </>
                     )}
                     </div>
-                    ):null}
+                    ):
+                    (
+                        <div className={"inputsFormulario false " + (data2 == "Total" ? " inputsTotal" : "")}>
+                        <div className="sangriaInputs"></div>
+                        {inputs.map((subdata, k) => 
+                            <>
+                            {subdata.map((subinput, l) =>
+                                <>
+                                {subinput.map((input, m) =>
+                                    k*100 + l*10  + m *1 < subinput.length ? (<div className='input'>
+                                    <label>
+                                        <p className={`elementoInput ${input[0] == "Aca" || input[0] == "Tritu" || input[0].includes("Conc") ? "alinearDer" : input[0] == "rreo" || input[0] == "radas" || input[0].includes("Ton")? "alinearIzq": ""}`}>{input[0]}</p>
+                                        <p className={`cantidadInput`}>{input[1]}</p>
+                                    </label>
+                                    {props.tipoFormulario == "MovimientoMineral" & (input[0].includes("final") || data2.includes("Total"))?  
+                                        <input className='inputGris' type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} onChange={props.handleInputChange} placeholder={0.000} onWheel={ event => event.currentTarget.blur() }></input>
+                                        :
+                                        <input className='inputGris' type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} onChange={props.handleInputChange} placeholder={0.000} onWheel={ event => event.currentTarget.blur() }></input>
+                                    }
+                                    </div>)
+                                : null)} 
+                                </>
+                            )} 
+                            </>
+                        )}
+                        </div>
+                    )}
                 </>
                 </div>
             ):null}
