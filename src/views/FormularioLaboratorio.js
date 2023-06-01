@@ -38,409 +38,6 @@ function FormularioLaboratorio(props) {
         { value: '2', label: 'Dos' },
     ];
 
-    const [ heightSize, setHeightSize ] = useState(0)
-
-    useEffect(() => {
-        setHeightSize(window.innerWidth)
-        return () => {
-        };
-    }, []);
-
-    function handleInputChange(event) {
-        event.target.defaultValue = null
-        console.log(event)
-        if(event.target.name.includes("Primer turno")) {
-            if(event.target.name.includes("Cabeza")) {
-                if(event.target.name.includes("Ag")) {
-                    formularioParaPost.primerT.Cabeza.Ag = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("PbO")) {
-                    formularioParaPost.primerT.Cabeza.PbO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("ZnO")) {
-                    formularioParaPost.primerT.Cabeza.ZnO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Pb")) {
-                    formularioParaPost.primerT.Cabeza.Pb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Zn")) {
-                    formularioParaPost.primerT.Cabeza.Zn = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cu")) {
-                    formularioParaPost.primerT.Cabeza.Cu = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Fe")) {
-                    formularioParaPost.primerT.Cabeza.Fe = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Sb")) {
-                    formularioParaPost.primerT.Cabeza.Sb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("As")) {
-                    formularioParaPost.primerT.Cabeza.As = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cd")) {
-                    formularioParaPost.primerT.Cabeza.Cd = event.target.valueAsNumber
-                }
-            }
-            else if(event.target.name.includes("plomo")) {
-                if(event.target.name.includes("Ag")) {
-                    formularioParaPost.primerT.cPlomo.Ag = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("PbO")) {
-                    formularioParaPost.primerT.cPlomo.PbO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("ZnO")) {
-                    formularioParaPost.primerT.cPlomo.ZnO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Pb")) {
-                    formularioParaPost.primerT.cPlomo.Pb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Zn")) {
-                    formularioParaPost.primerT.cPlomo.Zn = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cu")) {
-                    formularioParaPost.primerT.cPlomo.Cu = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Fe")) {
-                    formularioParaPost.primerT.cPlomo.Fe = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Sb")) {
-                    formularioParaPost.primerT.cPlomo.Sb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("As")) {
-                    formularioParaPost.primerT.cPlomo.As = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cd")) {
-                    formularioParaPost.primerT.cPlomo.Cd = event.target.valueAsNumber
-                }
-            }
-            else if(event.target.name.includes("zinc")) {
-                if(event.target.name.includes("Ag")) {
-                    formularioParaPost.primerT.cZinc.Ag = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("PbO")) {
-                    formularioParaPost.primerT.cZinc.PbO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("ZnO")) {
-                    formularioParaPost.primerT.cZinc.ZnO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Pb")) {
-                    formularioParaPost.primerT.cZinc.Pb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Zn")) {
-                    formularioParaPost.primerT.cZinc.Zn = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cu")) {
-                    formularioParaPost.primerT.cZinc.Cu = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Fe")) {
-                    formularioParaPost.primerT.cZinc.Fe = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Sb")) {
-                    formularioParaPost.primerT.cZinc.Sb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("As")) {
-                    formularioParaPost.primerT.cZinc.As = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cd")) {
-                    formularioParaPost.primerT.cZinc.Cd = event.target.valueAsNumber
-                }
-            }
-            else if(event.target.name.includes("Cola")) {
-                if(event.target.name.includes("Ag")) {
-                    formularioParaPost.primerT.Cola.Ag = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("PbO")) {
-                    formularioParaPost.primerT.Cola.PbO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("ZnO")) {
-                    formularioParaPost.primerT.Cola.ZnO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Pb")) {
-                    formularioParaPost.primerT.Cola.Pb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Zn")) {
-                    formularioParaPost.primerT.Cola.Zn = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cu")) {
-                    formularioParaPost.primerT.Cola.Cu = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Fe")) {
-                    formularioParaPost.primerT.Cola.Fe = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Sb")) {
-                    formularioParaPost.primerT.Cola.Sb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("As")) {
-                    formularioParaPost.primerT.Cola.As = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cd")) {
-                    formularioParaPost.primerT.Cola.Cd = event.target.valueAsNumber
-                }
-            }
-        }
-        else if(event.target.name.includes("Segundo turno")) {
-            if(event.target.name.includes("Cabeza")) {
-                if(event.target.name.includes("Ag")) {
-                    formularioParaPost.segT.Cabeza.Ag = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Pb")) {
-                    formularioParaPost.segT.Cabeza.Pb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("PbO")) {
-                    formularioParaPost.segT.Cabeza.PbO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("ZnO")) {
-                    formularioParaPost.segT.Cabeza.ZnO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Zn")) {
-                    formularioParaPost.segT.Cabeza.Zn = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cu")) {
-                    formularioParaPost.segT.Cabeza.Cu = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Fe")) {
-                    formularioParaPost.segT.Cabeza.Fe = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Sb")) {
-                    formularioParaPost.segT.Cabeza.Sb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("As")) {
-                    formularioParaPost.segT.Cabeza.As = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cd")) {
-                    formularioParaPost.segT.Cabeza.Cd = event.target.valueAsNumber
-                }
-            }
-            else if(event.target.name.includes("plomo")) {
-                if(event.target.name.includes("Ag")) {
-                    formularioParaPost.segT.cPlomo.Ag = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("PbO")) {
-                    formularioParaPost.segT.cPlomo.PbO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("ZnO")) {
-                    formularioParaPost.segT.cPlomo.ZnO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Pb")) {
-                    formularioParaPost.segT.cPlomo.Pb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Zn")) {
-                    formularioParaPost.segT.cPlomo.Zn = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cu")) {
-                    formularioParaPost.segT.cPlomo.Cu = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Fe")) {
-                    formularioParaPost.segT.cPlomo.Fe = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Sb")) {
-                    formularioParaPost.segT.cPlomo.Sb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("As")) {
-                    formularioParaPost.segT.cPlomo.As = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cd")) {
-                    formularioParaPost.segT.cPlomo.Cd = event.target.valueAsNumber
-                }
-            }
-            else if(event.target.name.includes("zinc")) {
-                if(event.target.name.includes("Ag")) {
-                    formularioParaPost.segT.cZinc.Ag = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("PbO")) {
-                    formularioParaPost.segT.cZinc.PbO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("ZnO")) {
-                    formularioParaPost.segT.cZinc.ZnO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Pb")) {
-                    formularioParaPost.segT.cZinc.Pb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Zn")) {
-                    formularioParaPost.segT.cZinc.Zn = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cu")) {
-                    formularioParaPost.segT.cZinc.Cu = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Fe")) {
-                    formularioParaPost.segT.cZinc.Fe = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Sb")) {
-                    formularioParaPost.segT.cZinc.Sb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("As")) {
-                    formularioParaPost.segT.cZinc.As = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cd")) {
-                    formularioParaPost.segT.cZinc.Cd = event.target.valueAsNumber
-                }
-            }
-            else if(event.target.name.includes("Cola")) {
-                if(event.target.name.includes("Ag")) {
-                    formularioParaPost.segT.Cola.Ag = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("PbO")) {
-                    formularioParaPost.segT.Cola.PbO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("ZnO")) {
-                    formularioParaPost.segT.Cola.ZnO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Pb")) {
-                    formularioParaPost.segT.Cola.Pb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Zn")) {
-                    formularioParaPost.segT.Cola.Zn = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cu")) {
-                    formularioParaPost.segT.Cola.Cu = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Fe")) {
-                    formularioParaPost.segT.Cola.Fe = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Sb")) {
-                    formularioParaPost.segT.Cola.Sb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("As")) {
-                    formularioParaPost.segT.Cola.As = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cd")) {
-                    formularioParaPost.segT.Cola.Cd = event.target.valueAsNumber
-                }
-            }
-        }
-        else if(event.target.name.includes("Tercer turno")) {
-            if(event.target.name.includes("Cabeza")) {
-                if(event.target.name.includes("Ag")) {
-                    formularioParaPost.terT.Cabeza.Ag = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("PbO")) {
-                    formularioParaPost.terT.Cabeza.PbO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("ZnO")) {
-                    formularioParaPost.terT.Cabeza.ZnO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Pb")) {
-                    formularioParaPost.terT.Cabeza.Pb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Zn")) {
-                    formularioParaPost.terT.Cabeza.Zn = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cu")) {
-                    formularioParaPost.terT.Cabeza.Cu = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Fe")) {
-                    formularioParaPost.terT.Cabeza.Fe = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Sb")) {
-                    formularioParaPost.terT.Cabeza.Sb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("As")) {
-                    formularioParaPost.terT.Cabeza.As = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cd")) {
-                    formularioParaPost.terT.Cabeza.Cd = event.target.valueAsNumber
-                }
-            }
-            else if(event.target.name.includes("plomo")) {
-                if(event.target.name.includes("Ag")) {
-                    formularioParaPost.terT.cPlomo.Ag = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("PbO")) {
-                    formularioParaPost.terT.cPlomo.PbO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("ZnO")) {
-                    formularioParaPost.terT.cPlomo.ZnO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Pb")) {
-                    formularioParaPost.terT.cPlomo.Pb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Zn")) {
-                    formularioParaPost.terT.cPlomo.Zn = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cu")) {
-                    formularioParaPost.terT.cPlomo.Cu = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Fe")) {
-                    formularioParaPost.terT.cPlomo.Fe = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Sb")) {
-                    formularioParaPost.terT.cPlomo.Sb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("As")) {
-                    formularioParaPost.terT.cPlomo.As = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cd")) {
-                    formularioParaPost.terT.cPlomo.Cd = event.target.valueAsNumber
-                }
-            }
-            else if(event.target.name.includes("zinc")) {
-                if(event.target.name.includes("Ag")) {
-                    formularioParaPost.terT.cZinc.Ag = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("PbO")) {
-                    formularioParaPost.terT.cZinc.PbO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("ZnO")) {
-                    formularioParaPost.terT.cZinc.ZnO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Pb")) {
-                    formularioParaPost.terT.cZinc.Pb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Zn")) {
-                    formularioParaPost.terT.cZinc.Zn = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cu")) {
-                    formularioParaPost.terT.cZinc.Cu = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Fe")) {
-                    formularioParaPost.terT.cZinc.Fe = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Sb")) {
-                    formularioParaPost.terT.cZinc.Sb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("As")) {
-                    formularioParaPost.terT.cZinc.As = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cd")) {
-                    formularioParaPost.terT.cZinc.Cd = event.target.valueAsNumber
-                }
-            }
-            else if(event.target.name.includes("Cola")) {
-                if(event.target.name.includes("Ag")) {
-                    formularioParaPost.terT.Cola.Ag = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("PbO")) {
-                    formularioParaPost.terT.Cola.PbO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("ZnO")) {
-                    formularioParaPost.terT.Cola.ZnO = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Pb")) {
-                    formularioParaPost.terT.Cola.Pb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Zn")) {
-                    formularioParaPost.terT.Cola.Zn = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cu")) {
-                    formularioParaPost.terT.Cola.Cu = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Fe")) {
-                    formularioParaPost.terT.Cola.Fe = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Sb")) {
-                    formularioParaPost.terT.Cola.Sb = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("As")) {
-                    formularioParaPost.terT.Cola.As = event.target.valueAsNumber
-                }
-                else if(event.target.name.includes("Cd")) {
-                    formularioParaPost.terT.Cola.Cd = event.target.valueAsNumber
-                }
-            }
-        }
-    }
-
     let formularioParaPost = {
         "idUsuario": usuario,
         "idMina": parseInt(mina.value),
@@ -596,6 +193,401 @@ function FormularioLaboratorio(props) {
             "PbO": 0,
             "ZnO": 0
         }
+        }
+    }
+
+    function handleInputChange(event) {
+        event.target.defaultValue = null
+        console.log(event)
+        if(event.target.name.includes("Primer turno")) {
+            if(event.target.name.includes("Cabeza")) {
+                if(event.target.name.includes("Ag")) {
+                    formularioParaPost.primerT.Cabeza.Ag = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("PbO")) {
+                    formularioParaPost.primerT.Cabeza.PbO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("ZnO")) {
+                    formularioParaPost.primerT.Cabeza.ZnO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Pb")) {
+                    formularioParaPost.primerT.Cabeza.Pb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Zn")) {
+                    formularioParaPost.primerT.Cabeza.Zn = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cu")) {
+                    formularioParaPost.primerT.Cabeza.Cu = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Fe")) {
+                    formularioParaPost.primerT.Cabeza.Fe = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Sb")) {
+                    formularioParaPost.primerT.Cabeza.Sb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("As")) {
+                    formularioParaPost.primerT.Cabeza.As = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cd")) {
+                    formularioParaPost.primerT.Cabeza.Cd = event.target.valueAsNumber
+                }
+            }
+            else if(event.target.name.includes("plomo")) {
+                if(event.target.name.includes("Ag")) {
+                    formularioParaPost.primerT.Pb.Ag = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("PbO")) {
+                    formularioParaPost.primerT.Pb.PbO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("ZnO")) {
+                    formularioParaPost.primerT.Pb.ZnO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Pb")) {
+                    formularioParaPost.primerT.Pb.Pb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Zn")) {
+                    formularioParaPost.primerT.Pb.Zn = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cu")) {
+                    formularioParaPost.primerT.Pb.Cu = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Fe")) {
+                    formularioParaPost.primerT.Pb.Fe = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Sb")) {
+                    formularioParaPost.primerT.Pb.Sb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("As")) {
+                    formularioParaPost.primerT.Pb.As = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cd")) {
+                    formularioParaPost.primerT.Pb.Cd = event.target.valueAsNumber
+                }
+            }
+            else if(event.target.name.includes("zinc")) {
+                if(event.target.name.includes("Ag")) {
+                    formularioParaPost.primerT.Zn.Ag = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("PbO")) {
+                    formularioParaPost.primerT.Zn.PbO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("ZnO")) {
+                    formularioParaPost.primerT.Zn.ZnO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Pb")) {
+                    formularioParaPost.primerT.Zn.Pb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Zn")) {
+                    formularioParaPost.primerT.Zn.Zn = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cu")) {
+                    formularioParaPost.primerT.Zn.Cu = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Fe")) {
+                    formularioParaPost.primerT.Zn.Fe = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Sb")) {
+                    formularioParaPost.primerT.Zn.Sb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("As")) {
+                    formularioParaPost.primerT.Zn.As = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cd")) {
+                    formularioParaPost.primerT.Zn.Cd = event.target.valueAsNumber
+                }
+            }
+            else if(event.target.name.includes("Cola")) {
+                if(event.target.name.includes("Ag")) {
+                    formularioParaPost.primerT.Colas.Ag = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("PbO")) {
+                    formularioParaPost.primerT.Colas.PbO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("ZnO")) {
+                    formularioParaPost.primerT.Colas.ZnO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Pb")) {
+                    formularioParaPost.primerT.Colas.Pb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Zn")) {
+                    formularioParaPost.primerT.Colas.Zn = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cu")) {
+                    formularioParaPost.primerT.Colas.Cu = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Fe")) {
+                    formularioParaPost.primerT.Colas.Fe = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Sb")) {
+                    formularioParaPost.primerT.Colas.Sb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("As")) {
+                    formularioParaPost.primerT.Colas.As = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cd")) {
+                    formularioParaPost.primerT.Colas.Cd = event.target.valueAsNumber
+                }
+            }
+        }
+        else if(event.target.name.includes("Segundo turno")) {
+            if(event.target.name.includes("Cabeza")) {
+                if(event.target.name.includes("Ag")) {
+                    formularioParaPost.segundoT.Cabeza.Ag = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Pb")) {
+                    formularioParaPost.segundoT.Cabeza.Pb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("PbO")) {
+                    formularioParaPost.segundoT.Cabeza.PbO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("ZnO")) {
+                    formularioParaPost.segundoT.Cabeza.ZnO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Zn")) {
+                    formularioParaPost.segundoT.Cabeza.Zn = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cu")) {
+                    formularioParaPost.segundoT.Cabeza.Cu = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Fe")) {
+                    formularioParaPost.segundoT.Cabeza.Fe = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Sb")) {
+                    formularioParaPost.segundoT.Cabeza.Sb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("As")) {
+                    formularioParaPost.segundoT.Cabeza.As = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cd")) {
+                    formularioParaPost.segundoT.Cabeza.Cd = event.target.valueAsNumber
+                }
+            }
+            else if(event.target.name.includes("plomo")) {
+                if(event.target.name.includes("Ag")) {
+                    formularioParaPost.segundoT.Pb.Ag = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("PbO")) {
+                    formularioParaPost.segundoT.Pb.PbO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("ZnO")) {
+                    formularioParaPost.segundoT.Pb.ZnO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Pb")) {
+                    formularioParaPost.segundoT.Pb.Pb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Zn")) {
+                    formularioParaPost.segundoT.Pb.Zn = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cu")) {
+                    formularioParaPost.segundoT.Pb.Cu = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Fe")) {
+                    formularioParaPost.segundoT.Pb.Fe = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Sb")) {
+                    formularioParaPost.segundoT.Pb.Sb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("As")) {
+                    formularioParaPost.segundoT.Pb.As = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cd")) {
+                    formularioParaPost.segundoT.Pb.Cd = event.target.valueAsNumber
+                }
+            }
+            else if(event.target.name.includes("zinc")) {
+                if(event.target.name.includes("Ag")) {
+                    formularioParaPost.segundoT.Zn.Ag = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("PbO")) {
+                    formularioParaPost.segundoT.Zn.PbO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("ZnO")) {
+                    formularioParaPost.segundoT.Zn.ZnO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Pb")) {
+                    formularioParaPost.segundoT.Zn.Pb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Zn")) {
+                    formularioParaPost.segundoT.Zn.Zn = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cu")) {
+                    formularioParaPost.segundoT.Zn.Cu = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Fe")) {
+                    formularioParaPost.segundoT.Zn.Fe = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Sb")) {
+                    formularioParaPost.segundoT.Zn.Sb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("As")) {
+                    formularioParaPost.segundoT.Zn.As = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cd")) {
+                    formularioParaPost.segundoT.Zn.Cd = event.target.valueAsNumber
+                }
+            }
+            else if(event.target.name.includes("Cola")) {
+                if(event.target.name.includes("Ag")) {
+                    formularioParaPost.segundoT.Colas.Ag = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("PbO")) {
+                    formularioParaPost.segundoT.Colas.PbO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("ZnO")) {
+                    formularioParaPost.segundoT.Colas.ZnO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Pb")) {
+                    formularioParaPost.segundoT.Colas.Pb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Zn")) {
+                    formularioParaPost.segundoT.Colas.Zn = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cu")) {
+                    formularioParaPost.segundoT.Colas.Cu = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Fe")) {
+                    formularioParaPost.segundoT.Colas.Fe = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Sb")) {
+                    formularioParaPost.segundoT.Colas.Sb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("As")) {
+                    formularioParaPost.segundoT.Colas.As = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cd")) {
+                    formularioParaPost.segundoT.Colas.Cd = event.target.valueAsNumber
+                }
+            }
+        }
+        else if(event.target.name.includes("Tercer turno")) {
+            if(event.target.name.includes("Cabeza")) {
+                if(event.target.name.includes("Ag")) {
+                    formularioParaPost.tercerT.Cabeza.Ag = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("PbO")) {
+                    formularioParaPost.tercerT.Cabeza.PbO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("ZnO")) {
+                    formularioParaPost.tercerT.Cabeza.ZnO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Pb")) {
+                    formularioParaPost.tercerT.Cabeza.Pb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Zn")) {
+                    formularioParaPost.tercerT.Cabeza.Zn = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cu")) {
+                    formularioParaPost.tercerT.Cabeza.Cu = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Fe")) {
+                    formularioParaPost.tercerT.Cabeza.Fe = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Sb")) {
+                    formularioParaPost.tercerT.Cabeza.Sb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("As")) {
+                    formularioParaPost.tercerT.Cabeza.As = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cd")) {
+                    formularioParaPost.tercerT.Cabeza.Cd = event.target.valueAsNumber
+                }
+            }
+            else if(event.target.name.includes("plomo")) {
+                if(event.target.name.includes("Ag")) {
+                    formularioParaPost.tercerT.Pb.Ag = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("PbO")) {
+                    formularioParaPost.tercerT.Pb.PbO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("ZnO")) {
+                    formularioParaPost.tercerT.Pb.ZnO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Pb")) {
+                    formularioParaPost.tercerT.Pb.Pb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Zn")) {
+                    formularioParaPost.tercerT.Pb.Zn = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cu")) {
+                    formularioParaPost.tercerT.Pb.Cu = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Fe")) {
+                    formularioParaPost.tercerT.Pb.Fe = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Sb")) {
+                    formularioParaPost.tercerT.Pb.Sb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("As")) {
+                    formularioParaPost.tercerT.Pb.As = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cd")) {
+                    formularioParaPost.tercerT.Pb.Cd = event.target.valueAsNumber
+                }
+            }
+            else if(event.target.name.includes("zinc")) {
+                if(event.target.name.includes("Ag")) {
+                    formularioParaPost.tercerT.Zn.Ag = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("PbO")) {
+                    formularioParaPost.tercerT.Zn.PbO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("ZnO")) {
+                    formularioParaPost.tercerT.Zn.ZnO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Pb")) {
+                    formularioParaPost.tercerT.Zn.Pb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Zn")) {
+                    formularioParaPost.tercerT.Zn.Zn = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cu")) {
+                    formularioParaPost.tercerT.Zn.Cu = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Fe")) {
+                    formularioParaPost.tercerT.Zn.Fe = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Sb")) {
+                    formularioParaPost.tercerT.Zn.Sb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("As")) {
+                    formularioParaPost.tercerT.Zn.As = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cd")) {
+                    formularioParaPost.tercerT.Zn.Cd = event.target.valueAsNumber
+                }
+            }
+            else if(event.target.name.includes("Cola")) {
+                if(event.target.name.includes("Ag")) {
+                    formularioParaPost.tercerT.Colas.Ag = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("PbO")) {
+                    formularioParaPost.tercerT.Colas.PbO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("ZnO")) {
+                    formularioParaPost.tercerT.Colas.ZnO = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Pb")) {
+                    formularioParaPost.tercerT.Colas.Pb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Zn")) {
+                    formularioParaPost.tercerT.Colas.Zn = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cu")) {
+                    formularioParaPost.tercerT.Colas.Cu = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Fe")) {
+                    formularioParaPost.tercerT.Colas.Fe = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Sb")) {
+                    formularioParaPost.tercerT.Colas.Sb = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("As")) {
+                    formularioParaPost.tercerT.Colas.As = event.target.valueAsNumber
+                }
+                else if(event.target.name.includes("Cd")) {
+                    formularioParaPost.tercerT.Colas.Cd = event.target.valueAsNumber
+                }
+            }
         }
     }
 
