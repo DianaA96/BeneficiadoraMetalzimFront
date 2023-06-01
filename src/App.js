@@ -31,7 +31,7 @@ function App() {
 
       {/*Flujo Laboratorista*/}
       <Route path='/laboratorio' element={<LandingPage strips={0}/>} />
-      <Route path='/reporte-laboratorio' element={<ReporteLaboratorio/>} />
+      <Route path='/reporte-laboratorio/:mina/:fecha' element={<ReporteLaboratorio/>} />
       <Route path='/formulario-laboratorio' element={<FormularioLaboratorio/>} />
       <Route path='/historial-analisis' element={<HistorialAnalisis/>} />
 
