@@ -25,22 +25,110 @@ function parsing(number) {
 
 function MovimientoMineral(props) {
 
+    const [ status, setStatus ] = useState('')
+    const [ error, setError ] = useState('')
+    
     let usuario = props.idUsuario
-
+    
     usuario = 2
     
     const date = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const fecha = date.toLocaleDateString("es-MX", options)
-
+    
     const [ Hoy, setHoy ] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0])
     const [ P1Hoy, setP1Hoy ] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0])
     const [ P2Hoy, setP2Hoy ] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0])
     const [ EFinal, setEFinal ] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    
+    useEffect(()=>{
+        setStatus('loading')
+        axios.get(`http://localhost:3050/operador/reporteD`)
+        .then((result)=>{
+            let arrALaFecha = 
+                [result.data[0].aLaFecha1_1,
+                result.data[1].aLaFecha1_2,
+                result.data[2].aLaFecha1_3,
+                [result.data[0].aLaFecha1_1, result.data[1].aLaFecha1_2, result.data[2].aLaFecha1_3].reduce((a, b) => a + b, 0),
+                result.data[3].aLaFecha2_4,
+                result.data[4].aLaFecha2_5,
+                result.data[5].aLaFecha2_6,
+                [result.data[3].aLaFecha2_4, result.data[4].aLaFecha2_5, result.data[5].aLaFecha2_6].reduce((a, b) => a + b, 0), 
+                result.data[6].aLaFecha3_7,
+                result.data[6].aLaFecha3_7]
 
+            let trituradasP1ALaFecha = 
+                [result.data[7].TaLaFecha111,
+                result.data[9].TaLaFecha121,
+                result.data[11].TaLaFecha131,
+                [result.data[7].TaLaFecha111, result.data[9].TaLaFecha121, result.data[11].TaLaFecha131].reduce((a, b) => a + b, 0),
+                result.data[13].TaLaFecha241,
+                result.data[15].TaLaFecha251,
+                result.data[17].TaLaFecha261,
+                [result.data[13].TaLaFecha241, result.data[15].TaLaFecha251, result.data[17].TaLaFecha261].reduce((a, b) => a + b, 0),
+                result.data[19].TaLaFecha371,
+                result.data[19].TaLaFecha371]
+
+            let trituradasP2ALaFecha = 
+                [result.data[8].TaLaFecha112,
+                result.data[10].TaLaFecha122,
+                result.data[12].TaLaFecha132,
+                [result.data[8].TaLaFecha112, result.data[10].TaLaFecha122, result.data[12].TaLaFecha132].reduce((a, b) => a + b, 0),
+                result.data[14].TaLaFecha242,
+                result.data[16].TaLaFecha252,
+                result.data[18].TaLaFecha262,
+                [result.data[14].TaLaFecha242, result.data[16].TaLaFecha252, result.data[18].TaLaFecha262].reduce((a, b) => a + b, 0),
+                result.data[20].TaLaFecha372,
+                result.data[20].TaLaFecha372]
+
+            setStatus('resolved')
+
+            for(let h = 0; h < 10; h++) {
+                document.getElementById((h * 8) + 2).readOnly = true
+                document.getElementById((h * 8) + 4).readOnly = true
+                document.getElementById((h * 8) + 6).readOnly = true
+                document.getElementById((h * 8) + 2).value = arrALaFecha[h]
+                document.getElementById((h * 8) + 4).value = trituradasP1ALaFecha[h]
+                document.getElementById((h * 8) + 6).value = trituradasP2ALaFecha[h]
+            }
+            axios.get(`http://localhost:3050/operador/existenciaInicial`)
+            .then((result)=>{
+                let iter = 0
+                for(let h = 0; h < 10; h++) {
+                    if(h == 3 || h == 7 || h == 9) {
+                        document.getElementById((h * 8)).readOnly = true
+                        if(h == 3) {
+                            document.getElementById((h * 8)).value = [result.data[0].inicial, result.data[1].inicial, result.data[2].inicial].reduce((a, b) => a + b, 0)
+                        }
+                        if(h == 7) {
+                            document.getElementById((h * 8)).value = [result.data[4].inicial, result.data[5].inicial, result.data[6].inicial].reduce((a, b) => a + b, 0)
+                        }
+                        if(h == 9) {
+                            document.getElementById((h * 8)).value = result.data[8].inicial
+                        }
+                    }
+
+                    else {
+                        document.getElementById((h * 8)).readOnly = true
+                        document.getElementById((h * 8)).value = result.data[iter].inicial
+                        iter += 1
+                    }
+                }
+            })
+            .catch((error)=>{
+                setError(error)
+                setStatus('error')
+            })
+            })
+            .catch((error)=>{
+                setError(error)
+                setStatus('error')
+            })
+    },[])
+    
     function handleInputChange(event) {
         let rowId = parseInt(parseInt(event.target.id)/8)
-
+        
         if(event.target.name.includes("Hoy")) {
             let newHoy = [...Hoy]
             newHoy[rowId] = (event.target.value == "" ? 0 : parseInt(event.target.value))
@@ -154,8 +242,7 @@ function MovimientoMineral(props) {
     }
 
     let formularioParaPost = {
-        "datos": 
-        [
+        "datos": [
             {
             "tipo": "acarreo",
             "idMovimiento": 1,
@@ -178,6 +265,38 @@ function MovimientoMineral(props) {
             "idMina": 3,
             "idSubmina": 3,
             "acarreo": 20.2,
+            "fecha": "2022-05-05"
+            },
+            {
+            "tipo": "acarreo",
+            "idMovimiento": 1,
+            "idMina": 1,
+            "idSubmina": 1,
+            "acarreo": 10.5,
+            "fecha": "2022-05-05"
+            },
+            {
+            "tipo": "acarreo",
+            "idMovimiento": 1,
+            "idMina": 1,
+            "idSubmina": 1,
+            "acarreo": 10.5,
+            "fecha": "2022-05-05"
+            },
+            {
+            "tipo": "acarreo",
+            "idMovimiento": 1,
+            "idMina": 1,
+            "idSubmina": 1,
+            "acarreo": 10.5,
+            "fecha": "2022-05-05"
+            },
+            {
+            "tipo": "acarreo",
+            "idMovimiento": 1,
+            "idMina": 1,
+            "idSubmina": 1,
+            "acarreo": 10.5,
             "fecha": "2022-05-05"
             },
             {
@@ -205,6 +324,105 @@ function MovimientoMineral(props) {
             "idSubmina": 3,
             "trituradas": 13.2,
             "idPlanta": 1,
+            "fecha": "2022-05-05"
+            },
+            {
+            "tipo": "trituradas",
+            "idMovimiento": 1,
+            "idMina": 2,
+            "idSubmina": 2,
+            "trituradas": 8.7,
+            "idPlanta": 2,
+            "fecha": "2022-05-05"
+            },
+            {
+            "tipo": "trituradas",
+            "idMovimiento": 1,
+            "idMina": 2,
+            "idSubmina": 2,
+            "trituradas": 8.7,
+            "idPlanta": 2,
+            "fecha": "2022-05-05"
+            },
+            {
+            "tipo": "trituradas",
+            "idMovimiento": 1,
+            "idMina": 2,
+            "idSubmina": 2,
+            "trituradas": 8.7,
+            "idPlanta": 2,
+            "fecha": "2022-05-05"
+            },
+            {
+            "tipo": "trituradas",
+            "idMovimiento": 1,
+            "idMina": 2,
+            "idSubmina": 2,
+            "trituradas": 8.7,
+            "idPlanta": 2,
+            "fecha": "2022-05-05"
+            },
+            {
+            "tipo": "trituradas",
+            "idMovimiento": 1,
+            "idMina": 1,
+            "idSubmina": 1,
+            "trituradas": 5.5,
+            "idPlanta": 1,
+            "fecha": "2022-05-05"
+            },
+            {
+            "tipo": "trituradas",
+            "idMovimiento": 1,
+            "idMina": 2,
+            "idSubmina": 2,
+            "trituradas": 8.7,
+            "idPlanta": 2,
+            "fecha": "2022-05-05"
+            },
+            {
+            "tipo": "trituradas",
+            "idMovimiento": 1,
+            "idMina": 3,
+            "idSubmina": 3,
+            "trituradas": 13.2,
+            "idPlanta": 1,
+            "fecha": "2022-05-05"
+            },
+            {
+            "tipo": "trituradas",
+            "idMovimiento": 1,
+            "idMina": 2,
+            "idSubmina": 2,
+            "trituradas": 8.7,
+            "idPlanta": 2,
+            "fecha": "2022-05-05"
+            },
+            {
+            "tipo": "trituradas",
+            "idMovimiento": 1,
+            "idMina": 2,
+            "idSubmina": 2,
+            "trituradas": 8.7,
+            "idPlanta": 2,
+            "fecha": "2022-05-05"
+            },
+            {
+            "tipo": "trituradas",
+            "idMovimiento": 1,
+            "idMina": 2,
+            "idSubmina": 2,
+            "trituradas": 8.7,
+            "idPlanta": 2,
+            "fecha": "2022-05-05"
+            },
+            {
+            "tipo": "trituradas",
+            "idMovimiento": 1,
+            "idMina": 2,
+            "idSubmina": 2,
+            "trituradas": 8.7,
+            "idPlanta": 2,
             "fecha": "2022-05-05"
             }
         ]
