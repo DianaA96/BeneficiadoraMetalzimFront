@@ -1,155 +1,309 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Tabla from "../components/TablaBascula";
 import "../styles/ReporteBascula.css";
 import HeaderDiseno from "../components/HeaderDiseno";
 import GraficasPie from "../components/GraficasPie";
 import GraficasColumna from "../components/GraficasColumna";
 import Menu from "../components/Menu";
-<<<<<<< HEAD
-import { Link } from 'react-router-dom'
-import "../styles/button.css"
-=======
 import { Link } from "react-router-dom";
->>>>>>> main
+import "../styles/button.css";
+import axios from "axios";
 
-const ReporteBascula = ({rol}) => {
+const ReporteBascula = ({ rol }) => {
+  let encabezadoBascula = [
+    "Estancia inicial",
+    "Acarreo",
+    "Trituradas",
+    "Estancia patios"
+  ];
 
-    //quitar y cambiar por el fetch
-    const getTableData = () => {
-        return [
-            { id: 1, col0: "Minesites", col1: "1.523", col2: "4.336", col3: "6.354", col4: "5.214", col5:"Estancia inicial"},
-            { id: 2, col0: "Guadalupe", col1: "3.269", col2: "6.215", col3: "5.268", col4: "1.258", col5:"Acarreo"},
-            { id: 3, col0: "Balcones", col1: "5.288", col2: "2.154", col3: "9.584", col4: "4.685", col5:"Trituradas"},
-            { id: 4, col0: "Total", col1: "10.256", col2: "13.245", col3: "23.584", col4: "11.623", col5:"Estancia patios"}
-        ];
-    };
-    const getTableDataC = () => {
-        return [
-            { id: 1, col0: "Minesites", col1: "15.223", col2: "84.570", col3: "95.664", col4: "75.725", col5:"Ag"},
-            { id: 2, col0: "Guadalupe", col1: "36.255", col2: "32.456", col3: "64.305", col4: "13.025", col5:"Pb"},
-            { id: 3, col0: "Balcones", col1: "32.145", col2: "32.541", col3: "78.502", col4: "45.638", col5:"Zn"},
-            { id: 4, col0: "Total", col1: "102.320", col2: "213.523", col3: "320.524", col4: "360.584", col5:"Cu"}
-        ];
-    };
-    const getDataPieExisIn = () => {
-        return [
-            ["Minesites", 11],
-            ["Balcones", 5],
-            ["Guadalupe", 2],
-        ];
-    };
-    const getDataPieAcarreo = () => {
-        return [
-            ["Minesites", 11],
-            ["Balcones", 5],
-            ["Guadalupe", 2],
-        ];
-    };
-    const getDataPieTritu = () => {
-        return [
-            ["Minesites", 11],
-            ["Balcones", 5],
-            ["Guadalupe", 2],
-        ];
-    };
+  let encabezadoEmbarques = [
+    "Pb",
+    "Cu",
+    "Zn",
+    "Au/Ag"
+  ];
 
-    const getDataPieExisPat = () => {
-        return [
-            ["Minesites", 11],
-            ["Balcones", 5],
-            ["Guadalupe", 2],
-        ];
-    };
+  const [tableData, setTableData] = useState([]);
+  const [tableDataConc, setTableDataConc] = useState([]);
 
-    const [tableData, setTableData] = useState(getTableData());
-    const [tableDataConc, setTableDataConc] = useState(getTableDataC());
-    const [dataPieExisIn, setDataPieExisIn] = useState(getDataPieExisIn());
-    const [dataPieAcarreo, setDataPieAcarreo] = useState(getDataPieAcarreo());
-    const [dataPieTritu, setDataPieTritu] = useState(getDataPieTritu());
-    const [dataPieExisPat, setDataPieExistPat] = useState(getDataPieExisPat());
+  const [status, setStatus] = useState("idle");
+  const [status2, setStatus2] = useState("idle");
+  const [error, setError] = useState(null);
+
+  var check = 0;
+
+  useEffect(() => {
+    setStatus("loading");
+    // Primera solicitud GET
+    axios
+      .get(`http://localhost:3050/gerente/movMineral?fecha=2023-05-04`)
+      .then((result) => {
+        setTableData(result.data);
+        setStatus("resolved");
+      })
+      .catch((error) => {
+        setError(error);
+        setStatus("error");
+      });
+    // Segunda solicitud GET
+    axios
+      .get(`http://localhost:3050/gerente/embarque?fecha=2023-05-16`)
+      .then((result) => {
+        setTableDataConc(result.data);
+        setStatus2("resolved");
+      })
+      .catch((error) => {
+        setError(error);
+        setStatus2("error");
+      });
+  
+  }, [check]);
+
+  if (status === "error") {
+    return (
+      <div>Error</div> //Cambiar por alerta de error
+    );
+  }
+
+  if (status == "resolved") {
+    //console.log("emabrques", tableDataConc)
+    //console.log("data", tableData);
+
+    // Calculando totales
+    var totalAcarreo = 0;
+    var totalTrituradas = 0;
+    var totalInicial = 0;
+    var totalPatios = 0;
+
+    var totalPb = 0;
+    var totalCu = 0;
+    var totalZn = 0;
+    var totalAu = 0;
+
+    // Data de Movimiento en minas
+    for (var i = 0; i < tableData.length; i++) {
+      totalAcarreo += tableData[i].acarreo;
+      totalTrituradas += tableData[i].trituradas;
+      totalInicial += tableData[i].existenciaInicial;
+      totalPatios += tableData[i].existenciaPatios;
+    }
+    // Data de Embarques
+    for (var i = 0; i < tableData.length; i++) {
+      totalPb += tableData[i].acarreo;
+      totalCu += tableData[i].trituradas;
+      totalZn += tableData[i].existenciaInicial;
+      totalAu += tableData[i].existenciaPatios;
+    }
+
+    // Mi nuevo arreglo de objetos para formatear mi información de la consulta
+    var nuevaData = [];
+    // MOVIMIENTO DE MINERAL DATA
+    for (var i = 0; i < tableData.length; i++) {
+      nuevaData[i] = { // Agregando filas originales de la consulta
+        nombre: tableData[i].nombre,
+        col1: tableData[i].existenciaInicial.toFixed(2),
+        col2: tableData[i].acarreo.toFixed(2),
+        col3: tableData[i].trituradas.toFixed(2),
+        col4: tableData[i].existenciaPatios.toFixed(2),
+      };
+      nuevaData[3] = { // Agregrando fila de totales
+        nombre: "total",
+        col1: totalInicial.toFixed(2),
+        col2: totalAcarreo.toFixed(2),
+        col3: totalTrituradas.toFixed(2),
+        col4: totalPatios.toFixed(2),
+      };
+    }
+    console.log("nuevaData", nuevaData);
+
+    // EMBARQUES DATA
+    var nuevaEmbarques = [];
+
+    nuevaEmbarques[0] = { // Agregando filas originales de la consulta
+      nombre: "Balcones",
+      col1: tableDataConc.Balcones.Pb.toFixed(2),
+      col2: tableDataConc.Balcones.Cu.toFixed(2),
+      col3: tableDataConc.Balcones.Zn.toFixed(2),
+      col4: tableDataConc.Balcones['Au/Ag'].toFixed(2),
+    };
+    nuevaEmbarques[1] = { // Agregando filas originales de la consulta
+      nombre: "Guadalupe",
+      col1: tableDataConc.Guadalupe.Pb.toFixed(2),
+      col2: tableDataConc.Guadalupe.Cu.toFixed(2),
+      col3: tableDataConc.Guadalupe.Zn.toFixed(2),
+      col4: tableDataConc.Guadalupe['Au/Ag'].toFixed(2),
+    };
+    nuevaEmbarques[2] = { // Agregando filas originales de la consulta
+      nombre: "Jales",
+      col1: tableDataConc.Jales.Pb.toFixed(2),
+      col2: tableDataConc.Jales.Cu.toFixed(2),
+      col3: tableDataConc.Jales.Zn.toFixed(2),
+      col4: tableDataConc.Jales['Au/Ag'].toFixed(2),
+    };
+    nuevaEmbarques[3] = { // Agregando filas originales de la consulta
+      nombre: "Minesites",
+      col1: tableDataConc.Minesites.Pb.toFixed(2),
+      col2: tableDataConc.Minesites.Cu.toFixed(2),
+      col3: tableDataConc.Minesites.Zn.toFixed(2),
+      col4: tableDataConc.Minesites['Au/Ag'].toFixed(2),
+    };
+    nuevaEmbarques[4] = { // Agregrando fila de totales
+      nombre: "total",
+      col1: totalPb.toFixed(2),
+      col2: totalCu.toFixed(2),
+      col3: totalZn.toFixed(2),
+      col4: totalAu.toFixed(2),
+    };    
+
+    // Arreglos para formatear la información de las GRÁFICAS PAI
+    var pieInicial = [];
+    var pieAcarreo = [];
+    var pieTrituradas = [];
+    var piePatios = [];
+    for (var i = 0; i < nuevaData.length - 1; i++) {
+      pieInicial[i] = [
+        nuevaData[i].nombre,
+        Math.floor(nuevaData[i].col1),
+      ];
+      pieAcarreo[i] = [nuevaData[i].nombre, Math.floor(nuevaData[i].col2)];
+      pieTrituradas[i] = [
+        nuevaData[i].nombre,
+        Math.floor(nuevaData[i].col3),
+      ];
+      piePatios[i] = [
+        nuevaData[i].nombre,
+        Math.floor(nuevaData[i].col4),
+      ];
+    }
+
+    // Arreglo para formatear la información de las GRÁFICA DE BARRAS
+    let embarquesCol = [
+      ["Pb", totalPb],
+      ["Cu", totalCu],
+      ["Zn", totalZn],
+      ["Au", totalAu],
+    ];
+      
+    //console.log("embarquesCol", embarquesCol);
+    
+    /*
+    console.log("pieInicial", pieInicial);
+    console.log("pieInicial", pieAcarreo);
+    console.log("pieInicial", pieTrituradas);
+    console.log("pieInicial", piePatios);
+     */
 
     return (
-        <><body className="mybody">
-            <HeaderDiseno
+      <>
+        <body className="mybody">
+          <HeaderDiseno
             titulo={"Reporte movimiento de mineral báscula"}
-            subtitulo={"Consulta el movimiento del área de recepción registrado diariamente por el operario de báscula."}
+            subtitulo={
+              "Consulta el movimiento del área de recepción registrado diariamente por el operario de báscula."
+            }
             isDate={true}
-            />
-            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <div className="mycard">
-                    <div style={{display:"flex", justifyContent:"center"}}>
-                        <Tabla tableData={tableData} />
-                    </div >
+          />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div className="mycard">
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <Tabla data={nuevaData} encabezado={encabezadoBascula} />
+              </div>
 
-                    <div className="contentPie">
-                        <div>
-                            <GraficasPie tituloG={"Existencia inicial"} data={dataPieExisIn} />
-                        </div>
-                        <div>
-                            <GraficasPie tituloG={"Acarreo"} data={dataPieAcarreo}/>
-                        </div>
-                        <div>
-                            <GraficasPie tituloG={"Trituradas"} data={dataPieTritu}/>
-                        </div>
-                        <div>
-                            <GraficasPie tituloG={"Existencia patios"} data={dataPieExisPat}/>
-                        </div>
-                    </div>
-
-                    <div className='division'>
-                        <p className='myP'>Embarque de concentrados</p>
-                        <hr className='myhr' />
-                    </div>
-
-                    <div className="embarques">
-                        <GraficasColumna />
-                        <div style={{display:"flex", justifyContent:"center", height:"22rem"}}>
-                            <Tabla tableData={tableDataConc} />
-                        </div>
-                    </div>
-                    
+              <div className="contentPie">
+                <div>
+                  <GraficasPie
+                    tituloG={"Existencia inicial"}
+                    data={pieInicial}
+                  />
                 </div>
-               
-            </div>
+                <div>
+                  <GraficasPie tituloG={"Acarreo"} data={pieAcarreo} />
+                </div>
+                <div>
+                  <GraficasPie tituloG={"Trituradas"} data={pieTrituradas} />
+                </div>
+                <div>
+                  <GraficasPie tituloG={"Existencia patios"} data={piePatios} />
+                </div>
+              </div>
 
-            <div className='stripBotones' style={{marginBottom:"5rem", justifyContent:"center", display:"flex", width:"100%"}}>
-                <button className='guardarProgreso' style={{width:"15rem", backgroundColor:"#817C7C"}}>Imprimir
-                    <span className='separatorButton'/>
-                    <span class="material-symbols-outlined">sync_saved_locally</span>
-                </button>
-<<<<<<< HEAD
-                
-                <Link to='/historial-bascula'>
-                    <button className='btn-lista' style={{width: "12rem"}}>Ir al historial</button>
-                </Link>
-=======
-                <Link to='/historial-bascula' className="link-decoration">
-                    <button className='enviar' style={{width:"15rem", marginLeft:"5%"}}>Ir a historial
-                    </button>
-                </Link>
-                
->>>>>>> main
-            </div> 
-            
+              <div className="division">
+                <p className="myP">Embarque de concentrados</p>
+                <hr className="myhr" />
+              </div>
+
+              <div className="embarques">
+                <GraficasColumna props={embarquesCol}/>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    height: "22rem",
+                  }}
+                >
+                  <Tabla data={nuevaEmbarques} encabezado={encabezadoEmbarques} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            className="stripBotones"
+            style={{
+              marginBottom: "5rem",
+              justifyContent: "center",
+              display: "flex",
+              width: "100%",
+            }}
+          >
+            <button
+              className="guardarProgreso"
+              style={{ width: "15rem", backgroundColor: "#817C7C" }}
+            >
+              Imprimir
+              <span className="separatorButton" />
+              <span class="material-symbols-outlined">sync_saved_locally</span>
+            </button>
+
+            <Link to="/historial-bascula">
+              <button className="btn-lista" style={{ width: "12rem" }}>
+                Ir al historial
+              </button>
+            </Link>
+          </div>
         </body>
         <footer>
-        {
-          /**Menu Admin */
-         rol == "admin" ? <Menu rol="admin" activeTab="scale" landing="/admin"></Menu> : null
-        }
+          {
+            /**Menu Admin */
+            rol == "admin" ? (
+              <Menu rol="admin" activeTab="scale" landing="/admin"></Menu>
+            ) : null
+          }
 
-        {
-          /**Menu Gerente */
-         rol == "gerente" ? <Menu rol="gerente" activeTab="scale" landing="/gerencia"></Menu> : null
-        }
+          {
+            /**Menu Gerente */
+            rol == "gerente" ? (
+              <Menu rol="gerente" activeTab="scale" landing="/gerencia"></Menu>
+            ) : null
+          }
 
-        {
-          /**Menu Bascula */
-          rol == "bascula" ? <Menu rol="bascula" activeTab="history" landing="/bascula"></Menu> : null
-        }
-
-        </footer></>
+          {
+            /**Menu Bascula */
+            rol == "bascula" ? (
+              <Menu rol="bascula" activeTab="history" landing="/bascula"></Menu>
+            ) : null
+          }
+        </footer>
+      </>
     );
+  }
 };
 
 export default ReporteBascula;
