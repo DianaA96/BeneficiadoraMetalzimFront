@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/ModalReporteLaboratorio.css";
 import HeaderSencillo from "./HeaderSencillo";
-import TablaLaboratorio from "./tablaLaboratorio";
+import TablaLaboratorio from "./TablaLaboratorio";
 import "../styles/analisisLab.css"
 
 const ModalReporteLaboratorio = (props) => {
