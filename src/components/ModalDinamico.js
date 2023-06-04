@@ -35,7 +35,7 @@ const ModalDinamico = (props) => {
                     </p>
                     <div className="modal-btns">
                         <button className="btn-modal-cancelar">Cancelar</button>
-                        <button className="btn-modal-exito">Aceptar</button>
+                        <button className="btn-modal-exito" onClick={props.submitFunction}>Aceptar</button>
                     </div>
                 </div>
             </div>
