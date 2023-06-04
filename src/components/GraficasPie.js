@@ -3,7 +3,7 @@ import "../styles/ReporteBascula.css";
 import { Chart } from "react-google-charts";
 
 function GraficasPie(props) {
-
+  //console.log("propsPie", props)
   var options = {
     title: props.tituloG,
     pieHole: 0.5,
@@ -20,9 +20,9 @@ function GraficasPie(props) {
 
   var data = [
     ["Element", "Toneladas", { role: "style" }],
-    ["Minesites", 11, "#F8C5A3"],
-    ["Balcones", 2, "#F8C5A3"],
-    ["Guadalupe", 2, "#F8C5A3"],
+    [props.data[0][0], props.data[0][1], "#F8C5A3"],
+    [props.data[1][0], props.data[1][1], "#F8C5A3"],
+    [props.data[2][0], props.data[2][1], "#F8C5A3"],
   ];
 
   return (
