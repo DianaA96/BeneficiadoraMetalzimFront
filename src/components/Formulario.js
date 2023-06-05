@@ -213,10 +213,6 @@ function Formulario(props) {
             )} 
             {props.mostrarBotones ? <>
                 <div className='stripBotones'>
-                    <button className='guardarProgreso'>Guardar progreso
-                        <span className='separatorButton'/>
-                        <span class="material-symbols-outlined">sync_saved_locally</span>
-                    </button>
                     <button className='enviar' onClick={props.handleSendForm}>Enviar
                         <span className='separatorButton'/>
                         <span class="material-symbols-outlined">send</span>
