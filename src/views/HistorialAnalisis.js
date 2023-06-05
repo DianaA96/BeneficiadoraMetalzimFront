@@ -72,7 +72,7 @@ function HistorialAnalisis() {
   
     </body>
     <footer>
-      <Menu rol="laboratorista" activeTab="science"></Menu>
+      <Menu rol="laboratorista" activeTab="history" landing="/laboratorio"></Menu>
     </footer></>
   )
 }
