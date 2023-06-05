@@ -202,3 +202,11 @@
   .item-valormineral h1{
     margin-bottom: 0;
   }
+
+  .cont-calendar{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }

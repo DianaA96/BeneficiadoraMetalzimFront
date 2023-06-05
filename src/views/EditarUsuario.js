@@ -6,10 +6,6 @@ import '../styles/Registro.css';
 import HS from '../components/HeaderSencillo'
 import Menu from '../components/Menu'
 import axios from 'axios'
-import ModalExito from '../components/ModalExito';
-
-
-
 
 function EditarUsuario() {
   const params = useParams();
@@ -19,8 +15,6 @@ function EditarUsuario() {
   const [formValues, setFormValues] = useState(null);
 
   const [modalVisibility, setModalVisibility] = useState(false)
-
-
 
   useEffect(()=>{
     setStatus('loading')
@@ -159,7 +153,7 @@ function EditarUsuario() {
           </div>
         </div>
         <Menu rol="admin" activeTab="group" landing='/admin'></Menu>
-        {modalVisibility ? <ModalExito setModalVisibility = {setModalVisibility}></ModalExito>:null}
+        
       </div>
       
     );

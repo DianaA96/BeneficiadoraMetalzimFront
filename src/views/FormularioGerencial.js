@@ -13,9 +13,10 @@ import ModalReporteLaboratorio from '../components/ModalReporteLaboratorio'
 import ModalExito from '../components/ModalDinamico'
 import Formulario from "../components/Formulario";
 import Menu from '../components/Menu'
-
+import CalendarDatePicker from '../components/calendarDatePicker'
 
 function FormularioGerencial() {
+    const [ fechaReporte, setFechaReporte ] = useState("")
     const formularioPrimerNivel = ["Hoy", "Acumulado"]
     const formularioSegundoNivel = [["Cabeza", "Concentración plomo" , "Concentración zinc", "Colas"], ["Cabeza", "Concentración plomo" , "Concentración zinc", "Colas"]]
     const inputBase = [["TMS", "↓"],["Ag", "g/ton"], ["Cu", "%"], ["Zn", "%"], ["Pb", "%"], ["Fe", "%"], ["Sb", "%"], ["Cd", "%"]]
@@ -23,7 +24,7 @@ function FormularioGerencial() {
     const date = new Date();
     const options = {  year: 'numeric', month: 'long', day: 'numeric' };
     const fecha = date.toLocaleDateString("es-MX", options)
-    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedOption, setSelectedOption] = useState('');
     const options1 = [
         { value: 'Minesites', label: 'Minesites' },
         { value: 'Guadalupe', label: 'Guadalupe' },
@@ -83,6 +84,11 @@ function FormularioGerencial() {
                     }),
                 }}
                 />
+
+                <div className="cont-calendar">
+                    <CalendarDatePicker idCalendario={"Fecha"} tipoDeCalendario={"Fecha: "} setFecha={setFechaReporte}/>
+                </div>
+                
                 <Link to='/historial-gerencia_adminview'>
                     <button className='btn-lista' style={{width: "12rem", fontSize: "1rem"}}>Ir al historial</button>
                 </Link>
@@ -275,7 +281,7 @@ function FormularioGerencial() {
         </div>
         <footer style={{height:'10rem'}}></footer>
         <Menu rol={"admin"} activeTab="summarize" landing="/admin"/>
-        {modalTablaVisibility ? <ModalReporteLaboratorio setModalVisibility = {setModalTablaVisibility}></ModalReporteLaboratorio>:null}
+        {modalTablaVisibility ? <ModalReporteLaboratorio setModalVisibility = {setModalTablaVisibility} mina={selectedOption} fecha={fechaReporte}></ModalReporteLaboratorio>:null}
         {modalVisibility ? <ModalExito setModalVisibility = {setModalVisibility} tipo="exito" titulo="Confirma los datos" mensaje="¿Estás seguro que deseas continuar? Asegura que todos los datos introducidos sean correctos."></ModalExito>:null}
     </>
   )
