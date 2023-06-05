@@ -5,9 +5,12 @@ import HeaderDiseno from "../components/HeaderDiseno";
 import Menu from "../components/Menu";
 import { Link, useParams } from "react-router-dom";
 import axios from 'axios'
+import Tooltip from "../components/Tooltip";
 
 const ReporteLaboratorio = () => {
     const [analisisData, setAnalisisData] = useState(null)
+    const [tooltipVisibility, setTooltipVisibility] = useState(false)
+
     const [status, setStatus] = useState({})
     const [error, setError] = useState({})
     let { mina, fecha } = useParams();
@@ -70,7 +73,16 @@ const ReporteLaboratorio = () => {
         textarea.select();
         document.execCommand("copy");
         document.body.removeChild(textarea);
+        showTooltip();
+       
     };
+
+    function showTooltip(){
+        setTooltipVisibility(true)
+        setTimeout(() => {
+            setTooltipVisibility(false)
+        }, 3500);
+    }
 
     
 
@@ -90,16 +102,16 @@ const ReporteLaboratorio = () => {
                 
                 <div style={{ display: "flex", flexDirection: 'column', justifyContent: "center", alignItems: "center" }}>
                     <div className="card">
-                        <TablaLaboratorio tableData={turno1Data ? turno1Data : null} copyTableData={copyTableData(turno1Data)} turno="Primer Turno"/>
-                        <TablaLaboratorio tableData={turno2Data ? turno2Data : null} copyTableData={copyTableData(turno2Data)} turno="Segundo Turno"/>
-                        <TablaLaboratorio tableData={turno3Data ? turno3Data : null} copyTableData={copyTableData(turno3Data)} turno="Tercer Turno"/>
+                        <TablaLaboratorio tableData={turno1Data ? turno1Data : null} copyTableData={()=>copyTableData(turno1Data)} turno="Primer Turno"/>
+                        <TablaLaboratorio tableData={turno2Data ? turno2Data : null} copyTableData={()=>copyTableData(turno2Data)} turno="Segundo Turno"/>
+                        <TablaLaboratorio tableData={turno3Data ? turno3Data : null} copyTableData={()=>copyTableData(turno3Data)} turno="Tercer Turno"/>
                     </div>
                     
                 </div>
                 <footer style={{height:'10rem'}}></footer>
             </body>
             
-            
+            <Tooltip tooltipVisibility={tooltipVisibility}></Tooltip>
             <Menu rol={"laboratorista"} landing="/laboratorio" activeTab='history'/>
         </>
     );
