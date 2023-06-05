@@ -19,6 +19,7 @@ import EditarUsuario from './views/EditarUsuario';
 import FormularioLaboratorio from './views/FormularioLaboratorio';
 import RedireccionCargo from './views/RedireccionCargo';
 import MovimientoMineral from './views/MovimientoMineral';
+import ReporteGerencial from './views/ReporteGerencial';
 
 function App() {
   return (
@@ -51,6 +52,8 @@ function App() {
       <Route path='/historial-bascula_managerview' element={<HistorialBascula rol="gerente"/>} />
       <Route path='/historial-gerencia_managerview' element={<HistorialGerencia rol="gerente"/>} />
       <Route path='/reporte-bascula_managerview' element={<ReporteBascula rol="gerente"/>} />
+      <Route path='/reporte/:idReporte' element={<ReporteGerencial rol="gerente"/>} />
+
 
       {/*Flujo Bascula*/}
       <Route path='/bascula' element={<LandingPage strips={3}/> } />
