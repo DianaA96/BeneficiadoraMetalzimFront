@@ -20,6 +20,7 @@ import FormularioLaboratorio from './views/FormularioLaboratorio';
 import RedireccionCargo from './views/RedireccionCargo';
 import MovimientoMineral from './views/MovimientoMineral';
 import Error404 from './views/Error404';
+import ReporteGerencial from './views/ReporteGerencial';
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
 
       {/*Flujo Laboratorista*/}
       <Route path='/laboratorio' element={<LandingPage strips={0}/>} />
-      <Route path='/reporte-laboratorio' element={<ReporteLaboratorio/>} />
+      <Route path='/reporte-laboratorio/:mina/:fecha' element={<ReporteLaboratorio/>} />
       <Route path='/formulario-laboratorio' element={<FormularioLaboratorio/>} />
       <Route path='/historial-analisis' element={<HistorialAnalisis/>} />
 
@@ -52,6 +53,8 @@ function App() {
       <Route path='/historial-bascula_managerview' element={<HistorialBascula rol="gerente"/>} />
       <Route path='/historial-gerencia_managerview' element={<HistorialGerencia rol="gerente"/>} />
       <Route path='/reporte-bascula_managerview' element={<ReporteBascula rol="gerente"/>} />
+      <Route path='/reporte/:idReporte' element={<ReporteGerencial rol="gerente"/>} />
+
 
       {/*Flujo Bascula*/}
       <Route path='/bascula' element={<LandingPage strips={3}/> } />

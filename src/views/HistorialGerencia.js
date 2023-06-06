@@ -4,6 +4,8 @@ import HeaderDiseno from "../components/HeaderDiseno"
 import ListaReportes from "../components/ListaReportes"
 import GraficasLine from "../components/GraficasLine"
 import Menu from "../components/Menu"
+import { Link } from 'react-router-dom'
+
 
 function HistorialGerencia({rol}) {
 
@@ -39,7 +41,7 @@ function HistorialGerencia({rol}) {
             flex:1, 
             minWidth: 100,
             getActions: (params) => [
-                <button className='btn-lista' to={`/reporte/${params.id}`} target="_blank">Ver</button>,
+                <Link className='btn-lista' to={`/reporte/${params.id}`} target="_blank">Ver</Link>,
             ],
           },
       ],

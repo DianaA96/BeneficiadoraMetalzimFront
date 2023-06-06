@@ -65,6 +65,18 @@
     width: 100%;
 }
 
+.formularioContenedor1 {
+    width: 87%;
+    background-color: #fff;
+    padding-top: 10px;
+    border-left: #DFE0EB 2px solid;
+    border-right: #DFE0EB 2px solid;
+    border-bottom: #DFE0EB 2px solid !important;
+    border-bottom-right-radius: 10px !important;
+    border-bottom-left-radius: 10px !important;
+    
+}
+
 .formularioContenedor {
     width: 87%;
     background-color: #fff;
@@ -94,7 +106,7 @@
     width: 87%;
     height: 100px;
     font-weight: bold;
-    align-items: flex-end;
+    align-items: center;
     background-color: #fff;
     border-top: var(--p700) 8px solid;
     border-left: #DFE0EB 2px solid;

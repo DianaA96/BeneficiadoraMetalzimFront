@@ -6,10 +6,6 @@ import '../styles/Registro.css';
 import HS from '../components/HeaderSencillo'
 import Menu from '../components/Menu'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
-
-
-
 
 function EditarUsuario() {
   const params = useParams();
@@ -18,6 +14,7 @@ function EditarUsuario() {
   const [error, setError] = useState(null);
   const [formValues, setFormValues] = useState(null);
 
+  const [modalVisibility, setModalVisibility] = useState(false)
 
   useEffect(()=>{
     setStatus('loading')
@@ -25,12 +22,17 @@ function EditarUsuario() {
       .then((result)=>{
         setStatus('resolved')
         setFormValues(result.data[0])
+        showModal()
       })
       .catch((error)=>{
         setError(error)
         setStatus('error')
       })
   },[])
+
+  function showModal(){
+    setModalVisibility(true)
+  }
 
 
   const handleSubmit = (event) => {
@@ -151,6 +153,7 @@ function EditarUsuario() {
           </div>
         </div>
         <Menu rol="admin" activeTab="group" landing='/admin'></Menu>
+        
       </div>
       
     );

@@ -267,6 +267,7 @@ function MovimientoMineral(props) {
             "acarreo": 20.2,
             "fecha": "2022-05-05"
             },
+
             {
             "tipo": "acarreo",
             "idMovimiento": 1,
@@ -291,6 +292,7 @@ function MovimientoMineral(props) {
             "acarreo": 10.5,
             "fecha": "2022-05-05"
             },
+
             {
             "tipo": "acarreo",
             "idMovimiento": 1,
@@ -299,6 +301,12 @@ function MovimientoMineral(props) {
             "acarreo": 10.5,
             "fecha": "2022-05-05"
             },
+
+
+
+
+            
+
             {
             "tipo": "trituradas",
             "idMovimiento": 1,

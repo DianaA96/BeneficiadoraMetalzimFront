@@ -1,0 +1,96 @@
+.containerRG {
+    display: flex;
+    outline: 0.4em solid #FAD3BA;
+    border-radius: 2.5em;
+    padding: 1em 1em 1em;
+  }
+  
+  .tableRG {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+  }
+  
+  .rowRG {
+    display: flex;
+    border-bottom: 2px solid #FAD3BA;
+
+  }
+  
+  .cellRG {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .cardsRG {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1em;
+  }
+  
+  .cardRG {
+    border: 1px solid #000;
+    padding: 10px;
+    margin-top: 50%;
+    margin-bottom: 10px;
+  }
+  
+  .fontRGMin {
+    /* Ag */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+
+    /* Primario/P600 */
+    color: #F6B68C;
+  }
+
+  .fontRGTitle {
+    /* Análisis */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    /* identical to box height */
+
+    /* Primario/P1000 */
+    color: #EF7B30;
+
+  }
+
+
+  .progress-bar {
+    height: 20px;
+    background-color: #eaeaea;
+    border-radius: 10px;
+    overflow: hidden;
+    justify-content: left;
+    align-items: center;
+    flex: 1;
+    }
+  
+  .progress {
+    height: 100%;
+    background-color: orange;
+  }
+
+
+  .fontRGValue {
+    /* Ag */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 34px;
+    line-height: 29px;
+
+    border-radius: 10px;
+   }

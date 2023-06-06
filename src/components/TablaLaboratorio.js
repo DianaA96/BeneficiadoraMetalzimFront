@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "../styles/TablaLab.css"
 
 const TablaLaboratorio = ({ tableData, copyTableData, turno}) => {
@@ -51,14 +51,14 @@ const TablaLaboratorio = ({ tableData, copyTableData, turno}) => {
                 <tbody>
                     {tableData.map(row => (
                         <tr key={row.id}>
-                            <td>{row.col0}</td>
-                            <td>{row.col1}</td>
-                            <td>{row.col2}</td>
-                            <td>{row.col3}</td>
-                            <td>{row.col4}</td>
-                            <td>{row.col5}</td>
-                            <td>{row.col6}</td>
-                            <td>{row.col7}</td>
+                            <td>{row.concentrado}</td>
+                            <td>{row.Ag}</td>
+                            <td>{row.Pb}</td>
+                            <td>{row.Zn}</td>
+                            <td>{row.Cu}</td>
+                            <td>{row.Fe}</td>
+                            <td>{row.Sb}</td>
+                            <td>{row.As}</td>
                         </tr>
                     ))}
                 </tbody>

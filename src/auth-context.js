@@ -29,7 +29,6 @@ export function AuthProvider(props) {
             setUser(result.data);
         })
         .catch((err)=>{
-            alert('Credenciales inválidas')
             setError('error')
             console.log(err)
             }

@@ -108,3 +108,33 @@ input::-webkit-inner-spin-button
 {
     -webkit-appearance: none;
 }
+
+.card-precio-RG{
+    font-family: 'Inter';
+    background-color: var(--p700);
+    border-radius: 15px;
+    width: 8rem;
+    height: 6rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-shadow: 9px 11px 33px -8px rgba(0, 0, 0, 0.25); 
+}
+
+
+
+.card-precio-RG-dark{
+    font-family: 'Inter';
+    background-color: var(--n700);
+    border-radius: 15px;
+    width: 8rem;
+    height: 6rem;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-shadow: 9px 11px 33px -8px rgba(0, 0, 0, 0.25); 
+}
