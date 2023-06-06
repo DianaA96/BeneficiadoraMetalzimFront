@@ -44,7 +44,7 @@
     justify-content: flex-start;
     flex-direction: column;
     background-color: #FBE2D1;
-    width: 160px;
+    width: 10vw;
 }
 
 .imagenPatron {
@@ -62,7 +62,7 @@
     border-color: #E6E5E5;
     border-radius: 10px;
     border-width: 4px;
-    width: 100%;
+    width: 90vw;
 }
 
 .formularioContenedor {
