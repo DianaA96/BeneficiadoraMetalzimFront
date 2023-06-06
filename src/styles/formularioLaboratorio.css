@@ -6,33 +6,6 @@
     background-color: #F8F8F8;
 }
 
-.fechaFormularioLab {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-}
-
-.divFechaEspacio {
-    width: 10px;
-}
-
-.fechaFormLab {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.lineaFechaFL {
-    background-color: #FAD3BA;
-    height: 5px;
-    width: 50%;
-}
-
-.iconFecha {
-    color: #EF7B30;
-}
 
 .pageFormularioLab {
     display: flex;
