@@ -1,0 +1,26 @@
+.empty-state {
+  width: 750px;
+  margin: auto;
+  margin-bottom: 2rem;
+  font-family: Inter, sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.empty-state__icon {
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.empty-state__message {
+  color: #EF7B30;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.empty-state__help {
+  color: #a2a5b9;
+  font-size: 1.2rem;
+  margin-top: 0.45rem;
+}
