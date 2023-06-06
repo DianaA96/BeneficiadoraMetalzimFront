@@ -11,7 +11,7 @@ function HeaderSencillo(props) {
  
     if (myDate) {
         return (
-            <header style={{flexDirection:"row", display:"flex"}}>
+            <header style={{flexDirection:"row", display:"flex", width: "90%", justifyContent:"space-between"}}>
                 <div className="containerHeaders" >
                     <title>{props.titulo}</title>
                     <div className="titleHeader">
@@ -22,11 +22,11 @@ function HeaderSencillo(props) {
                     </p>
                 </div>
                
-                <div className="fechaFormLab" >
+                <div className="fechaFormLab" style={{marginLeft:"10rem"}}>
                     <div className="fechaFormularioLab">
                         <span className="material-symbols-outlined iconFecha">calendar_today</span>
                         <div className="divFechaEspacio"></div>
-                            <p>{fecha}</p>
+                        <p>{props.customDate ? props.customDate : `Hoy: ${fecha}`}</p>
                         </div>
                     <div className="lineaFechaFL"></div>
                 </div>
