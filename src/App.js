@@ -19,6 +19,7 @@ import EditarUsuario from './views/EditarUsuario';
 import FormularioLaboratorio from './views/FormularioLaboratorio';
 import RedireccionCargo from './views/RedireccionCargo';
 import MovimientoMineral from './views/MovimientoMineral';
+import Error404 from './views/Error404';
 import ReporteGerencial from './views/ReporteGerencial';
 
 function App() {
@@ -60,6 +61,9 @@ function App() {
       <Route path='/reporte-bascula_basculaview' element={<ReporteBascula rol="bascula"/>} />
       <Route path='/historial-bascula_basculaview' element={<HistorialBascula rol="bascula"/>} />
       <Route path='/reporte-movimiento-mineral' element={<MovimientoMineral/>} />
+
+      {/*Pagina de Error 404*/}
+      <Route path='*' element={<Error404/>} />
       
     </Routes>
     </>
