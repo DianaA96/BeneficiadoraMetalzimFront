@@ -26,7 +26,7 @@ function HeaderDiseno(props) {
                     <div className="fechaFormularioLab">
                         <span className="material-symbols-outlined iconFecha">calendar_today</span>
                         <div className="divFechaEspacio"></div>
-                            <p>{fecha}</p>
+                            <p>{props.customDate ? props.customDate : `Hoy: ${fecha}`}</p>
                         </div>
                     <div className="lineaFechaFL"></div>
                 </div>
