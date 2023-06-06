@@ -9,6 +9,7 @@ import ModalConfirmacion from '../components/ModalDinamico';
 import ModalError from '../components/ModalDinamico';
 import Select from 'react-select';
 import moment, { Moment } from "moment";
+import { useNavigate } from "react-router-dom";
 import 'moment/locale/es';
 import axios from "axios";
 
@@ -17,7 +18,7 @@ const formularioSegundoNivel = [["Cabeza", "Concentración plomo" , "Concentraci
 const inputBase = [["Ag", "g/ton"], ["Pb", "%"], ["Zn", "%"], ["Cu", "%"], ["Fe", "%"], ["Sb", "%"], ["As", "%"], ["Cd", "%"], ["PbO", "%"], ["ZnO", "%"]]
 
 function FormularioLaboratorio(props) {
-
+    let navigate = useNavigate();
     let usuario = props.idUsuario
 
     usuario = 2
@@ -31,7 +32,9 @@ function FormularioLaboratorio(props) {
 
     const [ fechaMuestreo, setFechaMuestreo ] = useState(moment().format("YYYY-MM-DD"))
     const [ fechaEnsaye, setFechaEnsaye ] = useState(moment().format("YYYY-MM-DD"))
-    
+    const [ idLab, setIdLab ] = useState("")
+    const [ loaderVisibility, setLoaderVisibility ] = useState(false)
+
     const options1 = [
         { value: '1', label: 'Minesites' },
         { value: '2', label: 'Guadalupe' },
@@ -197,8 +200,10 @@ function FormularioLaboratorio(props) {
     })
 
     const [ modalVisibility, setModalVisibility ] = useState(false)
+    const [ modalExitoVisibility, setModalExitoVisibility ] = useState(false)
     const [ modalErrorVisibility, setModalErrorVisibility ] = useState(false)
     const [ modalErrorHaSidoAbierto, setModalErrorHaSidoAbierto ] = useState(false)
+
 
     function showModal(){
         if(mina.label != '' && planta.label != '') {
@@ -217,6 +222,11 @@ function FormularioLaboratorio(props) {
     }
 
     function handleInputChange(event) {
+        let minaCodigo, fechaCodigo;
+        fechaCodigo = `${fechaEnsaye.substring(8,10) + fechaEnsaye.substring(5,7) + fechaEnsaye.substring(2,4)}`;
+        setIdLab(`RLB${mina.value}${fechaCodigo}`)
+        console.log(idLab)
+
         event.target.defaultValue = null
         if(event.target.name.includes("Primer turno")) {
             if(event.target.name.includes("Cabeza")) {
@@ -1451,11 +1461,13 @@ function FormularioLaboratorio(props) {
     }
 
     function handleSendForm() {
+        setLoaderVisibility(true)
         let destruct = JSON.parse(JSON.stringify(formularioParaPost))
         let objeto = {
             "idUsuario": usuario,
             "idMina": parseInt(mina.value),
             "idPlanta": parseInt(planta.value),
+            "idLab": idLab,
             "fechaMuestreo": fechaMuestreo,
             "fechaEnsaye": fechaEnsaye,
             ...destruct
@@ -1470,7 +1482,8 @@ function FormularioLaboratorio(props) {
             }
         })
         .then((result)=>{
-            alert('¡Información enviada!');
+            setModalVisibility(false);
+            setModalExitoVisibility(true);
         })
         .catch(error =>{
             alert('Algo malo pasó:', error);
@@ -1481,13 +1494,11 @@ function FormularioLaboratorio(props) {
         <>
             <div className="pageFormularioLab">
                 <div className="formYHeaderFormLab">
-                    <div className="headerFormLaboratorio">
                         <HeaderSencillo
                         titulo="Formulario de laboratorio"
                         subtitulo="Registra los resultados obtenidos durante el análisis de laboratorio por turno. Selecciona la mina, la planta y las fechas, luego ingresa los valores obtenidos. Usa las flechas para desplazarte a las casillas continuas."
                         isDate={true}
                         />
-                    </div>
                     <div className="divFormulario">
                         <div className="inputsContenedor">
                             <p>MINERAL</p>
@@ -1592,9 +1603,10 @@ function FormularioLaboratorio(props) {
                     </div>
                 </div>
             </div>
-            <Menu rol="laboratorista" activeTab="science"></Menu>
-            {modalVisibility ? <ModalConfirmacion submitFunction={handleSendForm} setModalVisibility = {setModalVisibility} tipo="exito" titulo="Confirma los datos" mensaje="¿Estás seguro que deseas continuar? Asegúrate de que todos los datos introducidos sean correctos."></ModalConfirmacion>:null}
-            {modalErrorVisibility ? <ModalError setModalVisibility = {setModalErrorVisibility} tipo="error" titulo="¡Cuidado!" mensaje={`Hay campos obligatorios sin completar. Asegúrate de rellenarlos antes de proceder: ${mina.label == '' ? planta.label == '' ? "Mina y planta" : "Mina" : "Planta" }`}></ModalError>:null}
+            <Menu rol="laboratorista" activeTab="science" landing="/laboratorio"></Menu>
+            {modalVisibility ? <ModalConfirmacion submitFunction={handleSendForm} loaderVisibility={loaderVisibility} setModalVisibility = {setModalVisibility} tipo="confirmacion" titulo="Confirma los datos" mensaje={"¿Estás seguro que deseas continuar? Asegúrate de que todos los datos introducidos sean correctos."}></ModalConfirmacion>:null}
+            {modalExitoVisibility ? <ModalConfirmacion submitFunction={()=>navigate(`/reporte-laboratorio/${mina.label}/${fechaEnsaye}`)} setModalVisibility = {setModalExitoVisibility} tipo="exito" titulo="Registro correcto" mensaje="Los datos han sido enviados correctamente."></ModalConfirmacion>:null}
+            {modalErrorVisibility ? <ModalError submitFunction={()=>setModalErrorVisibility(false)} setModalVisibility = {setModalErrorVisibility} tipo="error" titulo="¡Cuidado!" mensaje={`Hay campos obligatorios sin completar. Asegúrate de rellenarlos antes de proceder: ${mina.label == '' ? planta.label == '' ? "Mina y planta" : "Mina" : "Planta" }`}></ModalError>:null}
         </>
     )
 }
