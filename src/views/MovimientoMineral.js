@@ -301,7 +301,7 @@ function MovimientoMineral(props) {
     function handleInputChange(event) {
         let rowId = parseInt(parseInt(event.target.id)/8)
         
-        if(event.target.name.includes("Hoy")) {
+        if(event.target.name.includes("Hoy") && !event.target.name.includes("Minas")) {
             let newHoy = [...Hoy]
             newHoy[rowId] = (event.target.value == "" ? 0 : parseInt(event.target.value))
             setHoy(newHoy)

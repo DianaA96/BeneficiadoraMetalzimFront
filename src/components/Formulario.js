@@ -155,6 +155,7 @@ function Formulario(props) {
                 {/*{arrExpandido2[i][j] == true?(*/}
                 <Animate show={arrExpandido2[i][j]}> 
                 <div>
+                    <div>
                     <div className={"inputsFormulario " + arrExpandido[i].toString() + (data2 == "Total" ? " inputsTotal" : "")}>
                     <div className="sangriaInputs"></div>
                     {inputs.map((subdata, k) => 
@@ -178,6 +179,7 @@ function Formulario(props) {
                         )} 
                         </>
                     )}
+                    </div>
                     </div>
                     </div>
                     </Animate> 
