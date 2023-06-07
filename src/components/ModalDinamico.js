@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import "../styles/loaderStyles.css"
 
 const ModalDinamico = (props) => {
 
@@ -30,13 +30,33 @@ const ModalDinamico = (props) => {
                 {props.tipo === 'exito' ? <div className="modal-sep" style={{backgroundColor:"#0EBA53"}}></div>:null}
 
                 <div className="modal-content">
-                    <p className="modal-mensaje">
-                        {props.mensaje}
-                    </p>
-                    <div className="modal-btns">
-                        <button className="btn-modal-cancelar">Cancelar</button>
-                        <button className="btn-modal-exito" onClick={props.submitFunction}>Aceptar</button>
-                    </div>
+                    {
+                        props.loaderVisibility ? 
+                        <>
+                            <div class="pl2">
+                                <div className="pl2__a"></div>
+                                <div className="pl2__b"></div>
+                                <div className="pl2__c"></div>
+                            </div>
+                            <p className="modal-mensaje-carga">
+                                Cargando
+                            </p>
+                        </>
+
+                        : 
+                        
+                        <>
+                            <p className="modal-mensaje">
+                                {props.mensaje}
+                            </p>
+                            <div className="modal-btns">
+                                <button className="btn-modal-cancelar" onClick={hideModal}>Cancelar</button>
+                                <button className="btn-modal-exito" onClick={props.submitFunction}>Aceptar</button>
+                            </div>
+                        </>
+                    }
+                    
+                    
                 </div>
             </div>
         </div>
