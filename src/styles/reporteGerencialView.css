@@ -74,7 +74,6 @@
     overflow: hidden;
     justify-content: left;
     align-items: center;
-    flex: 1;
     }
   
   .progress {
@@ -88,9 +87,32 @@
 
     font-family: 'Inter';
     font-style: normal;
-    font-weight: 900;
+    font-weight: 300;
     font-size: 34px;
     line-height: 29px;
 
     border-radius: 10px;
    }
+
+
+   .titleTableRG {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 36px;
+
+    /* Negro/N800 */
+    color: #4D4A4A;
+   }
+
+
+   .card-containerRG {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  
+  .boxRG {
+    padding: 10px;
+  }
