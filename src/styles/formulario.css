@@ -144,3 +144,7 @@ input::-webkit-inner-spin-button {
 input:read-only {
     cursor: not-allowed;
 }
+
+.loadingInput {
+    cursor: not-allowed;
+}

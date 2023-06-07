@@ -5,11 +5,11 @@ import HeaderSencillo from "../components/HeaderSencillo";
 import Menu from "../components/Menu";
 import Pattern from "../assets/PatternsPages/pattern1.png"
 import axios from "axios";
+import moment from "moment/moment";
 
 const formularioPrimerNivel = ["Minesites", "Guadalupe", "Balcones"]
 const formularioSegundoNivel = [["Nivel 395", "Nivel 350" , "Gallo Verde", "Total"], ["C-21", "Dique" , "Cuerpo antimonio", "Total"], ["Balcones", "Total"]]
 const inputBase = [["Existencia inicial", "toneladas"], ["Aca", "Hoy"], ["rreo", "A la fecha"], ["", "P1 hoy"], ["Tritu", "P1 a la fecha"], ["radas", "P2 hoy"], ["", "P2 a la fecha"], ["Existencia final", "Toneladas"]]
-
 
 const formularioPrimerNivel2 = ["Minas"]
 const formularioSegundoNivel2 = [["Minesites", "Guadalupe", "Balcones", "Jales"]]
@@ -29,15 +29,194 @@ function MovimientoMineral(props) {
     
     usuario = 2
 
-    const [ status, setStatus ] = useState('')
-    const [ error, setError ] = useState('')
+    const [ status, setStatus ] = useState('');
+    const [ error, setError ] = useState('');
     
     const [ Hoy, setHoy ] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0])
     const [ P1Hoy, setP1Hoy ] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0])
     const [ P2Hoy, setP2Hoy ] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0])
     const [ EFinal, setEFinal ] = useState([0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    const [ formularioParaPostMovimMineral, setFormularioParaPostMovimMineral ] = useState([
+        {
+          "idUsuario": usuario,
+          "idMina": 1,
+          "idSubmina": 1,
+          "fecha": moment().format('YYYY-MM-DD'),
+          "acarreo": 0,
+          "trituradasP1": 0,
+          "trituradasP2": 0
+        },
+        {
+          "idUsuario": usuario,
+          "idMina": 1,
+          "idSubmina": 2,
+          "fecha": moment().format('YYYY-MM-DD'),
+          "acarreo": 0,
+          "trituradasP1": 0,
+          "trituradasP2": 0
+        },
+        {
+          "idUsuario": usuario,
+          "idMina": 1,
+          "idSubmina": 3,
+          "fecha": moment().format('YYYY-MM-DD'),
+          "acarreo": 0,
+          "trituradasP1": 0,
+          "trituradasP2": 0
+        },
+        {
+          "idUsuario": usuario,
+          "idMina": 2,
+          "idSubmina": 4,
+          "fecha": moment().format('YYYY-MM-DD'),
+          "acarreo": 0,
+          "trituradasP1": 0,
+          "trituradasP2": 0
+        },
+        {
+          "idUsuario": usuario,
+          "idMina": 2,
+          "idSubmina": 5,
+          "fecha": moment().format('YYYY-MM-DD'),
+          "acarreo": 0,
+          "trituradasP1": 0,
+          "trituradasP2": 0
+        },
+        {
+          "idUsuario": usuario,
+          "idMina": 2,
+          "idSubmina": 6,
+          "fecha": moment().format('YYYY-MM-DD'),
+          "acarreo": 0,
+          "trituradasP1": 0,
+          "trituradasP2": 0
+        },
+        {
+          "idUsuario": usuario,
+          "idMina": 3,
+          "idSubmina": 7,
+          "fecha": moment().format('YYYY-MM-DD'),
+          "acarreo": 0,
+          "trituradasP1": 0,
+          "trituradasP2": 0
+        }
+    ])
+    const [ formularioParaPostEmbarque, setFormularioParaPostEmbarque ] = useState([
+        {
+            "idMina": 1,
+            "idConcentrado": 1,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        },
+        {
+            "idMina": 1,
+            "idConcentrado": 2,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        },
+        {
+            "idMina": 1,
+            "idConcentrado": 3,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        },
+        {
+            "idMina": 1,
+            "idConcentrado": 4,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        },
+        {
+            "idMina": 2,
+            "idConcentrado": 1,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        },
+        {
+            "idMina": 2,
+            "idConcentrado": 2,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        },
+        {
+            "idMina": 2,
+            "idConcentrado": 3,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        },
+        {
+            "idMina": 2,
+            "idConcentrado": 4,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        },
+        {
+            "idMina": 3,
+            "idConcentrado": 1,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        },
+        {
+            "idMina": 3,
+            "idConcentrado": 2,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        },
+        {
+            "idMina": 3,
+            "idConcentrado": 3,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        },
+        {
+            "idMina": 3,
+            "idConcentrado": 4,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        },
+        {
+            "idMina": 4,
+            "idConcentrado": 1,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        },
+        {
+            "idMina": 4,
+            "idConcentrado": 2,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        },
+        {
+            "idMina": 4,
+            "idConcentrado": 3,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        },
+        {
+            "idMina": 4,
+            "idConcentrado": 4,
+            "idUsuario": usuario,
+            "fecha": moment().format('YYYY-MM-DD'),
+            "embarque": 0
+        }
+    ])
     
-    useEffect(()=>{
+    useEffect( () => {
         setStatus('loading')
         axios.get(`http://localhost:3050/operador/reporteD`)
         .then((result)=>{
@@ -104,6 +283,7 @@ function MovimientoMineral(props) {
             .then((result) => {
                 let embarquesConcentrados = result.data
                 for (let idx = 0; idx < 16; idx++) {
+                    document.getElementById(81 + (idx*2)).readOnly = true
                     document.getElementById(81 + (idx*2)).value = embarquesConcentrados[idx].embarque
                 }
             })
@@ -138,6 +318,21 @@ function MovimientoMineral(props) {
                 slice.splice(rowId,1,(event.target.value == "" ? 0 : parseInt(event.target.value)))
                 document.getElementById(25).value = slice.reduce((a, b) => a + b, 0)
                 document.getElementById(31).value = parsing(document.getElementById(25).value) - (parsing(document.getElementById(27).value) + parsing(document.getElementById(29).value))
+                if(event.target.name.includes("Nivel 395")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[0].acarreo = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
+                else if(event.target.name.includes("Nivel 350")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[1].acarreo = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
+                else if(event.target.name.includes("Gallo Verde")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[2].acarreo = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
             }
             
             else if(event.target.name.includes("Guadalupe")) {
@@ -146,6 +341,21 @@ function MovimientoMineral(props) {
                 slice.splice((rowId-4),1,(event.target.value == "" ? 0 : parseInt(event.target.value)))
                 document.getElementById(57).value = slice.reduce((a, b) => a + b, 0)
                 document.getElementById(63).value = parsing(document.getElementById(57).value) - (parsing(document.getElementById(59).value) + parsing(document.getElementById(61).value))
+                if(event.target.name.includes("C-21")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[3].acarreo = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
+                else if(event.target.name.includes("Dique")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[4].acarreo = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
+                else if(event.target.name.includes("Cuerpo antimonio")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[5].acarreo = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
             }
 
             else if(event.target.name.includes("Balcones")) {
@@ -155,6 +365,9 @@ function MovimientoMineral(props) {
                 console.log(slice)
                 document.getElementById(73).value = slice.reduce((a, b) => a + b, 0)
                 document.getElementById(79).value = parsing(document.getElementById(73).value) - (parsing(document.getElementById(75).value) + parsing(document.getElementById(77).value))
+                let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                auxiliarValues[6].acarreo = event.target.value
+                setFormularioParaPostMovimMineral(auxiliarValues)
             }
         }
 
@@ -175,6 +388,21 @@ function MovimientoMineral(props) {
                 slice.splice(rowId,1,(event.target.value == "" ? 0 : parseInt(event.target.value)))
                 document.getElementById(27).value = slice.reduce((a, b) => a + b, 0)
                 document.getElementById(31).value = parsing(document.getElementById(25).value) - (parsing(document.getElementById(27).value) + parsing(document.getElementById(29).value))
+                if(event.target.name.includes("Nivel 395")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[0].trituradasP1 = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
+                else if(event.target.name.includes("Nivel 350")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[1].trituradasP1 = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
+                else if(event.target.name.includes("Gallo Verde")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[2].trituradasP1 = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
             }
             
             else if(event.target.name.includes("Guadalupe")) {
@@ -183,6 +411,21 @@ function MovimientoMineral(props) {
                 slice.splice((rowId-4),1,(event.target.value == "" ? 0 : parseInt(event.target.value)))
                 document.getElementById(59).value = slice.reduce((a, b) => a + b, 0)
                 document.getElementById(63).value = parsing(document.getElementById(57).value) - (parsing(document.getElementById(59).value) + parsing(document.getElementById(61).value))
+                if(event.target.name.includes("C-21")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[3].trituradasP1 = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
+                else if(event.target.name.includes("Dique")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[4].trituradasP1 = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
+                else if(event.target.name.includes("Cuerpo antimonio")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[5].trituradasP1 = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
             }
 
             else if(event.target.name.includes("Balcones")) {
@@ -192,6 +435,9 @@ function MovimientoMineral(props) {
                 console.log(slice)
                 document.getElementById(75).value = slice.reduce((a, b) => a + b, 0)
                 document.getElementById(79).value = parsing(document.getElementById(73).value) - (parsing(document.getElementById(75).value) + parsing(document.getElementById(77).value))
+                let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                auxiliarValues[6].trituradasP1 = event.target.value
+                setFormularioParaPostMovimMineral(auxiliarValues)
             }
         }
         
@@ -212,6 +458,21 @@ function MovimientoMineral(props) {
                 slice.splice(rowId,1,(event.target.value == "" ? 0 : parseInt(event.target.value)))
                 document.getElementById(29).value = slice.reduce((a, b) => a + b, 0)
                 document.getElementById(31).value = parsing(document.getElementById(25).value) - (parsing(document.getElementById(27).value) + parsing(document.getElementById(29).value))
+                if(event.target.name.includes("Nivel 395")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[0].trituradasP2 = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
+                else if(event.target.name.includes("Nivel 350")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[1].trituradasP2 = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
+                else if(event.target.name.includes("Gallo Verde")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[2].trituradasP2 = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
             }
             
             else if(event.target.name.includes("Guadalupe")) {
@@ -220,6 +481,21 @@ function MovimientoMineral(props) {
                 slice.splice((rowId-4),1,(event.target.value == "" ? 0 : parseInt(event.target.value)))
                 document.getElementById(61).value = slice.reduce((a, b) => a + b, 0)
                 document.getElementById(63).value = parsing(document.getElementById(57).value) - (parsing(document.getElementById(59).value) + parsing(document.getElementById(61).value))
+                if(event.target.name.includes("C-21")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[3].trituradasP2 = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
+                else if(event.target.name.includes("Dique")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[4].trituradasP2 = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
+                else if(event.target.name.includes("Cuerpo antimonio")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                    auxiliarValues[5].trituradasP2 = event.target.value
+                    setFormularioParaPostMovimMineral(auxiliarValues)
+                }
             }
 
             else if(event.target.name.includes("Balcones")) {
@@ -229,190 +505,103 @@ function MovimientoMineral(props) {
                 console.log(slice)
                 document.getElementById(77).value = slice.reduce((a, b) => a + b, 0)
                 document.getElementById(79).value = parsing(document.getElementById(73).value) - (parsing(document.getElementById(75).value) + parsing(document.getElementById(77).value))
+                let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostMovimMineral))
+                auxiliarValues[6].trituradasP2 = event.target.value
+                setFormularioParaPostMovimMineral(auxiliarValues)
+            }
+        }
+
+        if(event.target.name.includes("Minas")) {
+            if(event.target.name.includes("Minesites")) {
+                if(event.target.name.includes("Conc. P")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[0].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
+                else if(event.target.name.includes("Conc. C")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[1].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
+                else if(event.target.name.includes("Conc. Z")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[2].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
+                else if(event.target.name.includes("Conc. Au")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[3].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
+            }
+            else if(event.target.name.includes("Guadalupe")) {
+                if(event.target.name.includes("Conc. P")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[4].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
+                else if(event.target.name.includes("Conc. C")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[5].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
+                else if(event.target.name.includes("Conc. Z")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[6].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
+                else if(event.target.name.includes("Conc. Au")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[7].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
+            }
+            else if(event.target.name.includes("Balcones")) {
+                if(event.target.name.includes("Conc. P")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[8].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
+                else if(event.target.name.includes("Conc. C")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[9].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
+                else if(event.target.name.includes("Conc. Z")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[10].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
+                else if(event.target.name.includes("Conc. Au")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[11].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
+            }
+            else if(event.target.name.includes("Jales")) {
+                if(event.target.name.includes("Conc. P")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[12].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
+                else if(event.target.name.includes("Conc. C")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[13].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
+                else if(event.target.name.includes("Conc. Z")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[14].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
+                else if(event.target.name.includes("Conc. Au")) {
+                    let auxiliarValues = JSON.parse(JSON.stringify(formularioParaPostEmbarque))
+                    auxiliarValues[15].embarque = event.target.value
+                    setFormularioParaPostEmbarque(auxiliarValues)
+                }
             }
         }
     }
-
-    let formularioParaPostMovimMineral = [
-        {
-          "idUsuario": 1,
-          "idMina": 1,
-          "idSubmina": 1,
-          "fecha": "2023-05-16",
-          "acarreo": 10,
-          "trituradasP1": 5,
-          "trituradasP2": 8
-        },
-        {
-          "idUsuario": 1,
-          "idMina": 1,
-          "idSubmina": 2,
-          "fecha": "2023-05-16",
-          "acarreo": 8,
-          "trituradasP1": 3,
-          "trituradasP2": 6
-        },
-        {
-          "idUsuario": 1,
-          "idMina": 1,
-          "idSubmina": 3,
-          "fecha": "2023-05-16",
-          "acarreo": 15,
-          "trituradasP1": 7,
-          "trituradasP2": 10
-        },
-        {
-          "idUsuario": 2,
-          "idMina": 2,
-          "idSubmina": 4,
-          "fecha": "2023-05-16",
-          "acarreo": 12,
-          "trituradasP1": 4,
-          "trituradasP2": 9
-        },
-          {
-          "idUsuario": 1,
-          "idMina": 2,
-          "idSubmina": 5,
-          "fecha": "2023-05-16",
-          "acarreo": 8,
-          "trituradasP1": 3,
-          "trituradasP2": 6
-        },
-        {
-          "idUsuario": 1,
-          "idMina": 2,
-          "idSubmina": 6,
-          "fecha": "2023-05-16",
-          "acarreo": 15,
-          "trituradasP1": 7,
-          "trituradasP2": 10
-        },
-        {
-          "idUsuario": 2,
-          "idMina": 3,
-          "idSubmina": 7,
-          "fecha": "2023-05-16",
-          "acarreo": 12,
-          "trituradasP1": 4,
-          "trituradasP2": 9
-        }
-    ]
-
-    let formularioParaPostEmbarque = [
-        {
-            "idMina": 1,
-            "idConcentrado": 1,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 100
-        },
-        {
-            "idMina": 1,
-            "idConcentrado": 2,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 200
-        },
-        {
-            "idMina": 1,
-            "idConcentrado": 3,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 300
-        },
-        {
-            "idMina": 1,
-            "idConcentrado": 4,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 400
-        },
-        {
-            "idMina": 2,
-            "idConcentrado": 1,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 500
-        },
-        {
-            "idMina": 2,
-            "idConcentrado": 2,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 600
-        },
-        {
-            "idMina": 2,
-            "idConcentrado": 3,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 700
-        },
-        {
-            "idMina": 2,
-            "idConcentrado": 4,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 800
-        },
-        {
-            "idMina": 3,
-            "idConcentrado": 1,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 900
-        },
-        {
-            "idMina": 3,
-            "idConcentrado": 2,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 1000
-        },
-        {
-            "idMina": 3,
-            "idConcentrado": 3,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 1100
-        },
-        {
-            "idMina": 3,
-            "idConcentrado": 4,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 1200
-        },
-        {
-            "idMina": 4,
-            "idConcentrado": 1,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 1300
-        },
-        {
-            "idMina": 4,
-            "idConcentrado": 2,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 1400
-        },
-        {
-            "idMina": 4,
-            "idConcentrado": 3,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 1500
-        },
-        {
-            "idMina": 4,
-            "idConcentrado": 4,
-            "idUsuario": 1,
-            "fecha": "2023-05-17",
-            "embarque": 1600
-        }
-    ]
 
     function handleSendForm() {
         axios({
@@ -444,10 +633,6 @@ function MovimientoMineral(props) {
         })
     }
 
-    useEffect( () => {
-
-    },[])
-
     return(
         <>
             <div className="pageFormularioLab">
@@ -472,6 +657,7 @@ function MovimientoMineral(props) {
                             handleInputChange={handleInputChange}
                             handleSendForm={handleSendForm}
                             mostrarBotones={false}
+                            loading={status == "error" || status == "loading"}
                             tipoFormulario={"MovimientoMineral"}/>
                         </div>
                         <div className="contenedorMedio">
@@ -486,6 +672,7 @@ function MovimientoMineral(props) {
                             handleInputChange={handleInputChange}
                             handleSendForm={handleSendForm}
                             mostrarBotones={true}
+                            loading={status == "error" || status == "loading"}
                             tipoFormulario={"MovimientoMineral"}/>
                         </div>
                     </div>

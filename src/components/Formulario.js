@@ -165,9 +165,9 @@ function Formulario(props) {
                                     <p className={`cantidadInput`}>{input[1]}</p>
                                 </label>
                                 {props.tipoFormulario == "MovimientoMineral" & (input[0].includes("final") || data2.includes("Total"))? 
-                                    <input className='inputGris' type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} placeholder={0.000} readOnly={true} onWheel={ event => event.currentTarget.blur() }></input>
+                                    <input className={'inputGris' + (props.loading == true ? " loadingInput" : "")} type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} placeholder={0.000} readOnly={true} onWheel={ event => event.currentTarget.blur() }></input>
                                 :
-                                    <input className='inputGris' type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} onChange={props.handleInputChange} placeholder={0.000} onWheel={ event => event.currentTarget.blur() }></input>
+                                    <input className={'inputGris' + (props.loading == true ? " loadingInput" : "")} type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} onChange={props.handleInputChange} placeholder={0.000} onWheel={ event => event.currentTarget.blur() }></input>
                                 }
                                 </div>)
                             : null)} 
@@ -191,9 +191,9 @@ function Formulario(props) {
                                         <p className={`cantidadInput`}>{input[1]}</p>
                                     </label>
                                     {props.tipoFormulario == "MovimientoMineral" & (input[0].includes("final") || data2.includes("Total"))?  
-                                        <input className='inputGris' type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} onChange={props.handleInputChange} placeholder={0.000} onWheel={ event => event.currentTarget.blur() }></input>
+                                        <input className={'inputGris' + (props.loading == true ? " loadingInput" : "")} type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} onChange={props.handleInputChange} placeholder={0.000} onWheel={ event => event.currentTarget.blur() }></input>
                                         :
-                                        <input className='inputGris' type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} onChange={props.handleInputChange} placeholder={0.000} onWheel={ event => event.currentTarget.blur() }></input>
+                                        <input className={'inputGris' + (props.loading == true ? " loadingInput" : "")} type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} onChange={props.handleInputChange} placeholder={0.000} onWheel={ event => event.currentTarget.blur() }></input>
                                     }
                                     </div>)
                                 : null)} 
@@ -213,7 +213,7 @@ function Formulario(props) {
             )} 
             {props.mostrarBotones ? <>
                 <div className='stripBotones'>
-                    <button className='enviar' onClick={props.handleSendForm}>Enviar
+                    <button className='enviar' disabled={props.loading ? true : false} onClick={props.handleSendForm}>Enviar
                         <span className='separatorButton'/>
                         <span class="material-symbols-outlined">send</span>
                     </button>
