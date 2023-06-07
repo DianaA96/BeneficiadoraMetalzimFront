@@ -701,7 +701,7 @@ function MovimientoMineral(props) {
             </div>
             <Menu rol="laboratorista" activeTab="science"></Menu>
             {modalVisibility ? <ModalConfirmacion submitFunction={handleSendForm} loaderVisibility={loaderVisibility} setModalVisibility = {setModalVisibility} tipo="confirmacion" titulo="Confirma los datos" mensaje={"¿Estás seguro que deseas continuar? Asegúrate de que todos los datos introducidos sean correctos."}></ModalConfirmacion>:null}
-            {modalExitoVisibility ? <ModalConfirmacion submitFunction={()=>navigate(`/login`)} setModalVisibility = {setModalExitoVisibility} tipo="exito" titulo="Registro correcto" mensaje="Los datos han sido enviados correctamente."></ModalConfirmacion>:null}
+            {modalExitoVisibility ? <ModalConfirmacion submitFunction={()=>navigate(`/reporte-bascula_basculaview/${moment().format("YYYY-MM-DD")}`)} setModalVisibility = {setModalExitoVisibility} tipo="exito" titulo="Registro correcto" mensaje="Los datos han sido enviados correctamente."></ModalConfirmacion>:null}
             {modalErrorVisibility ? <ModalError submitFunction={()=>setModalErrorVisibility(false)} setModalVisibility = {setModalErrorVisibility} tipo="error" titulo="¡Oh, no!" mensaje={`Ocurrió un error al enviar los datos. Intenta de nuevo, si el error persiste contacta al encargado de TI.`}></ModalError>:null}
         </>
     )
