@@ -46,7 +46,7 @@
     justify-content: flex-start;
     flex-direction: column;
     background-color: #FBE2D1;
-    width: 160px;
+    width: 10vw;
 }
 
 .imagenPatron {
@@ -64,7 +64,7 @@
     border-color: #E6E5E5;
     border-radius: 10px;
     border-width: 4px;
-    width: 100%;
+    width: 90vw;
 }
 
 .formularioContenedor1 {
@@ -226,7 +226,7 @@
     width: 92%;
     padding-right: 2%;
     padding-bottom: 20px;
-    margin-top: -6px;
+    margin-top: -1px;
 }
 
 .inputsTotal .input input {
