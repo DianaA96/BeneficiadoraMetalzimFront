@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import "../styles/formulario.css"
 import "../styles/button.css"
 import "../styles/colors.css"
+import { Animate } from "react-animate-mount";
 
 function Formulario(props) {
     
@@ -133,8 +134,8 @@ function Formulario(props) {
                 </div>
                 {props.formularioSegundoNivel[i].map((data2, j) => 
                 <>
-                {arrExpandido[i] == true?(
-                    
+                {/*{arrExpandido[i] == true?(*/}
+                <Animate show={arrExpandido[i]}>   
                 <div>
                     <div className="nivel2" id={`${tokenizeIDs(data2)} ${tokenizeIDs(data1)}`} onClick={handleSetExpandido}>
                     <button className={`formularioNivel2 ${data2 == "Total" ? "Total" : ""}`} id={`${tokenizeIDs(data2)} ${tokenizeIDs(data1)}`}>
@@ -151,7 +152,9 @@ function Formulario(props) {
                     </div>
                     
                 <>
-                {arrExpandido2[i][j] == true?(
+                {/*{arrExpandido2[i][j] == true?(*/}
+                <Animate show={arrExpandido2[i][j]}> 
+                <div>
                     <div className={"inputsFormulario " + arrExpandido[i].toString() + (data2 == "Total" ? " inputsTotal" : "")}>
                     <div className="sangriaInputs"></div>
                     {inputs.map((subdata, k) => 
@@ -176,36 +179,12 @@ function Formulario(props) {
                         </>
                     )}
                     </div>
-                    ):
-                    (
-                        <div className={"inputsFormulario false " + (data2 == "Total" ? " inputsTotal" : "")}>
-                        <div className="sangriaInputs"></div>
-                        {inputs.map((subdata, k) => 
-                            <>
-                            {subdata.map((subinput, l) =>
-                                <>
-                                {subinput.map((input, m) =>
-                                    k*100 + l*10  + m *1 < subinput.length ? (<div className='input'>
-                                    <label>
-                                        <p className={`elementoInput ${input[0] == "Aca" || input[0] == "Tritu" || input[0].includes("Conc") ? "alinearDer" : input[0] == "rreo" || input[0] == "radas" || input[0].includes("Ton")? "alinearIzq": ""}`}>{input[0]}</p>
-                                        <p className={`cantidadInput`}>{input[1]}</p>
-                                    </label>
-                                    {props.tipoFormulario == "MovimientoMineral" & (input[0].includes("final") || data2.includes("Total"))?  
-                                        <input className={'inputGris' + (props.loading == true ? " loadingInput" : "")} type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} onChange={props.handleInputChange} placeholder={0.000} onWheel={ event => event.currentTarget.blur() }></input>
-                                        :
-                                        <input className={'inputGris' + (props.loading == true ? " loadingInput" : "")} type="number" name={`${input[0]} ${input[1]} ${data1} ${data2}`} onChange={props.handleInputChange} placeholder={0.000} onWheel={ event => event.currentTarget.blur() }></input>
-                                    }
-                                    </div>)
-                                : null)} 
-                                </>
-                            )} 
-                            </>
-                        )}
-                        </div>
-                    )}
+                    </div>
+                    </Animate> 
                 </>
                 </div>
-            ):null}
+                </Animate> 
+            {/*):null}*/}
             </>
             )
             }
