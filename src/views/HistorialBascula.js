@@ -7,69 +7,37 @@ import GraficasLine from "../components/GraficasLine";
 import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 function HistorialBascula({ rol }) {
-  const reportes = [
-    {
-      id: "RE01",
-      fecha: "26/04/2023",
-      existenciaInicial: 412,
-      acarreo: 562,
-      trituradas: 343,
-      patios: 623,
-    },
-    {
-      id: "RE02",
-      fecha: "27/04/2023",
-      existenciaInicial: 412,
-      acarreo: 562,
-      trituradas: 343,
-      patios: 623,
-    },
-    {
-      id: "RE03",
-      fecha: "28/04/2023",
-      existenciaInicial: 412,
-      acarreo: 562,
-      trituradas: 343,
-      patios: 623,
-    },
-    {
-      id: "RE04",
-      fecha: "29/04/2023",
-      existenciaInicial: 412,
-      acarreo: 562,
-      trituradas: 343,
-      patios: 623,
-    },
-    {
-      id: "RE05",
-      fecha: "12/04/2023",
-      existenciaInicial: 412,
-      acarreo: 562,
-      trituradas: 343,
-      patios: 623,
-    },
-    {
-      id: "RE06",
-      fecha: "15/04/2023",
-      existenciaInicial: 412,
-      acarreo: 562,
-      trituradas: 343,
-      patios: 623,
-    },
-    {
-      id: "RE07",
-      fecha: "21/04/2023",
-      existenciaInicial: 412,
-      acarreo: 562,
-      trituradas: 343,
-      patios: 623,
-    },
-  ];
+  const [dataAcarreo, setDataAcarreo] = useState([]);
+  const [historial, setHistorial] = useState([]);
+  const [statusTable, setStatusTable] = useState("idle");
+
+  
+  useEffect(() => {
+    setStatus("loading");
+    axios
+      .get(`http://localhost:3050/gerente/movMineralTable`)
+      .then((result) => {
+        setHistorial(result.data);
+        setStatusTable("resolved");
+      })
+      // Aquí van las demás solicitudes
+      .catch((error) => {
+        setError(error);
+        setStatusTable("error");
+      });
+  }, []);
+
+  console.log(historial)
+
+
+
+
+
   const columns = React.useMemo(() => [
     { field: "id", headerName: "ID", flex: 1, maxWidth: 80 },
     { field: "fecha", headerName: "Fecha", flex: 1, maxWidth: 120 },
     {
-      field: "existenciaInicial",
+      field: "inicial",
       headerName: "Existencia Inicial",
       flex: 1,
       minWidth: 100,
@@ -112,6 +80,7 @@ function HistorialBascula({ rol }) {
         setStatus("error");
       });
   }, [check]);
+
   if (status === "error") {
     return (
       // NO RESPONDE EL BACK 404
@@ -119,7 +88,7 @@ function HistorialBascula({ rol }) {
     );
   }
 
-  if (status == "resolved") {
+  if (status == "resolved" && statusTable == "resolved") {
     console.log("dataGraficas", dataGraficas);
 
     // Variable para saber la cantidad de registros(meses) que tiene acarreo, trituradas
@@ -325,7 +294,7 @@ function HistorialBascula({ rol }) {
           />
           <ListaReportes
             columns={columns}
-            data={reportes}
+            data={historial}
             titulo="Todos los reportes"
           ></ListaReportes>
           <div
