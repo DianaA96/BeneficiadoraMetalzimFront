@@ -6,6 +6,9 @@ import Menu from "../components/Menu";
 import Pattern from "../assets/PatternsPages/pattern1.png"
 import axios from "axios";
 import moment from "moment/moment";
+import ModalConfirmacion from '../components/ModalDinamico';
+import ModalError from '../components/ModalDinamico';
+import { useNavigate } from "react-router-dom";
 
 const formularioPrimerNivel = ["Minesites", "Guadalupe", "Balcones"]
 const formularioSegundoNivel = [["Nivel 395", "Nivel 350" , "Gallo Verde", "Total"], ["C-21", "Dique" , "Cuerpo antimonio", "Total"], ["Balcones", "Total"]]
@@ -24,6 +27,7 @@ function parsing(number) {
 }
 
 function MovimientoMineral(props) {
+    let navigate = useNavigate();
 
     let usuario = props.idUsuario
     
@@ -603,7 +607,18 @@ function MovimientoMineral(props) {
         }
     }
 
+    const [ modalVisibility, setModalVisibility ] = useState(false)
+    const [ modalExitoVisibility, setModalExitoVisibility ] = useState(false)
+    const [ modalErrorVisibility, setModalErrorVisibility ] = useState(false)
+    const [ loaderVisibility, setLoaderVisibility ] = useState(false)
+
+    function showModal(){
+        setModalVisibility(true)
+        
+    }
+
     function handleSendForm() {
+        setLoaderVisibility(true)
         axios({
             method: 'post',
             url: `http://localhost:3050/operador/insertMovimientoMineral`,
@@ -622,14 +637,15 @@ function MovimientoMineral(props) {
                 }
             })
             .then((result)=> {
-                alert('¡Información enviada!');
+                setModalVisibility(false);
+                setModalExitoVisibility(true);
             })
             .catch(error => {
-                alert('Algo malo pasó:', error);
+                setModalErrorVisibility(true);
             })
         })
         .catch(error => {
-            alert('Algo malo pasó:', error);
+            setModalErrorVisibility(true);
         })
     }
 
@@ -670,7 +686,7 @@ function MovimientoMineral(props) {
                             inputBase={inputBase2}
                             cantidadDeElementosEnFila={8}
                             handleInputChange={handleInputChange}
-                            handleSendForm={handleSendForm}
+                            handleSendForm={showModal}
                             mostrarBotones={true}
                             loading={status == "error" || status == "loading"}
                             tipoFormulario={"MovimientoMineral"}/>
@@ -684,6 +700,9 @@ function MovimientoMineral(props) {
                 </div>
             </div>
             <Menu rol="laboratorista" activeTab="science"></Menu>
+            {modalVisibility ? <ModalConfirmacion submitFunction={handleSendForm} loaderVisibility={loaderVisibility} setModalVisibility = {setModalVisibility} tipo="confirmacion" titulo="Confirma los datos" mensaje={"¿Estás seguro que deseas continuar? Asegúrate de que todos los datos introducidos sean correctos."}></ModalConfirmacion>:null}
+            {modalExitoVisibility ? <ModalConfirmacion submitFunction={()=>navigate(`/login`)} setModalVisibility = {setModalExitoVisibility} tipo="exito" titulo="Registro correcto" mensaje="Los datos han sido enviados correctamente."></ModalConfirmacion>:null}
+            {modalErrorVisibility ? <ModalError submitFunction={()=>setModalErrorVisibility(false)} setModalVisibility = {setModalErrorVisibility} tipo="error" titulo="¡Oh, no!" mensaje={`Ocurrió un error al enviar los datos. Intenta de nuevo, si el error persiste contacta al encargado de TI.`}></ModalError>:null}
         </>
     )
 }
