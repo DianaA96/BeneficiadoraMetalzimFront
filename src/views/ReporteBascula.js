@@ -313,7 +313,10 @@ const ReporteBascula = ({ rol }) => {
                 </div>
                 {myEmbarque ? (
                   <div className="embarques">
-                    <GraficasColumna props={embarquesCol} />
+                    <GraficasColumna
+                    props={embarquesCol}
+                    long = {embarquesCol.length}
+                    />
                     <div
                       style={{
                         display: "flex",

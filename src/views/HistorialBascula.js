@@ -9,27 +9,7 @@ import axios from "axios";
 function HistorialBascula({ rol }) {
   const [dataAcarreo, setDataAcarreo] = useState([]);
   const [historial, setHistorial] = useState([]);
-  const [status, setStatus] = useState("idle");
-  const [error, setError] = useState(null);
-
-
-
-  var check = 0;
-
-  useEffect(() => {
-    setStatus("loading");
-    axios
-      .get(`http://localhost:3050/gerente/grapHistoricas`)
-      .then((result) => {
-        setDataAcarreo(result.data);
-        setStatus("resolved");
-      })
-      // Aquí van las demás solicitudes
-      .catch((error) => {
-        setError(error);
-        setStatus("error");
-      });
-  }, [check]);
+  const [statusTable, setStatusTable] = useState("idle");
 
   
   useEffect(() => {
@@ -38,12 +18,12 @@ function HistorialBascula({ rol }) {
       .get(`http://localhost:3050/gerente/movMineralTable`)
       .then((result) => {
         setHistorial(result.data);
-        setStatus("resolved");
+        setStatusTable("resolved");
       })
       // Aquí van las demás solicitudes
       .catch((error) => {
         setError(error);
-        setStatus("error");
+        setStatusTable("error");
       });
   }, []);
 
@@ -82,9 +62,24 @@ function HistorialBascula({ rol }) {
       ],
     },
   ]);
-
-
-
+  const [dataGraficas, setDataGraficas] = useState([]);
+  const [status, setStatus] = useState("idle");
+  const [error, setError] = useState(null);
+  var check = 0;
+  useEffect(() => {
+    setStatus("loading");
+    axios
+      .get(`http://localhost:3050/gerente/grapHistoricas`)
+      .then((result) => {
+        setDataGraficas(result.data);
+        setStatus("resolved");
+      })
+      // Aquí van las demás solicitudes
+      .catch((error) => {
+        setError(error);
+        setStatus("error");
+      });
+  }, [check]);
 
   if (status === "error") {
     return (
@@ -93,29 +88,200 @@ function HistorialBascula({ rol }) {
     );
   }
 
+  if (status == "resolved" && statusTable == "resolved") {
+    console.log("dataGraficas", dataGraficas);
 
-  if (status == "resolved") {
-   /* console.log("dataAcarreo", dataAcarreo);
-    console.log("dataAcarreo", dataAcarreo.acarreo[0].totalAcarreo);
+    // Variable para saber la cantidad de registros(meses) que tiene acarreo, trituradas
+    let myAcarreo = Object.keys(dataGraficas.acarreo);
+    let myTrituradas = Object.keys(dataGraficas.trituradas);
+    let myConcentrado = Object.keys(dataGraficas.concentrados);
 
+    // Variables para calcular la suma total por mes de Acarreo, Trituradas
     var totalAcarreo = 0;
     var totalTritur = 0;
-    var totalConc = 0;
-    for(var i = 0; i < dataAcarreo.acarreo.length; i++) {
-      totalAcarreo += dataAcarreo.acarreo[i].totalAcarreo
-      totalTritur += dataAcarreo.trituradas[i].totalTrituradas
-      totalConc += dataAcarreo.concentrados[i].totalConcentrados
+
+    // Arreglo para conocer la información de cada mes en el Objeto acarreo de la consulta
+    var mes = [];
+
+    // Arreglo para formatear la información de la consulta de Acarreo
+    var arrayAcarreo = [];
+    var arrayTrituradas = [];
+    var arrayConcentrado = [];
+
+    // For para iterar los registros que vienen en la consulta del objeto Acarreo
+    for (var i = 0; i < myAcarreo.length; i++) {
+      // Convierte a número el mes de los registros de la consulta
+      mes = Math.floor(myAcarreo[i]);
+      // Función que hace la suma de las cantidades de los registros por mes
+      // Regresa un número entero, correspondiente a la cantidad de acarreo total por cada mes
+      dataGraficas.acarreo[mes].forEach(function (a) {
+        totalAcarreo += a;
+      });
+      // Casos para agregar un nuevo arreglo en el fromato ["mes", cantidad] al arreglo final arrayAcarreo
+      // Los números de los casos corresponden a cada mes, del 1 al 12
+      switch (mes) {
+        case 1:
+          arrayAcarreo.push(["Enero", totalAcarreo]);
+          break;
+        case 2:
+          arrayAcarreo.push(["Febrero", totalAcarreo]);
+          break;
+        case 3:
+          arrayAcarreo.push(["Marzo", totalAcarreo]);
+          break;
+        case 4:
+          arrayAcarreo.push(["Abril", totalAcarreo]);
+          break;
+        case 5:
+          arrayAcarreo.push(["Mayo", totalAcarreo]);
+          break;
+        case 6:
+          arrayAcarreo.push(["Junio", totalAcarreo]);
+          break;
+        case 7:
+          arrayAcarreo.push(["Julio", totalAcarreo]);
+          break;
+        case 8:
+          arrayAcarreo.push(["Agosto", totalAcarreo]);
+          break;
+        case 9:
+          arrayAcarreo.push(["Septiembre", totalAcarreo]);
+          break;
+        case 10:
+          arrayAcarreo.push(["Octubre", totalAcarreo]);
+          break;
+        case 11:
+          arrayAcarreo.push(["Noviembre", totalAcarreo]);
+          break;
+        case 12:
+          arrayAcarreo.push(["Diciembre", totalAcarreo]);
+          break;
+        default:
+          console.log(`Lo siento, ${mes} no corresponde a ningún mes.`);
+      }
+      totalAcarreo = 0; // Limpiando la variable totalAcarreo para la siguiente iteración
     }
-    */
-    /*
-    console.log("totalAcarreo", totalAcarreo)
-    console.log("totalTritur", totalTritur)
-    console.log("totalConc", totalConc)
-    */
+    console.log("arrayAcarreo", arrayAcarreo);
+
+    for (var i = 0; i < myTrituradas.length; i++) {
+      // Convierte a número el mes de los registros de la consulta
+      mes = Math.floor(myTrituradas[i]);
+      // Función que hace la suma de las cantidades de los registros por mes
+      // Regresa un número entero, correspondiente a la cantidad de acarreo total por cada mes
+      dataGraficas.trituradas[mes].forEach(function (a) {
+        totalTritur += a;
+      });
+      // Casos para agregar un nuevo arreglo en el fromato ["mes", cantidad] al arreglo final arrayAcarreo
+      // Los números de los casos corresponden a cada mes, del 1 al 12
+      switch (mes) {
+        case 1:
+          arrayTrituradas.push(["Enero", totalTritur]);
+          break;
+        case 2:
+          arrayTrituradas.push(["Febrero", totalTritur]);
+          break;
+        case 3:
+          arrayTrituradas.push(["Marzo", totalTritur]);
+          break;
+        case 4:
+          arrayTrituradas.push(["Abril", totalTritur]);
+          break;
+        case 5:
+          arrayTrituradas.push(["Mayo", totalTritur]);
+          break;
+        case 6:
+          arrayTrituradas.push(["Junio", totalTritur]);
+          break;
+        case 7:
+          arrayTrituradas.push(["Julio", totalTritur]);
+          break;
+        case 8:
+          arrayTrituradas.push(["Agosto", totalTritur]);
+          break;
+        case 9:
+          arrayTrituradas.push(["Septiembre", totalTritur]);
+          break;
+        case 10:
+          arrayTrituradas.push(["Octubre", totalTritur]);
+          break;
+        case 11:
+          arrayTrituradas.push(["Noviembre", totalTritur]);
+          break;
+        case 12:
+          arrayTrituradas.push(["Diciembre", totalTritur]);
+          break;
+        default:
+          console.log(`Lo siento, ${mes} no corresponde a ningún mes.`);
+      }
+      totalTritur = 0; // Limpiando la variable totalTritur para la siguiente iteración
+    }
+    console.log("arrayTrituradas", arrayTrituradas);
+
+    for (var i = 0; i < myConcentrado.length; i++) {
+      // Convierte a número el mes de los registros de la consulta
+      mes = Math.floor(myConcentrado[i]);
+
+      // Arreglo que para agregar los valores uno por uno para formatear la información
+      var valorConcentrado = [];
+
+      // Casos para agregar el mes que viene en la consulta valorConcentrado
+      // Los números de los casos corresponden a cada mes, del 1 al 12
+      switch (mes) {
+        case 1:
+          valorConcentrado.push("Enero");
+          break;
+        case 2:
+          valorConcentrado.push("Febrero");
+          break;
+        case 3:
+          valorConcentrado.push("Marzo");
+          break;
+        case 4:
+          valorConcentrado.push("Abril");
+          break;
+        case 5:
+          valorConcentrado.push("Mayo");
+          break;
+        case 6:
+          valorConcentrado.push("Junio");
+          break;
+        case 7:
+          valorConcentrado.push("Julio");
+          break;
+        case 8:
+          valorConcentrado.push("Agosto");
+          break;
+        case 9:
+          valorConcentrado.push("Septiembre");
+          break;
+        case 10:
+          valorConcentrado.push("Octubre");
+          break;
+        case 11:
+          valorConcentrado.push("Noviembre");
+          break;
+        case 12:
+          valorConcentrado.push("Diciembre");
+          break;
+        default:
+          console.log(`Lo siento, ${mes} no corresponde a ningún mes.`);
+      }
+
+      // Variable que guarda los registros por mes que regresa la consulta. Es un arreglo
+      var arrConc = dataGraficas.concentrados[mes];
+      // For para iterar los datos de arrConc y poder agregar uno por uno al arreglo final arrayConcentrado
+      for (var x = 0; x < arrConc.length; x++) {
+        valorConcentrado.push(arrConc[x]);
+      }
+      arrayConcentrado.push(valorConcentrado);
+      arrConc = []; // Limpiando la variable totalTritur para la siguiente iteración
+    }
+    console.log("arrayConcentrado", arrayConcentrado);
+
     const options = [
-      { value: '2023', label: '2023' },
-      { value: '2024', label: '2024' },
-      { value: '2025', label: '2025' },
+      { value: "2023", label: "2023" },
+      { value: "2024", label: "2024" },
+      { value: "2025", label: "2025" },
     ];
 
     return (
@@ -157,14 +323,21 @@ function HistorialBascula({ rol }) {
             >
               <GraficasArea
                 titulo={"Acarreo"}
-                class="contGraficasPie"
+                data={arrayAcarreo}
+                long={arrayAcarreo.length}
               ></GraficasArea>
               <GraficasArea
                 titulo={"Trituradas"}
-                class="contGraficasPie"
+                data={arrayTrituradas}
+                long={arrayTrituradas.length}
               ></GraficasArea>
             </div>
-            <GraficasLine titulo={"Concentrados"}></GraficasLine>
+            <GraficasLine
+              titulo={"Concentrados"}
+              descripcion={"en toneladas"}
+              data={arrayConcentrado}
+              long={arrayConcentrado.length}
+            ></GraficasLine>
           </div>
         </body>
         <footer>
