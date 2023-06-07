@@ -6,14 +6,16 @@ import Menu from "../components/Menu";
 import { Link, useParams } from "react-router-dom";
 import axios from 'axios'
 import Tooltip from "../components/Tooltip";
+import moment from "moment/moment";
 
 const ReporteLaboratorio = () => {
     const [analisisData, setAnalisisData] = useState(null)
     const [tooltipVisibility, setTooltipVisibility] = useState(false)
-
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const [status, setStatus] = useState({})
     const [error, setError] = useState({})
     let { mina, fecha } = useParams();
+    const fechaDate = moment(fecha)
     useEffect(()=>{
         setStatus('loading')
         
@@ -91,8 +93,9 @@ const ReporteLaboratorio = () => {
             <body style={{ backgroundColor: "#F8F8F8" }}>
                 <HeaderDiseno
                 titulo={"Reporte de laboratorio"}
-                subtitulo={analisisData ? `${analisisData.head.mina} | ${analisisData.head.planta}` : "Cargando"}
+                subtitulo={analisisData ? `Mina ${analisisData.head.mina} | ${analisisData.head.planta}` : "Cargando"}
                 isDate={true}
+                customDate={fechaDate.format("LL", 'es')}
                 />
                 <div className="header-reporte">
                     <Link to='/historial-analisis'>

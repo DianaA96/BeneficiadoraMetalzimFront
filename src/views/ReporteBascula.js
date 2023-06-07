@@ -5,30 +5,28 @@ import HeaderDiseno from "../components/HeaderDiseno";
 import GraficasPie from "../components/GraficasPie";
 import GraficasColumna from "../components/GraficasColumna";
 import Menu from "../components/Menu";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import "../styles/button.css";
 import axios from "axios";
+import NoDataFound from "./NoDataFound";
 
 const ReporteBascula = ({ rol }) => {
+  // Arreglo para encabezado de tabla de Movimiento de Mineral
   let encabezadoBascula = [
     "Estancia inicial",
     "Acarreo",
     "Trituradas",
-    "Estancia patios"
+    "Estancia patios",
   ];
-
-  let encabezadoEmbarques = [
-    "Pb",
-    "Cu",
-    "Zn",
-    "Au/Ag"
-  ];
+  // Arreglo para encabezado de tabla de Embarque de Concentrados
+  let encabezadoEmbarques = ["Pb", "Cu", "Zn", "Au/Ag"];
 
   const [tableData, setTableData] = useState([]);
   const [tableDataConc, setTableDataConc] = useState([]);
 
+  const [statusMineral, setStatusMineral] = useState("idle");
+  const [statusEmbarque, setStatusEmbarque] = useState("idle");
   const [status, setStatus] = useState("idle");
-  const [status2, setStatus2] = useState("idle");
   const [error, setError] = useState(null);
 
   var check = 0;
@@ -37,166 +35,225 @@ const ReporteBascula = ({ rol }) => {
     setStatus("loading");
     // Primera solicitud GET
     axios
-      .get(`http://localhost:3050/gerente/movMineral?fecha=2023-05-04`)
+      .get(`http://localhost:3050/gerente/movMineral?fecha=2023-04-26`)
       .then((result) => {
         setTableData(result.data);
-        setStatus("resolved");
+        setStatusMineral("resolved");
       })
       .catch((error) => {
         setError(error);
-        setStatus("error");
+        setStatusMineral("error");
       });
     // Segunda solicitud GET
     axios
-      .get(`http://localhost:3050/gerente/embarque?fecha=2023-05-16`)
+      .get(`http://localhost:3050/gerente/embarque?fecha=2023-04-26`)
       .then((result) => {
         setTableDataConc(result.data);
-        setStatus2("resolved");
+        setStatusEmbarque("resolved");
       })
       .catch((error) => {
         setError(error);
-        setStatus2("error");
+        setStatusEmbarque("error");
       });
-  
   }, [check]);
+  console.log("tableDataConc", tableDataConc);
 
-  if (status === "error") {
+  if (statusMineral === "error" || statusEmbarque === "error") {
     return (
-      <div>Error</div> //Cambiar por alerta de error
+      // NO RESPONDE EL BACK 404
+      <Navigate to="/Error404" replace={true} />
     );
   }
 
-  if (status == "resolved") {
-    //console.log("emabrques", tableDataConc)
-    //console.log("data", tableData);
+  // Se ejecuta cuando statusMineral y statusEmbarque es "resolved"
+  // NOTA: La respuesta del Back cuando no hay registros regresa algo vacio
+  if (statusMineral === "resolved" && statusEmbarque === "resolved") {
+    // Variables para manejar el Conditional Rendering
+    var myMineral = false;
+    var myEmbarque = false;
 
-    // Calculando totales
+    // MOVIMIENTO MINERAL DATA
+    // Variables para calcular totales
     var totalAcarreo = 0;
     var totalTrituradas = 0;
     var totalInicial = 0;
     var totalPatios = 0;
+    // Arreglos para formatear la información de las GRÁFICAS PAI
+    var pieInicial = [];
+    var pieAcarreo = [];
+    var pieTrituradas = [];
+    var piePatios = [];
+    // Objeto para construir la información de la consulta
+    var objetoBascula = {
+      nombre: "",
+      col1: 0,
+      col2: 0,
+      col3: 0,
+      col4: 0,
+    };
+    // Mi nuevo arreglo para formatear la información de la consulta
+    var arrayBascula = [];
 
+
+    // EMBARQUES DATA
+    // Variables para calcular totales
     var totalPb = 0;
     var totalCu = 0;
     var totalZn = 0;
     var totalAu = 0;
 
-    // Data de Movimiento en minas
-    for (var i = 0; i < tableData.length; i++) {
-      totalAcarreo += tableData[i].acarreo;
-      totalTrituradas += tableData[i].trituradas;
-      totalInicial += tableData[i].existenciaInicial;
-      totalPatios += tableData[i].existenciaPatios;
-    }
-    // Data de Embarques
-    for (var i = 0; i < tableData.length; i++) {
-      totalPb += tableData[i].acarreo;
-      totalCu += tableData[i].trituradas;
-      totalZn += tableData[i].existenciaInicial;
-      totalAu += tableData[i].existenciaPatios;
-    }
+   // Objeto para construir la información de la consulta
+    var objetoEmbarque = {
+      nombre: "",
+      col1: 0,
+      col2: 0,
+      col3: 0,
+      col4: 0,
+    };
+    // Mi nuevo arreglo para formatear la información de la consulta
+    var arrayEmbarques = [];
 
-    // Mi nuevo arreglo de objetos para formatear mi información de la consulta
-    var nuevaData = [];
-    // MOVIMIENTO DE MINERAL DATA
-    for (var i = 0; i < tableData.length; i++) {
-      nuevaData[i] = { // Agregando filas originales de la consulta
-        nombre: tableData[i].nombre,
-        col1: tableData[i].existenciaInicial.toFixed(2),
-        col2: tableData[i].acarreo.toFixed(2),
-        col3: tableData[i].trituradas.toFixed(2),
-        col4: tableData[i].existenciaPatios.toFixed(2),
-      };
-      nuevaData[3] = { // Agregrando fila de totales
+    // if para verificar que haya registros en la respuesta del Back - Movimiento de Mineral
+    if (tableData.length > 0) {
+      // Variable true indica que sí hay registros en la respuesta del back
+      myMineral = true;
+
+      // MOVIMIENTO DE MINERAL DATA
+      // For para calcular totales y añadir valores al objeto objetoEmbarque
+      for (var i = 0; i < tableData.length; i++) {
+        objetoBascula.nombre = tableData[i].mina;
+        if(tableData[i].acarreo) { // Si existe el registro
+          totalAcarreo += tableData[i].acarreo;
+          objetoBascula.col1 = tableData[i].acarreo.toFixed(2);
+        } else { // Si no existe el registro
+          totalAcarreo += 0;
+          objetoBascula.col1 = 0;
+        }
+        if(tableData[i].trituradas) {
+          totalTrituradas += tableData[i].trituradas;
+          objetoBascula.col2 = tableData[i].trituradas.toFixed(2);
+        } else {
+          totalTrituradas += 0;
+          objetoBascula.col2 = 0;
+        }
+        if(tableData[i].existenciaInicial) {
+          totalInicial += tableData[i].existenciaInicial;
+          objetoBascula.col3 = tableData[i].existenciaInicial.toFixed(2);
+        } else {
+          totalInicial += 0;
+          objetoBascula.col3 = 0;
+        }
+        if(tableData[i].existenciaPatios) {
+          totalPatios += tableData[i].existenciaPatios;
+          objetoBascula.col4 = tableData[i].existenciaPatios.toFixed(2);
+        } else {
+          totalPatios += 0;
+          objetoBascula.col4 = 0;
+        }
+        arrayBascula.push(objetoBascula); // Añadiendo al arreglo el objetoBascula completo
+        objetoBascula = { // limpiando el objetoBascula
+          nombre: "",
+          col1: 0,
+          col2: 0,
+          col3: 0,
+          col4: 0,
+        };
+      }
+      // Añadiendo al objetoBascula los totales calculados
+      objetoBascula = {
         nombre: "total",
         col1: totalInicial.toFixed(2),
         col2: totalAcarreo.toFixed(2),
         col3: totalTrituradas.toFixed(2),
         col4: totalPatios.toFixed(2),
       };
-    }
-    console.log("nuevaData", nuevaData);
-
-    // EMBARQUES DATA
-    var nuevaEmbarques = [];
-
-    nuevaEmbarques[0] = { // Agregando filas originales de la consulta
-      nombre: "Balcones",
-      col1: tableDataConc.Balcones.Pb.toFixed(2),
-      col2: tableDataConc.Balcones.Cu.toFixed(2),
-      col3: tableDataConc.Balcones.Zn.toFixed(2),
-      col4: tableDataConc.Balcones['Au/Ag'].toFixed(2),
-    };
-    nuevaEmbarques[1] = { // Agregando filas originales de la consulta
-      nombre: "Guadalupe",
-      col1: tableDataConc.Guadalupe.Pb.toFixed(2),
-      col2: tableDataConc.Guadalupe.Cu.toFixed(2),
-      col3: tableDataConc.Guadalupe.Zn.toFixed(2),
-      col4: tableDataConc.Guadalupe['Au/Ag'].toFixed(2),
-    };
-    nuevaEmbarques[2] = { // Agregando filas originales de la consulta
-      nombre: "Jales",
-      col1: tableDataConc.Jales.Pb.toFixed(2),
-      col2: tableDataConc.Jales.Cu.toFixed(2),
-      col3: tableDataConc.Jales.Zn.toFixed(2),
-      col4: tableDataConc.Jales['Au/Ag'].toFixed(2),
-    };
-    nuevaEmbarques[3] = { // Agregando filas originales de la consulta
-      nombre: "Minesites",
-      col1: tableDataConc.Minesites.Pb.toFixed(2),
-      col2: tableDataConc.Minesites.Cu.toFixed(2),
-      col3: tableDataConc.Minesites.Zn.toFixed(2),
-      col4: tableDataConc.Minesites['Au/Ag'].toFixed(2),
-    };
-    nuevaEmbarques[4] = { // Agregrando fila de totales
-      nombre: "total",
-      col1: totalPb.toFixed(2),
-      col2: totalCu.toFixed(2),
-      col3: totalZn.toFixed(2),
-      col4: totalAu.toFixed(2),
-    };    
-
-    // Arreglos para formatear la información de las GRÁFICAS PAI
-    var pieInicial = [];
-    var pieAcarreo = [];
-    var pieTrituradas = [];
-    var piePatios = [];
-    for (var i = 0; i < nuevaData.length - 1; i++) {
-      pieInicial[i] = [
-        nuevaData[i].nombre,
-        Math.floor(nuevaData[i].col1),
-      ];
-      pieAcarreo[i] = [nuevaData[i].nombre, Math.floor(nuevaData[i].col2)];
-      pieTrituradas[i] = [
-        nuevaData[i].nombre,
-        Math.floor(nuevaData[i].col3),
-      ];
-      piePatios[i] = [
-        nuevaData[i].nombre,
-        Math.floor(nuevaData[i].col4),
-      ];
-    }
-
-    // Arreglo para formatear la información de las GRÁFICA DE BARRAS
-    let embarquesCol = [
-      ["Pb", totalPb],
-      ["Cu", totalCu],
-      ["Zn", totalZn],
-      ["Au", totalAu],
-    ];
+      // Añadiendo al arreglo el objetoBascula con los registros completos
+      arrayBascula.push(objetoBascula);
+      console.log("arrayBascula", arrayBascula);
       
-    //console.log("embarquesCol", embarquesCol);
-    
-    /*
-    console.log("pieInicial", pieInicial);
-    console.log("pieInicial", pieAcarreo);
-    console.log("pieInicial", pieTrituradas);
-    console.log("pieInicial", piePatios);
-     */
+      // For para formatear la data para las GRÁFICAS PAI
+      for (var i = 0; i < tableData.length; i++) {
+        pieInicial.push([arrayBascula[i].nombre, totalInicial.toFixed(2)]);
+        pieAcarreo.push([arrayBascula[i].nombre, totalAcarreo.toFixed(2)]);
+        pieTrituradas.push([arrayBascula[i].nombre, totalTrituradas.toFixed(2)]);
+        piePatios.push([arrayBascula[i].nombre, totalPatios.toFixed(2)]);
+      }
+    }
+   
+    // if para verificar que haya registros en la respuesta del Back -  Concentrado de Embarques
+    if (tableDataConc.length > 0) {
+      // Variable true indica que sí hay registros en la respuesta del back
+      myEmbarque = true;
+
+      // MOVIMIENTO DE EMBARQUE DE CONCENTRADOS
+      // For para calcular totales y añadir valores al objeto objetoEmbarque
+      for (var i = 0; i < tableDataConc.length; i++) {
+        objetoEmbarque.nombre = tableDataConc[i].mina;
+        if(tableDataConc[i].Pb) { // Si existe el registro
+          totalPb += tableDataConc[i].Pb;
+          objetoEmbarque.col1 = tableDataConc[i].Pb.toFixed(2);
+        } else { // Si no existe el registro
+          totalPb += 0;
+          objetoEmbarque.col1 = 0;
+        }
+        if(tableDataConc[i].Cu) {
+          totalCu += tableDataConc[i].Cu;
+          objetoEmbarque.col2 = tableDataConc[i].Cu.toFixed(2);
+        } else {
+          totalCu += 0;
+          objetoEmbarque.col2 = 0;
+        }
+        if(tableDataConc[i].Zn) {
+          totalZn += tableDataConc[i].Zn;
+          objetoEmbarque.col3 = tableDataConc[i].Zn.toFixed(2);
+        } else {
+          totalZn += 0;
+          objetoEmbarque.col3 = 0;
+        }
+        if(tableDataConc[i]["Au/Ag"]) {
+          totalAu += tableDataConc[i]["Au/Ag"];
+          objetoEmbarque.col4 = tableDataConc[i]["Au/Ag"].toFixed(2);
+        } else {
+          totalAu += 0;
+          objetoEmbarque.col4 = 0;
+        }
+        arrayEmbarques.push(objetoEmbarque); // Añadiendo al arreglo el objetoEmbarque completo
+        objetoEmbarque = { // limpiando el objetoEmbarque
+          nombre: "",
+          col1: 0,
+          col2: 0,
+          col3: 0,
+          col4: 0,
+        };
+      }
+      // Añadiendo al objetoEmbarque los totales calculados
+      objetoEmbarque = {
+        nombre: "total",
+        col1: totalPb.toFixed(2),
+        col2: totalCu.toFixed(2),
+        col3: totalZn.toFixed(2),
+        col4: totalAu.toFixed(2),
+      };
+      // Añadiendo al arreglo el objetoEmbarque con los registros completos
+      arrayEmbarques.push(objetoEmbarque);
+      console.log("arrayEmbarques", arrayEmbarques);
+      
+      // Arreglo para formatear la información de las GRÁFICA DE COLUMNAS
+      var embarquesCol = [
+        ["Pb", totalPb],
+        ["Cu", totalCu],
+        ["Zn", totalZn],
+        ["Au", totalAu],
+      ];
+    }
+
+    // Estado de la respuesta de las consutlas (true: sí regresó registros. False: no regresó registros)
+    console.log("myMineral", myMineral);
+    console.log("myEmbarque", myEmbarque);
 
     return (
       <>
-        <body className="mybody">
+        <header>
           <HeaderDiseno
             titulo={"Reporte movimiento de mineral báscula"}
             subtitulo={
@@ -204,6 +261,9 @@ const ReporteBascula = ({ rol }) => {
             }
             isDate={true}
           />
+        </header>
+
+        <body className="mybody">
           <div
             style={{
               display: "flex",
@@ -212,44 +272,64 @@ const ReporteBascula = ({ rol }) => {
             }}
           >
             <div className="mycard">
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <Tabla data={nuevaData} encabezado={encabezadoBascula} />
-              </div>
+              {myMineral ? (
+                <div id="movimientoMineralArea">
+                  <div style={{ display: "flex", justifyContent: "center" }}>
+                    <Tabla data={arrayEmbarques} encabezado={encabezadoBascula} />
+                  </div>
 
-              <div className="contentPie">
-                <div>
-                  <GraficasPie
-                    tituloG={"Existencia inicial"}
-                    data={pieInicial}
-                  />
+                  <div className="contentPie">
+                    <div>
+                      <GraficasPie
+                        tituloG={"Existencia inicial"}
+                        data={pieInicial}
+                      />
+                    </div>
+                    <div>
+                      <GraficasPie tituloG={"Acarreo"} data={pieAcarreo} />
+                    </div>
+                    <div>
+                      <GraficasPie
+                        tituloG={"Trituradas"}
+                        data={pieTrituradas}
+                      />
+                    </div>
+                    <div>
+                      <GraficasPie
+                        tituloG={"Existencia patios"}
+                        data={piePatios}
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <GraficasPie tituloG={"Acarreo"} data={pieAcarreo} />
-                </div>
-                <div>
-                  <GraficasPie tituloG={"Trituradas"} data={pieTrituradas} />
-                </div>
-                <div>
-                  <GraficasPie tituloG={"Existencia patios"} data={piePatios} />
-                </div>
-              </div>
+              ) : (
+                <NoDataFound/>
+              )}
 
-              <div className="division">
-                <p className="myP">Embarque de concentrados</p>
-                <hr className="myhr" />
-              </div>
-
-              <div className="embarques">
-                <GraficasColumna props={embarquesCol}/>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    height: "22rem",
-                  }}
-                >
-                  <Tabla data={nuevaEmbarques} encabezado={encabezadoEmbarques} />
+              <div id="embarquesArea">
+                <div className="division">
+                  <p className="myP">Embarque de concentrados</p>
+                  <hr className="myhr" />
                 </div>
+                {myEmbarque ? (
+                  <div className="embarques">
+                    <GraficasColumna props={embarquesCol} />
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        height: "22rem",
+                      }}
+                    >
+                      <Tabla
+                        data={arrayEmbarques}
+                        encabezado={encabezadoEmbarques}
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <NoDataFound/>
+                )}
               </div>
             </div>
           </div>
@@ -266,19 +346,21 @@ const ReporteBascula = ({ rol }) => {
             <button
               className="guardarProgreso"
               style={{ width: "15rem", backgroundColor: "#817C7C" }}
+              onClick={() => window.print() }
             >
               Imprimir
               <span className="separatorButton" />
               <span class="material-symbols-outlined">sync_saved_locally</span>
             </button>
 
-            <Link to="/historial-bascula">
+            <Link to="/historial-bascula_basculaview">
               <button className="btn-lista" style={{ width: "12rem" }}>
                 Ir al historial
               </button>
             </Link>
           </div>
         </body>
+
         <footer>
           {
             /**Menu Admin */

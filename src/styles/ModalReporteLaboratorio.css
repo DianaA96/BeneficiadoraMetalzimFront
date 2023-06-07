@@ -168,3 +168,10 @@
     height: 0.15rem;
     border-radius: 10rem;
   }
+
+  .modal-mensaje-carga{
+    font-family: "Inter";
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: var(--p900);
+  }
