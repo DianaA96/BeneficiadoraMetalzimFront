@@ -9,7 +9,7 @@ import Paid from "../assets/IconsLandingPages/paid.png"
 import ScaleView from "../assets/IconsLandingPages/scale_view.png"
 import Scale from "../assets/IconsLandingPages/scale.png"
 import ScaleEdit from "../assets/IconsLandingPages/ScaleEdit.png"
-import LogoMini from "../assets/IconsLandingPages/LogoMini.png"
+import LogoMini from "../assets/Logo/logo_blur.png"
 import {Link, useNavigate} from "react-router-dom"
 import { useAuth } from '../auth-context'
 
@@ -38,7 +38,7 @@ function LandingPage(props) {
         ["Visualizar reporte gerencial", "F4A470", PaidAwesome, 2, "/historial-gerencia_managerview"],
         ["Visualizar reporte de báscula", "F7B990", ScaleView, 2, "/historial-bascula_managerview"]
     ], [
-        ["Registro de movimiento de mineral", "F4A470", ScaleEdit, 2],
+        ["Registro de movimiento de mineral", "F4A470", ScaleEdit, 2, "/reporte-movimiento-mineral"],
         ["Consulta historial de movimiento de báscula", "F7B990", History, 2, "/historial-bascula_basculaview"]
     ]]
 

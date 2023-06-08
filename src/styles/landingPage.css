@@ -24,8 +24,9 @@
 
 .miniLogo {
   position: fixed;
-  left: 30px;
-  top: 10px;
+  left: 50px;
+  top: 27px;
+  width: 5.5rem;
 }
 
 .containerLandingPage {
