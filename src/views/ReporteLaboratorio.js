@@ -114,7 +114,7 @@ const ReporteLaboratorio = () => {
                 <footer style={{height:'10rem'}}></footer>
             </body>
             
-            <Tooltip tooltipVisibility={tooltipVisibility}></Tooltip>
+            <Tooltip tooltipVisibility={tooltipVisibility} mensaje="Valores copiados al portapapeles"></Tooltip>
             <Menu rol={"laboratorista"} landing="/laboratorio" activeTab='history'/>
         </>
     );
