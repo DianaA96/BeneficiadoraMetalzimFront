@@ -10,18 +10,22 @@ import "../styles/button.css";
 import axios from "axios";
 import NoDataFound from "./NoDataFound";
 import moment from "moment/moment";
+import {PDFViewer} from '@react-pdf/renderer';
+import ReporteMovimientoMineralBascula from '../components/reports/ReporteMovimientoMineralBascula';
 
 const ReporteBascula = ({ rol }) => {
 
+  const width = window.innerWidth; 
+  const height = window.innerHeight; 
   let { fecha } = useParams();
   const fechaDate = moment(fecha)
 
   // Arreglo para encabezado de tabla de Movimiento de Mineral
   let encabezadoBascula = [
-    "Estancia inicial",
+    "Existencia inicial",
     "Acarreo",
     "Trituradas",
-    "Estancia patios",
+    "Existencia patios",
   ];
   // Arreglo para encabezado de tabla de Embarque de Concentrados
   let encabezadoEmbarques = ["Pb", "Cu", "Zn", "Au/Ag"];
@@ -33,6 +37,7 @@ const ReporteBascula = ({ rol }) => {
   const [statusEmbarque, setStatusEmbarque] = useState("idle");
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
+  const [ printView, setPrintView ] = useState(false);
 
   var check = 0;
 
@@ -45,10 +50,6 @@ const ReporteBascula = ({ rol }) => {
         setTableData(result.data);
         setStatusMineral("resolved");
       })
-      .catch((error) => {
-        setError(error);
-        setStatusMineral("error");
-      });
     // Segunda solicitud GET
     axios
       .get(`http://localhost:3050/gerente/embarque?fecha=${fecha}`)
@@ -61,6 +62,7 @@ const ReporteBascula = ({ rol }) => {
         setStatusEmbarque("error");
       });
   }, [check]);
+  console.log("tableData", tableData);
   console.log("tableDataConc", tableDataConc);
 
   if (statusMineral === "error" || statusEmbarque === "error") {
@@ -91,10 +93,10 @@ const ReporteBascula = ({ rol }) => {
     // Objeto para construir la información de la consulta
     var objetoBascula = {
       nombre: "",
-      col1: 0,
-      col2: 0,
-      col3: 0,
-      col4: 0,
+      col1: 0, // Existencia inicial
+      col2: 0, // Acarreo
+      col3: 0, // Trituradas
+      col4: 0, // Existencia e patios
     };
     // Mi nuevo arreglo para formatear la información de la consulta
     var arrayBascula = [];
@@ -124,37 +126,41 @@ const ReporteBascula = ({ rol }) => {
 
       // MOVIMIENTO DE MINERAL DATA
       // For para calcular totales y añadir valores al objeto objetoEmbarque
+      
       for (var i = 0; i < tableData.length; i++) {
+        console.log("tableData[i]", tableData[i]);
         objetoBascula.nombre = tableData[i].nombre;
+        if(tableData[i].existenciaInicial) {
+          totalInicial += tableData[i].existenciaInicial;
+          objetoBascula.col1 = tableData[i].existenciaInicial;
+        } else {
+          totalInicial += 0;
+          objetoBascula.col1 = 0;
+        }
         if(tableData[i].acarreo) { // Si existe el registro
           totalAcarreo += tableData[i].acarreo;
-          objetoBascula.col1 = tableData[i].acarreo.toFixed(2);
+          objetoBascula.col2 = tableData[i].acarreo;
         } else { // Si no existe el registro
           totalAcarreo += 0;
-          objetoBascula.col1 = 0;
+          objetoBascula.col2 = 0;
         }
         if(tableData[i].trituradas) {
           totalTrituradas += tableData[i].trituradas;
-          objetoBascula.col2 = tableData[i].trituradas.toFixed(2);
+          objetoBascula.col3 = tableData[i].trituradas;
         } else {
           totalTrituradas += 0;
-          objetoBascula.col2 = 0;
-        }
-        if(tableData[i].existenciaInicial) {
-          totalInicial += tableData[i].existenciaInicial;
-          objetoBascula.col3 = tableData[i].existenciaInicial.toFixed(2);
-        } else {
-          totalInicial += 0;
           objetoBascula.col3 = 0;
         }
         if(tableData[i].existenciaPatios) {
           totalPatios += tableData[i].existenciaPatios;
-          objetoBascula.col4 = tableData[i].existenciaPatios.toFixed(2);
+          objetoBascula.col4 = tableData[i].existenciaPatios;
         } else {
           totalPatios += 0;
           objetoBascula.col4 = 0;
         }
+        console.log("objetoBascula", objetoBascula);
         arrayBascula.push(objetoBascula); // Añadiendo al arreglo el objetoBascula completo
+        console.log("arrayBascula", arrayBascula);
         objetoBascula = { // limpiando el objetoBascula
           nombre: "",
           col1: 0,
@@ -163,17 +169,18 @@ const ReporteBascula = ({ rol }) => {
           col4: 0,
         };
       }
+      
       // Añadiendo al objetoBascula los totales calculados
       objetoBascula = {
         nombre: "total",
-        col1: totalInicial.toFixed(2),
-        col2: totalAcarreo.toFixed(2),
-        col3: totalTrituradas.toFixed(2),
-        col4: totalPatios.toFixed(2),
+        col1: totalInicial,
+        col2: totalAcarreo,
+        col3: totalTrituradas,
+        col4: totalPatios,
       };
       // Añadiendo al arreglo el objetoBascula con los registros completos
       arrayBascula.push(objetoBascula);
-      console.log("arrayBascula", arrayBascula);
+      //console.log("arrayBascula", arrayBascula);
       
       // For para formatear la data para las GRÁFICAS PAI
       for (var i = 0; i < tableData.length; i++) {
@@ -195,28 +202,28 @@ const ReporteBascula = ({ rol }) => {
         objetoEmbarque.nombre = tableDataConc[i].mina;
         if(tableDataConc[i].Pb) { // Si existe el registro
           totalPb += tableDataConc[i].Pb;
-          objetoEmbarque.col1 = tableDataConc[i].Pb.toFixed(2);
+          objetoEmbarque.col1 = tableDataConc[i].Pb;
         } else { // Si no existe el registro
           totalPb += 0;
           objetoEmbarque.col1 = 0;
         }
         if(tableDataConc[i].Cu) {
           totalCu += tableDataConc[i].Cu;
-          objetoEmbarque.col2 = tableDataConc[i].Cu.toFixed(2);
+          objetoEmbarque.col2 = tableDataConc[i].Cu;
         } else {
           totalCu += 0;
           objetoEmbarque.col2 = 0;
         }
         if(tableDataConc[i].Zn) {
           totalZn += tableDataConc[i].Zn;
-          objetoEmbarque.col3 = tableDataConc[i].Zn.toFixed(2);
+          objetoEmbarque.col3 = tableDataConc[i].Zn;
         } else {
           totalZn += 0;
           objetoEmbarque.col3 = 0;
         }
         if(tableDataConc[i]["Au/Ag"]) {
           totalAu += tableDataConc[i]["Au/Ag"];
-          objetoEmbarque.col4 = tableDataConc[i]["Au/Ag"].toFixed(2);
+          objetoEmbarque.col4 = tableDataConc[i]["Au/Ag"];
         } else {
           totalAu += 0;
           objetoEmbarque.col4 = 0;
@@ -233,10 +240,10 @@ const ReporteBascula = ({ rol }) => {
       // Añadiendo al objetoEmbarque los totales calculados
       objetoEmbarque = {
         nombre: "total",
-        col1: totalPb.toFixed(2),
-        col2: totalCu.toFixed(2),
-        col3: totalZn.toFixed(2),
-        col4: totalAu.toFixed(2),
+        col1: totalPb,
+        col2: totalCu,
+        col3: totalZn,
+        col4: totalAu,
       };
       // Añadiendo al arreglo el objetoEmbarque con los registros completos
       arrayEmbarques.push(objetoEmbarque);
@@ -257,13 +264,18 @@ const ReporteBascula = ({ rol }) => {
 
     return (
       <>
-        <header>
+        {statusMineral == "resolved" && statusEmbarque == "resolved" && printView == true ? <PDFViewer width={width} height={height} className="app" >
+            <ReporteMovimientoMineralBascula tableData={arrayBascula} tableDataConc={arrayEmbarques}/>
+        </PDFViewer>:
+        <>
+          <header>
           <HeaderDiseno
             titulo={"Reporte movimiento de mineral báscula"}
             subtitulo={
               "Consulta el movimiento del área de recepción registrado diariamente por el operario de báscula."
             }
             isDate={true}
+            customDate={fechaDate.format("LL", 'es')}
           />
         </header>
 
@@ -353,7 +365,7 @@ const ReporteBascula = ({ rol }) => {
             <button
               className="guardarProgreso"
               style={{ width: "15rem", backgroundColor: "#817C7C" }}
-              onClick={() => window.print() }
+              onClick={() => setPrintView(true) }
             >
               Imprimir
               <span className="separatorButton" />
@@ -367,7 +379,8 @@ const ReporteBascula = ({ rol }) => {
             </Link>
           </div>
         </body>
-
+        </>
+        }
         <footer>
           {
             /**Menu Admin */

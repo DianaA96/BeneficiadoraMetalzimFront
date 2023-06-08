@@ -19,24 +19,23 @@ function HistorialAnalisis() {
     axios
       .get(`http://localhost:3050/lab/labList?filter=1&order=ASC`)
       .then((result) => {
-        setStatus("resolved");
         setAnalisisData(result.data);
+        axios.get(`http://localhost:3050/gerente/grapHistoricas`)
+        .then((result) => {
+          setDataGraficas(result.data);
+          setStatus("resolved");
+        })
+        .catch((error) => {
+          setError(error);
+          setStatus("error");
+        });
       })
       .catch((error) => {
         alert(error);
         setError(error);
         setStatus("error");
       });
-    axios
-      .get(`http://localhost:3050/gerente/grapHistoricas`)
-      .then((result) => {
-        setDataGraficas(result.data);
-        setStatus("resolved");
-      })
-      .catch((error) => {
-        setError(error);
-        setStatus("error");
-      });
+    
   }, []);
 
   const reportes = [
@@ -82,6 +81,12 @@ function HistorialAnalisis() {
       // NO RESPONDE EL BACK 404
       <Navigate to="/Error404" replace={true} />
     );
+  }
+
+  if (status === "loading"){
+    return(
+      <p>Loading...</p>
+    )
   }
 
   if (status == "resolved") {
