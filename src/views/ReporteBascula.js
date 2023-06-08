@@ -5,12 +5,17 @@ import HeaderDiseno from "../components/HeaderDiseno";
 import GraficasPie from "../components/GraficasPie";
 import GraficasColumna from "../components/GraficasColumna";
 import Menu from "../components/Menu";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import "../styles/button.css";
 import axios from "axios";
 import NoDataFound from "./NoDataFound";
+import moment from "moment/moment";
 
 const ReporteBascula = ({ rol }) => {
+
+  let { fecha } = useParams();
+  const fechaDate = moment(fecha)
+
   // Arreglo para encabezado de tabla de Movimiento de Mineral
   let encabezadoBascula = [
     "Estancia inicial",
@@ -35,7 +40,7 @@ const ReporteBascula = ({ rol }) => {
     setStatus("loading");
     // Primera solicitud GET
     axios
-      .get(`http://localhost:3050/gerente/movMineral?fecha=2023-04-26`)
+      .get(`http://localhost:3050/gerente/movMineral?fecha=${fecha}`)
       .then((result) => {
         setTableData(result.data);
         setStatusMineral("resolved");
@@ -46,7 +51,7 @@ const ReporteBascula = ({ rol }) => {
       });
     // Segunda solicitud GET
     axios
-      .get(`http://localhost:3050/gerente/embarque?fecha=2023-04-26`)
+      .get(`http://localhost:3050/gerente/embarque?fecha=${fecha}`)
       .then((result) => {
         setTableDataConc(result.data);
         setStatusEmbarque("resolved");
@@ -94,7 +99,6 @@ const ReporteBascula = ({ rol }) => {
     // Mi nuevo arreglo para formatear la información de la consulta
     var arrayBascula = [];
 
-
     // EMBARQUES DATA
     // Variables para calcular totales
     var totalPb = 0;
@@ -121,7 +125,7 @@ const ReporteBascula = ({ rol }) => {
       // MOVIMIENTO DE MINERAL DATA
       // For para calcular totales y añadir valores al objeto objetoEmbarque
       for (var i = 0; i < tableData.length; i++) {
-        objetoBascula.nombre = tableData[i].mina;
+        objetoBascula.nombre = tableData[i].nombre;
         if(tableData[i].acarreo) { // Si existe el registro
           totalAcarreo += tableData[i].acarreo;
           objetoBascula.col1 = tableData[i].acarreo.toFixed(2);
@@ -173,10 +177,10 @@ const ReporteBascula = ({ rol }) => {
       
       // For para formatear la data para las GRÁFICAS PAI
       for (var i = 0; i < tableData.length; i++) {
-        pieInicial.push([arrayBascula[i].nombre, totalInicial.toFixed(2)]);
-        pieAcarreo.push([arrayBascula[i].nombre, totalAcarreo.toFixed(2)]);
-        pieTrituradas.push([arrayBascula[i].nombre, totalTrituradas.toFixed(2)]);
-        piePatios.push([arrayBascula[i].nombre, totalPatios.toFixed(2)]);
+        pieInicial.push([arrayBascula[i].nombre, parseFloat(arrayBascula[i].col1)]);
+        pieAcarreo.push([arrayBascula[i].nombre, parseFloat(arrayBascula[i].col2)]);
+        pieTrituradas.push([arrayBascula[i].nombre, parseFloat(arrayBascula[i].col3)]);
+        piePatios.push([arrayBascula[i].nombre, parseFloat(arrayBascula[i].col4)]);
       }
     }
    
@@ -275,7 +279,7 @@ const ReporteBascula = ({ rol }) => {
               {myMineral ? (
                 <div id="movimientoMineralArea">
                   <div style={{ display: "flex", justifyContent: "center" }}>
-                    <Tabla data={arrayEmbarques} encabezado={encabezadoBascula} />
+                    <Tabla data={arrayBascula} encabezado={encabezadoBascula} />
                   </div>
 
                   <div className="contentPie">
