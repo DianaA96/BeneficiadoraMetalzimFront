@@ -10,9 +10,13 @@ import "../styles/button.css";
 import axios from "axios";
 import NoDataFound from "./NoDataFound";
 import moment from "moment/moment";
+import {PDFViewer} from '@react-pdf/renderer';
+import ReporteMovimientoMineralBascula from '../components/reports/ReporteMovimientoMineralBascula';
 
 const ReporteBascula = ({ rol }) => {
 
+  const width = window.innerWidth; 
+  const height = window.innerHeight; 
   let { fecha } = useParams();
   const fechaDate = moment(fecha)
 
@@ -33,6 +37,7 @@ const ReporteBascula = ({ rol }) => {
   const [statusEmbarque, setStatusEmbarque] = useState("idle");
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
+  const [ printView, setPrintView ] = useState(false);
 
   var check = 0;
 
@@ -257,7 +262,11 @@ const ReporteBascula = ({ rol }) => {
 
     return (
       <>
-        <header>
+        {statusMineral == "resolved" && statusEmbarque == "resolved" && printView == true ? <PDFViewer width={width} height={height} className="app" >
+            <ReporteMovimientoMineralBascula tableData={arrayBascula} tableDataConc={arrayEmbarques}/>
+        </PDFViewer>:
+        <>
+          <header>
           <HeaderDiseno
             titulo={"Reporte movimiento de mineral báscula"}
             subtitulo={
@@ -353,7 +362,7 @@ const ReporteBascula = ({ rol }) => {
             <button
               className="guardarProgreso"
               style={{ width: "15rem", backgroundColor: "#817C7C" }}
-              onClick={() => window.print() }
+              onClick={() => setPrintView(true) }
             >
               Imprimir
               <span className="separatorButton" />
@@ -367,7 +376,8 @@ const ReporteBascula = ({ rol }) => {
             </Link>
           </div>
         </body>
-
+        </>
+        }
         <footer>
           {
             /**Menu Admin */
