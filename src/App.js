@@ -45,20 +45,20 @@ function App() {
       <Route path='/agregar-usuario' element={<Registro/>} />
       <Route path='/usuario/:idUsuario' element={<EditarUsuario/>} />
       <Route path='/historial-bascula_adminview' element={<HistorialBascula rol="admin"/>} />
-      <Route path='/reporte-bascula_adminview' element={<ReporteBascula rol="admin"/>} />
+      <Route path='/reporte-bascula_adminview/:fecha' element={<ReporteBascula rol="admin"/>} />
      
     
       {/*Flujo Gerente*/}
       <Route path='/gerencia' element={<LandingPage strips={2}/> } />
       <Route path='/historial-bascula_managerview' element={<HistorialBascula rol="gerente"/>} />
       <Route path='/historial-gerencia_managerview' element={<HistorialGerencia rol="gerente"/>} />
-      <Route path='/reporte-bascula_managerview' element={<ReporteBascula rol="gerente"/>} />
+      <Route path='/reporte-bascula_managerview/:fecha' element={<ReporteBascula rol="gerente"/>} />
       <Route path='/reporte/:idReporte' element={<ReporteGerencial rol="gerente"/>} />
 
 
       {/*Flujo Bascula*/}
       <Route path='/bascula' element={<LandingPage strips={3}/> } />
-      <Route path='/reporte-bascula_basculaview' element={<ReporteBascula rol="bascula"/>} />
+      <Route path='/reporte-bascula_basculaview/:fecha' element={<ReporteBascula rol="bascula"/>} />
       <Route path='/historial-bascula_basculaview' element={<HistorialBascula rol="bascula"/>} />
       <Route path='/reporte-movimiento-mineral' element={<MovimientoMineral/>} />
 
