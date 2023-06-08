@@ -39,6 +39,20 @@ function ReporteGerencial() {
 
     useEffect(()=>{
         setStatus('loading')
+        axios.get(`http://localhost:3050/gerente/reporteBascula?nombreMina='Minesites'&fecha='2023-04-26'`)
+          .then((result)=>{
+            setStatus('resolved')
+            setMovmin(result.data)
+          })
+          .catch((error)=>{
+            setError(error)
+            setStatus('error')
+          })
+      },[]);
+
+
+      useEffect(()=>{
+        setStatus('loading')
         axios.get(`http://localhost:3050/gerente/reporteBascula?nombreMina=Minesites`)
           .then((result)=>{
             setStatus('resolved')
@@ -49,7 +63,8 @@ function ReporteGerencial() {
             setStatus('error')
           })
       },[]);
-      //console.log("Balance", balance)
+
+      console.log("MovMin", movmin)
 
 
 
@@ -73,42 +88,51 @@ function ReporteGerencial() {
             if (i == "Cabeza") {
                 for(let j in balance[i]) {
                     if (j !="tms" && j !="Fe" && j != "Sb" && j != "As") {
-                        tempCabeza.push(balance[i][j]*balance[i]["tms"])
+                        if (j=="Ag")
+                            tempCabeza.push(((balance[i][j]*balance[i]["tms"])/1000))
+                        else
+                            tempCabeza.push(((balance[i][j]*balance[i]["tms"])/100))
                     }
                 }
             }
             if (i == "Zn") {
                 for(let j in balance[i]) {
                     if (j !="tms" && j !="Fe" && j != "Sb" && j != "As") {
-                        tempZn.push(balance[i][j]*balance[i]["tms"])
-                    }
+                        if (j=="Ag")
+                            tempZn.push(((balance[i][j]*balance[i]["tms"])/1000))
+                        else
+                            tempZn.push(((balance[i][j]*balance[i]["tms"])/100))                    }
                 }
             }
             if (i == "Pb") {
                 for(let j in balance[i]) {
                     if(j !="tms" && j !="Fe" && j != "Sb" && j != "As") {
-                        tempPb.push(balance[i][j]*balance[i]["tms"])
-                    }
+                        if (j=="Ag")
+                            tempPb.push(((balance[i][j]*balance[i]["tms"])/1000))
+                        else
+                            tempPb.push(((balance[i][j]*balance[i]["tms"])/100))                    }
                 }
             }
             if (i == "Colas") {
                 for(let j in balance[i]) {
                     if (j !="tms" && j !="Fe" && j != "Sb" && j != "As") {
-                        tempColas.push(balance[i][j]*balance[i]["tms"])
-                    }
+                        if (j=="Ag")
+                            tempColas.push(((balance[i][j]*balance[i]["tms"])/1000))
+                        else
+                            tempColas.push(((balance[i][j]*balance[i]["tms"])/100))                    }
                 }
             }
         }
 
         let sum2 = [];
 
-        console.log(tempCabeza)
+        //console.log(tempCabeza)
 
         for ( let k=0 ; k < tempCabeza.length ;k++) {
             sum2.push(tempCabeza[k] + tempZn[k] + tempPb[k] + tempColas[k])
         }
 
-        console.log("SUMAAAAA -> ", sum2 );
+        //console.log("SUMAAAAA -> ", sum2 );
         const entries = Object.entries(balance);
         
         return(
