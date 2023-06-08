@@ -120,7 +120,8 @@ function HistorialGerencia({ rol }) {
   var check = 0;
   useEffect(() => {
     setStatus("loading");
-    axios.get(`http://localhost:3050/gerente/grapHistoricas`).then((result) => {
+    axios.get(`http://localhost:3050/gerente/grapHistoricas`)
+    .then((result) => {
       setDataGraficas(result.data);
     });
     axios
