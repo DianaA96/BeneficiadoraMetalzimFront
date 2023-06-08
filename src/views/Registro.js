@@ -14,9 +14,9 @@ function Registro() {
     nombre: "",
     apellidoP: "",
     apellidoM: "",
-    telfono: "",
+    telefono: "",
     email: "",
-    password: "kinkinasty",
+    password: "",
     idRol:"",
   });
 
@@ -92,7 +92,7 @@ function Registro() {
                   <input type="text"  className="inputRegistro" onChange={handleChange} id="apellidoM" placeholder='Apellido Materno' name="apellidoM" required/>
                     
                   <div for="nombres">Telefono</div>
-                  <input type="tel"   className="inputRegistro" onChange={handleChange} id="telfono"  placeholder='Telefono' name="telfono" required/>
+                  <input type="tel"   className="inputRegistro" onChange={handleChange} id="telefono"  placeholder='Telefono' name="telefono" required/>
               </div>
             </c>
             <div>

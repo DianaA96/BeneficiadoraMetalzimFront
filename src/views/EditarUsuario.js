@@ -122,7 +122,7 @@ function EditarUsuario() {
                     <input type="text"  className="inputRegistro" onChange={handleChange} id="apellidoM" placeholder='Apellido Materno' value={formValues.apellidoM} name="apellidoM" required/>
                       
                     <div for="nombres">Telefono</div>
-                    <input type="tel"   className="inputRegistro" onChange={handleChange} id="telfono"  placeholder='Telefono'value={formValues.telfono} name="telfono" required/>
+                    <input type="tel"   className="inputRegistro" onChange={handleChange} id="telefono"  placeholder='Telefono'value={formValues.telefono} name="telefono" required/>
                 </div>
               </c>
               <div>
