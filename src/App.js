@@ -62,10 +62,12 @@ function App() {
       <Route path='/reporte-bascula_basculaview/:fecha' element={<ReporteBascula rol="bascula"/>} />
       <Route path='/historial-bascula_basculaview' element={<HistorialBascula rol="bascula"/>} />
       <Route path='/reporte-movimiento-mineral' element={<MovimientoMineral/>} />
+      
+      {/*PDF Renderer */}
+      <Route path="/printView/:idVista" element={<PdfRenderer/>}/>
 
       {/*Pagina de Error 404*/}
       <Route path='*' element={<Error404/>} />
-      
     </Routes>
     </>
   );
