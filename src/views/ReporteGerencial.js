@@ -18,56 +18,57 @@ import axios from 'axios'
 
 function ReporteGerencial() {
 
-    const [status, setStatus ] = useState('idle')
-    const [error, setError] = useState(null);
+    const [status1, setStatus1 ] = useState('idle')
+    const [status2, setStatus2 ] = useState('idle')
+    const [status3, setStatus3 ] = useState('idle')
+
+    const [error, setError] = useState("idle");
     const [balance, setBalance] = useState({});
-    const [movmin, setMovmin] = useState(null);
-    const [liquidacion, setLiquidacion] = useState(null);
+
+    const [movmin, setMovmin] = useState({});
+    const [liquidacion, setLiquidacion] = useState({});
 
 
 
     useEffect(()=>{
-        setStatus('loading')
+        setStatus1('loading')
         axios.get(`http://localhost:3050/gerente/balance?fecha=2023-05-01&idMina=1`)
           .then((result)=>{
-            setStatus('resolved')
+            setStatus1('resolved')
             setBalance(result.data)
           })
           .catch((error)=>{
             setError(error)
-            setStatus('error')
+            setStatus1('error')
           })
       },[]);
 
     useEffect(()=>{
-        setStatus('loading')
+        setStatus2('loading')
         axios.get(`http://localhost:3050/gerente/reporteBascula?nombreMina='Minesites'&fecha='2023-04-26'`)
           .then((result)=>{
-            setStatus('resolved')
+            setStatus2('resolved')
             setMovmin(result.data)
           })
           .catch((error)=>{
             setError(error)
-            setStatus('error')
+            setStatus2('error')
           })
       },[]);
 
 
       useEffect(()=>{
-        setStatus('loading')
+        setStatus3('loading')
         axios.get(`http://localhost:3050/gerente/liquidacion?fecha=2023-04-29&idMina=1`)
           .then((result)=>{
-            setStatus('resolved')
+            setStatus3('resolved')
             setLiquidacion(result.data)
           })
           .catch((error)=>{
             setError(error)
-            setStatus('error')
+            setStatus3('error')
           })
       },[]);
-
-      console.log("Liqui", liquidacion[0].cu)
-
 
 
     
@@ -77,7 +78,8 @@ function ReporteGerencial() {
     const date = new Date();
     const options = {  year: 'numeric', month: 'long', day: 'numeric' };
     const fecha = date.toLocaleDateString("es-MX", options)
-    if (status == 'resolved') 
+
+    if (status1 == 'resolved' && status2 == 'resolved' && status3 == 'resolved') 
     {
 
         //Arreglos donde se calculará el CONTENIDO en Toneladas
