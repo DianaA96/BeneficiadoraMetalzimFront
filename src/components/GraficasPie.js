@@ -3,7 +3,7 @@ import "../styles/ReporteBascula.css";
 import { Chart } from "react-google-charts";
 
 function GraficasPie(props) {
-  console.log("propsPie", props)
+  //console.log("propsPie", props)
   var options = {
     title: props.tituloG,
     pieHole: 0.5,
