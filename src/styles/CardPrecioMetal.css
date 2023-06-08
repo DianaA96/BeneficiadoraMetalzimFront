@@ -59,6 +59,13 @@
     font-weight: bolder;
 }
 
+.icono-tendencia-down{
+    font-size: 1.4rem;
+    margin-right: 0.4rem;
+    color: #c45656;
+    font-weight: bolder;
+}
+
 .nombre-mineral{
     margin: 0;
 }
