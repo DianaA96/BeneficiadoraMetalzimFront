@@ -22,6 +22,8 @@ function ReporteGerencial() {
     const [error, setError] = useState(null);
     const [balance, setBalance] = useState({});
     const [movmin, setMovmin] = useState(null);
+    const [liquidacion, setLiquidacion] = useState(null);
+
 
 
     useEffect(()=>{
@@ -53,10 +55,10 @@ function ReporteGerencial() {
 
       useEffect(()=>{
         setStatus('loading')
-        axios.get(`http://localhost:3050/gerente/reporteBascula?nombreMina=Minesites`)
+        axios.get(`http://localhost:3050/gerente/liquidacion?fecha=2023-04-29&idMina=1`)
           .then((result)=>{
             setStatus('resolved')
-            setMovmin(result.data)
+            setLiquidacion(result.data)
           })
           .catch((error)=>{
             setError(error)
@@ -64,7 +66,7 @@ function ReporteGerencial() {
           })
       },[]);
 
-      console.log("MovMin", movmin)
+      console.log("Liqui", liquidacion[0].cu)
 
 
 
@@ -77,13 +79,16 @@ function ReporteGerencial() {
     const fecha = date.toLocaleDateString("es-MX", options)
     if (status == 'resolved') 
     {
+
+        //Arreglos donde se calculará el CONTENIDO en Toneladas
+        //Recordamos que la formula es Elemento*TMS/100 *1000 en caso de que sea Ag
         let tempCabeza=[]
         let tempZn=[]
         let tempPb=[]
         let tempColas=[]
 
 
-
+        //Recorremos el arreglo realizando la verificación y realizando la operación pertinente.
         for(let i in balance){
             if (i == "Cabeza") {
                 for(let j in balance[i]) {
@@ -124,15 +129,23 @@ function ReporteGerencial() {
             }
         }
 
-        let sum2 = [];
+        let TotalConcentrados = [];
 
         //console.log(tempCabeza)
 
+        //Con este ciclo creamos un arreglo de los totales de cada concentrada siguiendo el siguiente orden [Ag, Pb, Zn, Cu]
         for ( let k=0 ; k < tempCabeza.length ;k++) {
-            sum2.push(tempCabeza[k] + tempZn[k] + tempPb[k] + tempColas[k])
+            TotalConcentrados.push(tempZn[k] + tempPb[k] + tempColas[k])
         }
 
-        //console.log("SUMAAAAA -> ", sum2 );
+        //Ahora con un ciclo realizamos el calculo del total de recuperación
+        let TotalRecuperacion = [];
+        for (let k=0 ; k < tempZn.length  ;k++) {
+            TotalRecuperacion.push( ((tempColas[k] *100)/TotalConcentrados[k]) + ((tempZn[k] *100)/TotalConcentrados[k]) +((tempPb[k] *100)/TotalConcentrados[k]))
+        }
+
+
+        //console.log("SUMAAAAA -> ", TotalRecuperacion );
         const entries = Object.entries(balance);
         
         return(
@@ -210,7 +223,7 @@ function ReporteGerencial() {
                     console.log(`Clave: ${clave}`);
                     console.log(`Valor:`, valor);
                     return(
-                        <TablaReporteGerencial  Valor={valor} Clave={clave} Suma = {sum2}/>
+                        <TablaReporteGerencial  Valor={valor} Clave={clave} totalConcentrados = {TotalConcentrados} tmsCabeza={balance.Cabeza["tms"]}/>
                     )
                 })
             }
@@ -225,46 +238,22 @@ function ReporteGerencial() {
 
                 <div className="card-containerRG">
                 <div className="boxRG">
-                        <CardReporteGerencial style='light' precio='Ag' mineral='123'></CardReporteGerencial>
+                        <CardReporteGerencial style='light' precio='Ag' mineral={TotalConcentrados[0].toFixed(2)}></CardReporteGerencial>
                     </div>
                     
                     <div className="boxRG">
-                        <CardReporteGerencial style='dark' precio='Cu' mineral='234'></CardReporteGerencial>
+                        <CardReporteGerencial style='dark' precio='Cu' mineral={TotalConcentrados[1].toFixed(2)}></CardReporteGerencial>
                     </div>
                     
                     <div className="boxRG">
-                        <CardReporteGerencial style='light' precio='Zn' mineral='342'></CardReporteGerencial>
+                        <CardReporteGerencial style='light' precio='Zn' mineral={TotalConcentrados[2].toFixed(2)}></CardReporteGerencial>
                     </div>
                     
                     <div className="boxRG">
-                        <CardReporteGerencial style='dark' precio='Pb' mineral='432'></CardReporteGerencial>
+                        <CardReporteGerencial style='dark' precio='Pb' mineral={TotalConcentrados[3].toFixed(2)}></CardReporteGerencial>
                     </div>
                 </div>
             </div>
-
-                <div className="seccion-reporte">
-                    <div className="header-seccion-reporte">
-                        <div className='secc-1-full'>
-                            <h3 className="p1000 titulo-seccion">Precio de los metales (USD)</h3>
-                            <div className="sep-seccion-full"></div>
-                        </div>
-                    </div>
-    
-                    <div className="cont-preciosmetal">
-                        <CardPrecioMetal style='light' precio='40.65' mineral='Oro (Kitco)'></CardPrecioMetal>
-                        <CardPrecioMetal style='light' precio='36.1' mineral='Plata (Kitco)'></CardPrecioMetal>
-                        
-    
-                        <div className="subcont-preciosmetal">
-                        <CardPrecioMetal style='dark' precio='28.12' mineral='Plomo (LME)'></CardPrecioMetal>
-                        <CardPrecioMetal style='dark' precio='18.23' mineral='Zinc (LME)'></CardPrecioMetal>
-                        <CardPrecioMetal style='dark' precio='26.65' mineral='Cobre (LME)'></CardPrecioMetal>
-                        </div>
-                    </div>
-                    
-                    
-                </div>
-    
                 <div className="seccion-reporte">
                     <div className="header-seccion-reporte">
                         <div className='secc-1-full'>
@@ -279,10 +268,10 @@ function ReporteGerencial() {
                             <div className="movmineral-item">
                                 <p className="bold p800 subtitulo-movmineral" style={{marginBottom: "2rem"}}> Hoy ({fecha})</p>
                                 <p className="n700">Concentrado Zinc (Zn)</p>
-                                <p className="fontRGValue">320</p>
+                                <p className="fontRGValue">{liquidacion[0].zn.toFixed(2)}</p>
                                 <p className="n700">Concentrado Cobre (Cu)</p>
-                                <p className="fontRGValue">320</p>
-                                <p className="n800 bold">Total: $0.00</p>
+                                <p className="fontRGValue">{liquidacion[0].cu.toFixed(2)}</p>
+                                <p className="n800 bold">Total: ${liquidacion[0].totalHoy.toFixed(2)}</p>
                             </div> 
                         </div>
     
@@ -292,10 +281,10 @@ function ReporteGerencial() {
                             <div className="movmineral-item">
                                 <p className="bold p800 subtitulo-movmineral" style={{marginBottom: "1rem"}}>A la fecha</p>
                                 <p className="n700">Concentrado Zinc (Zn)</p>
-                                <p className="fontRGValue">320</p>
+                                <p className="fontRGValue">{liquidacion[0].acumuladoCu.toFixed(2)}</p>
                                 <p className="n700">Concentrado Cobre (Cu)</p>
-                                <p className="fontRGValue">320</p>
-                                <p className="n800 bold">Total: $0.00</p>
+                                <p className="fontRGValue">{liquidacion[0].acumuladoZn.toFixed(2)}</p>
+                                <p className="n800 bold">Total: ${liquidacion[0].totalAcumulado.toFixed(2)}</p>
                             </div> 
                         </div>
     
@@ -311,7 +300,7 @@ function ReporteGerencial() {
                         </div>
                         <div className="cont-valormineral">
                             <div className="item-valormineral">
-                                <h1 className="blanco bold">$28.42</h1>
+                                <h1 className="blanco bold">${liquidacion[0].valorHoy.toFixed(2)}</h1>
                                 <p className="n800 bold">Hoy</p>
                             </div>
                             <div className="item-valormineral">

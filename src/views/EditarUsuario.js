@@ -6,15 +6,19 @@ import '../styles/Registro.css';
 import HS from '../components/HeaderSencillo'
 import Menu from '../components/Menu'
 import axios from 'axios'
+import ModalExito from '../components/ModalDinamico'
+import { useNavigate } from "react-router-dom";
 
 function EditarUsuario() {
   const params = useParams();
+  let navigate = useNavigate();
 
   const [status, setStatus ] = useState('idle')
   const [error, setError] = useState(null);
   const [formValues, setFormValues] = useState(null);
 
   const [modalVisibility, setModalVisibility] = useState(false)
+  const [ modalErrorVisibility, setModalErrorVisibility ] = useState(false)
 
   useEffect(()=>{
     setStatus('loading')
@@ -22,18 +26,12 @@ function EditarUsuario() {
       .then((result)=>{
         setStatus('resolved')
         setFormValues(result.data[0])
-        showModal()
       })
       .catch((error)=>{
         setError(error)
         setStatus('error')
       })
   },[])
-
-  function showModal(){
-    setModalVisibility(true)
-  }
-
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,12 +44,12 @@ function EditarUsuario() {
       }
     })
     .then((result)=>{
-        alert('Usuario actualizado correctamente');
+        setModalVisibility(true)      
         console.log("HEEEEEEEEEEEEY -->", formValues, params.idUsuario)
 
     })
     .catch(error =>{
-        alert('No se pudo actualizar el usuario:', error);
+      setModalErrorVisibility(true)
     })
 
   }
@@ -153,7 +151,8 @@ function EditarUsuario() {
           </div>
         </div>
         <Menu rol="admin" activeTab="group" landing='/admin'></Menu>
-        
+        {modalVisibility ? <ModalExito setModalVisibility = {setModalVisibility} submitFunction={()=>navigate(`/usuarios`)} tipo="exito" titulo="Exito" mensaje="El usuario ha sido actualizado de manera exitosa"></ModalExito>:null}
+        {modalErrorVisibility ? <ModalExito submitFunction={()=>setModalErrorVisibility(false)} setModalVisibility = {setModalErrorVisibility} tipo="error" titulo="Error!" mensaje={`El usuario no ha sido actualizado`}></ModalExito>:null}
       </div>
       
     );
