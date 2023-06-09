@@ -3,7 +3,7 @@ import "../styles/ReporteBascula.css";
 import { Chart } from "react-google-charts";
 
 function GraficasPie(props) {
-  //console.log("propsPie", props)
+  console.log("propsPie", props)
   var options = {
     title: props.tituloG,
     pieHole: 0.5,
@@ -15,16 +15,23 @@ function GraficasPie(props) {
       0: { color: '#EF7B30' },
       1: { color: '#FEB731' },
       2: { color: '#F4A875' },
+      3: { color: '#F8C5A3' },
+      4: { color: '#F18B47' },
     },
   };
 
   var data = [
-    ["Element", "Toneladas", { role: "style" }],
-    [props.data[0][0], props.data[0][1], "#F8C5A3"],
-    [props.data[1][0], props.data[1][1], "#F8C5A3"],
-    [props.data[2][0], props.data[2][1], "#F8C5A3"],
+    ["Element", "Toneladas"],
   ];
-
+  // for para agregar datos de props.data a la data que ocupa la gráfica
+  for(var i = 0; i < props.long; i++){
+   if(props.data[i][1] < 0){ // Si el número es negativo
+    data.push([props.data[i][0], (props.data[i][1]*(-1))])
+   } else {
+    data.push([props.data[i][0], props.data[i][1]])
+   }
+  }
+ // console.log("data", data);
   return (
     <div className="contGraficasPie">
       <Chart

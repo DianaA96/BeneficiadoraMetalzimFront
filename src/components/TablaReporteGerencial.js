@@ -13,7 +13,9 @@ function TablaReporteGerencial(props) {
     
     const values = props.Valor;
     const titulo = props.Clave
-    //console.log("Valores de ",titulo, "son: ", values);
+    const SumaConcentrados = props.Suma
+
+    console.log(SumaConcentrados);
 
     let sum =  0;
 
@@ -25,6 +27,11 @@ function TablaReporteGerencial(props) {
     let CuCont = values["tms"] * values["Cu"]/1000
     let ZnCont = values["tms"] * values["Zn"]/1000
     let PbCont = values["tms"] * values["Pb"]/1000
+
+    let AgAvg = values["tms"] * values["Ag"]/1000
+    let CuAvg = values["tms"] * values["Cu"]/1000
+    let ZnAvg = values["tms"] * values["Zn"]/1000
+    let PbAvg = values["tms"] * values["Pb"]/1000
 
 
 

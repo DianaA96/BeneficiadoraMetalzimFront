@@ -21,6 +21,7 @@ import RedireccionCargo from './views/RedireccionCargo';
 import MovimientoMineral from './views/MovimientoMineral';
 import Error404 from './views/Error404';
 import ReporteGerencial from './views/ReporteGerencial';
+import PdfRenderer from './components/pdfRenderer';
 
 function App() {
   return (

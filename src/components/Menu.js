@@ -19,7 +19,7 @@ function Menu(props) {
     laboratorista: [["Llenar reporte","science", '/formulario-laboratorio'], ["Historial", "history", '/historial-analisis']],
     admin: [["Reporte Gerencial","summarize", "/formulario-gerencial"], ["Admin. Usuarios", "group", '/usuarios'], ["Reporte Báscula","scale", '/historial-bascula_adminview'], ["Créditos", "favorite"]],
     gerente: [["Reporte Gerencial","summarize", "/historial-gerencia_managerview"], ["Reporte Báscula", "scale","/historial-bascula_managerview"]],
-    bascula: [["Llenar reporte","scale", "/reporte-bascula_basculaview"], ["Historial", "history", "/historial-bascula_basculaview"]]
+    bascula: [["Llenar reporte","scale", "/reporte-movimiento-mineral"], ["Historial", "history", "/historial-bascula_basculaview"]]
   }
 
   let pestanas1 = tabs[props.rol].slice(0,(tabs[props.rol].length/2))

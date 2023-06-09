@@ -123,7 +123,6 @@ const ReporteBascula = ({ rol }) => {
       // For para calcular totales y añadir valores al objeto objetoEmbarque
       
       for (var i = 0; i < tableData.length; i++) {
-        console.log("tableData[i]", tableData[i]);
         objetoBascula.nombre = tableData[i].nombre;
         if(tableData[i].existenciaInicial) {
           totalInicial += tableData[i].existenciaInicial;
@@ -153,9 +152,7 @@ const ReporteBascula = ({ rol }) => {
           totalPatios += 0;
           objetoBascula.col4 = 0;
         }
-        console.log("objetoBascula", objetoBascula);
         arrayBascula.push(objetoBascula); // Añadiendo al arreglo el objetoBascula completo
-        console.log("arrayBascula", arrayBascula);
         objetoBascula = { // limpiando el objetoBascula
           nombre: "",
           col1: 0,
@@ -290,21 +287,28 @@ const ReporteBascula = ({ rol }) => {
                       <GraficasPie
                         tituloG={"Existencia inicial"}
                         data={pieInicial}
+                        long = {pieInicial.length}
                       />
                     </div>
                     <div>
-                      <GraficasPie tituloG={"Acarreo"} data={pieAcarreo} />
+                      <GraficasPie
+                      tituloG={"Acarreo"}
+                      data={pieAcarreo}
+                      long = {pieAcarreo.length}
+                      />
                     </div>
                     <div>
                       <GraficasPie
                         tituloG={"Trituradas"}
                         data={pieTrituradas}
+                        long = {pieTrituradas.length}
                       />
                     </div>
                     <div>
                       <GraficasPie
                         tituloG={"Existencia patios"}
                         data={piePatios}
+                        long = {piePatios.length}
                       />
                     </div>
                   </div>

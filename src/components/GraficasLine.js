@@ -3,6 +3,7 @@ import { Chart } from "react-google-charts";
 import "../styles/Graficas.css";
 
 function GraficasLine(props) {
+  console.log("propsGrafica", props)
   const options = {
     chart: {
       title: props.titulo,
