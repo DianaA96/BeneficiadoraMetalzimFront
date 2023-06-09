@@ -5,6 +5,8 @@ import Menu from "../components/Menu"
 import "../styles/CRUDUsuarios.css"
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import ModalConfirmacion from '../components/ModalDinamico'
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -13,8 +15,14 @@ function CRUDUsuarios() {
 const [status, setStatus ] = useState('idle')
 const [error, setError] = useState(null);
 const [userList, setUserList] = useState(null);
+
+const [modalVisibility, setModalVisibility] = useState(false)
+const [ modalErrorVisibility, setModalErrorVisibility ] = useState(false)
+let navigate = useNavigate();
+
 let user = [];
 var check=0;
+
 
   useEffect(()=>{
     setStatus('loading')
@@ -31,20 +39,19 @@ var check=0;
 
   function handleDelete (id){
     setStatus('loading')
+
     axios.delete(`http://localhost:3050/admin/borrar/${id}`,)
     .then((result)=>{
         setStatus('resolved')
+        setModalVisibility(true)      
         alert("Usuario: " + result.data.nombre + " deshabilitado")
         
       })
       .catch((error)=>{
         setError(error)
         setStatus('error')
-        alert("Error " + error)
-        
+        setModalErrorVisibility(true)
       })
-
-      window.location.reload(true)
   }
 
   //const usuarios = user;
@@ -116,6 +123,8 @@ var check=0;
             </div>
             <ListaReportes columns={columns} data={user} titulo="Todos los usuarios"></ListaReportes>
             <Menu rol="admin" activeTab="group" landing='/admin'></Menu>
+            {modalVisibility ? <ModalConfirmacion setModalVisibility = {setModalVisibility} submitFunction={()=>navigate(`/usuarios`)} tipo="exito" titulo="Exito" mensaje="El usuario ha sido generado de manera exitosa"></ModalConfirmacion>:null}
+            {modalErrorVisibility ? <ModalConfirmacion submitFunction={()=>setModalErrorVisibility(false)} setModalVisibility = {setModalErrorVisibility} tipo="error" titulo="Error!" mensaje={`El usuario no ha podido ser eliminado`}></ModalConfirmacion>:null} 
         </>
       )
     }

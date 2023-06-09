@@ -5,7 +5,8 @@ import '../styles/Registro.css';
 import HS from '../components/HeaderSencillo'
 import Menu from '../components/Menu'
 import axios from 'axios'
-
+import ModalExito from '../components/ModalDinamico'
+import { useNavigate } from "react-router-dom";
 
 
 function Registro() {
@@ -19,10 +20,12 @@ function Registro() {
     password: "",
     idRol:"",
   });
+  let navigate = useNavigate();
+  const [modalVisibility, setModalVisibility] = useState(false)
+  const [ modalErrorVisibility, setModalErrorVisibility ] = useState(false)
 
 
   const handleSubmit = (event) => {
-    event.preventDefault();
 
     axios({
       method: 'post',
@@ -33,11 +36,10 @@ function Registro() {
       }
     })
     .then((result)=>{
-        alert('Operador registrado correctamente');
-
+      setModalVisibility(true)      
     })
     .catch(error =>{
-        alert('No se pudo registrar el operador:', error);
+        setModalErrorVisibility(true)
     }) 
 
    console.log(formValues)
@@ -120,6 +122,8 @@ function Registro() {
         </div>
       </div>
       <Menu rol="admin" activeTab="group" landing='/admin'></Menu>
+      {modalVisibility ? <ModalExito setModalVisibility = {setModalVisibility} submitFunction={()=>navigate(`/usuarios`)} tipo="exito" titulo="Exito" mensaje="El usuario ha sido generado de manera exitosa"></ModalExito>:null}
+      {modalErrorVisibility ? <ModalExito submitFunction={()=>setModalErrorVisibility(false)} setModalVisibility = {setModalErrorVisibility} tipo="error" titulo="Error!" mensaje={`El usuario no ha sido creado`}></ModalExito>:null}
     </div>
   );
 }

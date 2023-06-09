@@ -13,9 +13,10 @@ function TablaReporteGerencial(props) {
     
     const values = props.Valor;
     const titulo = props.Clave
-    const SumaConcentrados = props.Suma
+    const SumaConcentrados = props.totalConcentrados
+    const Relacion =  values["tms"] / props.tmsCabeza
 
-    console.log(SumaConcentrados);
+    console.log("SUMA concentrados", SumaConcentrados);
 
     let sum =  0;
 
@@ -24,15 +25,17 @@ function TablaReporteGerencial(props) {
     }
 
     let AgCont = values["tms"] * values["Ag"]/1000
-    let CuCont = values["tms"] * values["Cu"]/1000
-    let ZnCont = values["tms"] * values["Zn"]/1000
-    let PbCont = values["tms"] * values["Pb"]/1000
+    let CuCont = values["tms"] * values["Cu"]/100
+    let ZnCont = values["tms"] * values["Zn"]/100
+    let PbCont = values["tms"] * values["Pb"]/100
 
-    let AgAvg = values["tms"] * values["Ag"]/1000
-    let CuAvg = values["tms"] * values["Cu"]/1000
-    let ZnAvg = values["tms"] * values["Zn"]/1000
-    let PbAvg = values["tms"] * values["Pb"]/1000
 
+    let AgAvg = (AgCont * 100) / SumaConcentrados[0] 
+    let PbAvg = (PbCont * 100) / SumaConcentrados[1] 
+    let ZnAvg = (ZnCont * 100) / SumaConcentrados[2] 
+    let CuAvg = (CuCont * 100) / SumaConcentrados[3] 
+
+    let test = 10
 
 
 
@@ -64,7 +67,7 @@ function TablaReporteGerencial(props) {
                 <div class="cellRG fontRGMin" >Ag</div>
                 <div class="cellRG">{values.Ag}</div>
                 <div class="cellRG"> {AgCont} g/t</div>
-                <div class="cellRG">0 g/t</div>
+                <div class="cellRG">{AgAvg.toFixed(2)} g/t</div>
                 </div>
 
                 <div class="rowRG">
@@ -72,10 +75,10 @@ function TablaReporteGerencial(props) {
                 <div class="cellRG">{values.Cu}</div>
                 <div class="cellRG">{CuCont}</div>
 
-                <p style={{flex:"0.30"}}>10%</p>
+                <p style={{flex:"0.30"}}>{CuAvg.toFixed(2)}%</p>
                 <p style={{flex:"0.80"}}>
                     <div class="progress-bar">
-                        <diV class="progress" style={{width: "10%",textAlign: "center", color: "gray"}}></diV>
+                        <div class="progress" style={{width: `${CuAvg}%`,textAlign: "center", color: "gray"}}></div>
                     </div>
                 </p>
 
@@ -86,10 +89,10 @@ function TablaReporteGerencial(props) {
                 <div class="cellRG">{values.Zn}</div>
                 <div class="cellRG">{ZnCont}</div>
                 
-                <p style={{flex:"0.30"}}>100%</p>
+                <p style={{flex:"0.30"}}>{ZnAvg.toFixed(2)}%</p>
                 <p style={{flex:"0.80"}}>
                     <div class="progress-bar">
-                        <diV class="progress" style={{width: "100%",textAlign: "center", color: "gray"}}></diV>
+                        <div class="progress" style={{width:`${ZnAvg}%`,textAlign: "center", color: "gray"}}></div>
                     </div>
                 </p>
 
@@ -101,10 +104,10 @@ function TablaReporteGerencial(props) {
                 <div class="cellRG">{values.Pb}</div>
                 <div class="cellRG">{PbCont}</div>
 
-                <p style={{flex:"0.30"}}>50%</p>
+                <p style={{flex:"0.30"}}>{PbAvg.toFixed(2)}%</p>
                 <p style={{flex:"0.80"}}>
                     <div class="progress-bar">
-                        <diV class="progress" style={{width: "50%",textAlign: "center", color: "gray"}}></diV>
+                        <div class="progress" style={{width: `${PbAvg}%`,textAlign: "center", color: "gray"}}></div>
                     </div>
                 </p>
 
@@ -141,9 +144,7 @@ function TablaReporteGerencial(props) {
             </div>
             <div class="cardsRG">
                 <CardReporteGerencial style='light' precio={values.tms} mineral='TMS'></CardReporteGerencial>
-                <CardReporteGerencial style='dark' precio='954 ton' mineral='CONC pb'></CardReporteGerencial>
-                <CardReporteGerencial style='light' precio='3.2' mineral='Relación concentrado'></CardReporteGerencial>
-                <CardReporteGerencial style='dark' precio='954 ton' mineral='CONC pb'></CardReporteGerencial>
+                <CardReporteGerencial style='dark' precio={Relacion} mineral='Relación concentrado'></CardReporteGerencial>
 
             </div>
         </div>
