@@ -299,21 +299,28 @@ const ReporteBascula = ({ rol }) => {
                       <GraficasPie
                         tituloG={"Existencia inicial"}
                         data={pieInicial}
+                        long = {pieInicial.length}
                       />
                     </div>
                     <div>
-                      <GraficasPie tituloG={"Acarreo"} data={pieAcarreo} />
+                      <GraficasPie
+                      tituloG={"Acarreo"}
+                      data={pieAcarreo}
+                      long = {pieAcarreo.length}
+                      />
                     </div>
                     <div>
                       <GraficasPie
                         tituloG={"Trituradas"}
                         data={pieTrituradas}
+                        long = {pieTrituradas.length}
                       />
                     </div>
                     <div>
                       <GraficasPie
                         tituloG={"Existencia patios"}
                         data={piePatios}
+                        long = {piePatios.length}
                       />
                     </div>
                   </div>
