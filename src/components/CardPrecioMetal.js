@@ -30,7 +30,7 @@ function CardPrecioMetal(props) {
 
     axios({
         method: 'post',
-        url: `http://localhost:3050/admin/elemento-precio`,
+        url: `https://metalzim-webapp.azurewebsites.net/admin/elemento-precio`,
         data: {...objeto},
         headers: {
           'Content-type': 'application/json; charset=UTF-8',

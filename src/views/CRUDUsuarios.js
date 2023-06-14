@@ -26,7 +26,7 @@ var check=0;
 
   useEffect(()=>{
     setStatus('loading')
-    axios.get(`http://localhost:3050/admin/List`)
+    axios.get(`https://metalzim-webapp.azurewebsites.net/admin/List`)
       .then((result)=>{
         setStatus('resolved')
         setUserList(result.data)
@@ -40,7 +40,7 @@ var check=0;
   function handleDelete (id){
     setStatus('loading')
 
-    axios.delete(`http://localhost:3050/admin/borrar/${id}`,)
+    axios.delete(`https://metalzim-webapp.azurewebsites.net/admin/borrar/${id}`,)
     .then((result)=>{
         setStatus('resolved')
         setModalVisibility(true)      

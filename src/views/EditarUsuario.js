@@ -22,7 +22,7 @@ function EditarUsuario() {
 
   useEffect(()=>{
     setStatus('loading')
-    axios.get(`http://localhost:3050/admin/getEdit/${params.idUsuario}`)
+    axios.get(`https://metalzim-webapp.azurewebsites.net/admin/getEdit/${params.idUsuario}`)
       .then((result)=>{
         setStatus('resolved')
         setFormValues(result.data[0])
@@ -37,7 +37,7 @@ function EditarUsuario() {
     event.preventDefault();
     axios({
       method: 'patch',
-      url: `http://localhost:3050/admin/editar/${params.idUsuario}`,
+      url: `https://metalzim-webapp.azurewebsites.net/admin/editar/${params.idUsuario}`,
       data: formValues,
       headers: {
           'Content-type': 'application/json; charset=UTF-8',

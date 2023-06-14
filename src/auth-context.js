@@ -11,7 +11,7 @@ export function AuthProvider(props) {
 
     function login({email, password}) {
         axios( {
-            url: 'http://localhost:3050/usuario/login',
+            url: 'https://metalzim-webapp.azurewebsites.net/usuario/login',
             method: 'post',
             data: {
                 email: email,

@@ -19,7 +19,7 @@ const ReporteLaboratorio = () => {
     useEffect(()=>{
         setStatus('loading')
         
-        axios.get(`http://localhost:3050/lab/labTable?mina=${mina}&planta=planta 1&fecha=${fecha}`)
+        axios.get(`https://metalzim-webapp.azurewebsites.net/lab/labTable?mina=${mina}&planta=planta 1&fecha=${fecha}`)
           .then((result)=>{
             setStatus('resolved')
             setAnalisisData(result.data)

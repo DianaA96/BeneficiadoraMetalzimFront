@@ -536,7 +536,7 @@ function FormularioGerencial(props) {
         console.log(objeto)
         axios({
             method: 'post',
-            url: `http://localhost:3050/admin/createReport`,
+            url: `https://metalzim-webapp.azurewebsites.net/admin/createReport`,
             data: objeto,
             headers: {
               'Content-type': 'application/json; charset=UTF-8',
@@ -558,7 +558,7 @@ function FormularioGerencial(props) {
     }
     useEffect(() => {
         console.log(selectedOption, fechaReporte)
-        axios.get(`http://localhost:3050/gerente/reporteBascula?nombreMina=${selectedOption.label}&fecha=${fechaReporte}`)
+        axios.get(`https://metalzim-webapp.azurewebsites.net/gerente/reporteBascula?nombreMina=${selectedOption.label}&fecha=${fechaReporte}`)
         .then((result)=>{
             document.getElementById(8).disabled = true
             document.getElementById(32).disabled = true
@@ -566,11 +566,11 @@ function FormularioGerencial(props) {
             formularioParaPost.Concentrados.Cabeza.tms = parseInt(result.data.trituradas.trituradas);
             setGeneralData(result.data)
             setStatus('resolved')
-            axios.get(`http://localhost:3050/admin/Elementos/Actuales`)
+            axios.get(`https://metalzim-webapp.azurewebsites.net/admin/Elementos/Actuales`)
             .then((result)=>{
                 setPreciosElementos(result.data)
                 setStatus('resolved')
-                axios.get(`http://localhost:3050/admin/acumulados/${fechaReporte}`)
+                axios.get(`https://metalzim-webapp.azurewebsites.net/admin/acumulados/${fechaReporte}`)
             .then((result)=>{
                 setConcentradosAcum(result.data)
                 setLiquidacionTotalAcum(parseFloat(result.data.AcumuladoZn) + parseFloat(result.data.AcumuladoPb))

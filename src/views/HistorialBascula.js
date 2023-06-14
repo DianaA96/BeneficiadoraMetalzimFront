@@ -15,7 +15,7 @@ function HistorialBascula({ rol }) {
   useEffect(() => {
     setStatus("loading");
     axios
-      .get(`http://localhost:3050/gerente/movMineralTable`)
+      .get(`https://metalzim-webapp.azurewebsites.net/gerente/movMineralTable`)
       .then((result) => {
         setHistorial(result.data);
         setStatusTable("resolved");
@@ -69,7 +69,7 @@ function HistorialBascula({ rol }) {
   useEffect(() => {
     setStatus("loading");
     axios
-      .get(`http://localhost:3050/gerente/grapHistoricas`)
+      .get(`https://metalzim-webapp.azurewebsites.net/gerente/grapHistoricas`)
       .then((result) => {
         setDataGraficas(result.data);
         setStatus("resolved");

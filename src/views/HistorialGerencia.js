@@ -66,7 +66,7 @@ function HistorialGerencia({ rol }) {
   useEffect(() => {
     setStatus("loading");
     axios
-      .get(`http://localhost:3050/gerente/reporteTable`)
+      .get(`https://metalzim-webapp.azurewebsites.net/gerente/reporteTable`)
       .then((result) => {
         setDataTable(result.data);
         setStatusTable("resolved");
@@ -80,12 +80,12 @@ function HistorialGerencia({ rol }) {
 
   useEffect(() => {
     setStatus("loading");
-    axios.get(`http://localhost:3050/gerente/grapHistoricas`)
+    axios.get(`https://metalzim-webapp.azurewebsites.net/gerente/grapHistoricas`)
     .then((result) => {
       setDataGraficas(result.data);
     });
     axios
-      .get(`http://localhost:3050/gerente/grapLiquidacion`)
+      .get(`https://metalzim-webapp.azurewebsites.net/gerente/grapLiquidacion`)
       .then((result) => {
         setPrecioValor(result.data);
         setStatus("resolved");

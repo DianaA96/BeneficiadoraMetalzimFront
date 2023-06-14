@@ -32,7 +32,7 @@ function ReporteGerencial() {
 
     useEffect(()=>{
         setStatus1('loading')
-        axios.get(`http://localhost:3050/gerente/balance?fecha=2023-05-01&idMina=1`)
+        axios.get(`https://metalzim-webapp.azurewebsites.net/gerente/balance?fecha=2023-05-01&idMina=1`)
           .then((result)=>{
             setStatus1('resolved')
             setBalance(result.data)
@@ -45,7 +45,7 @@ function ReporteGerencial() {
 
     useEffect(()=>{
         setStatus2('loading')
-        axios.get(`http://localhost:3050/gerente/reporteBascula?nombreMina='Minesites'&fecha='2023-04-26'`)
+        axios.get(`https://metalzim-webapp.azurewebsites.net/gerente/reporteBascula?nombreMina='Minesites'&fecha='2023-04-26'`)
           .then((result)=>{
             setStatus2('resolved')
             setMovmin(result.data)
@@ -59,7 +59,7 @@ function ReporteGerencial() {
 
       useEffect(()=>{
         setStatus3('loading')
-        axios.get(`http://localhost:3050/gerente/liquidacion?fecha=2023-04-29&idMina=1`)
+        axios.get(`https://metalzim-webapp.azurewebsites.net/gerente/liquidacion?fecha=2023-04-29&idMina=1`)
           .then((result)=>{
             setStatus3('resolved')
             setLiquidacion(result.data)

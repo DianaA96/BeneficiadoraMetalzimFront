@@ -1475,7 +1475,7 @@ function FormularioLaboratorio(props) {
         console.log(objeto)
         axios({
             method: 'post',
-            url: `http://localhost:3050/lab/labReport`,
+            url: `https://metalzim-webapp.azurewebsites.net/lab/labReport`,
             data: {...objeto},
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',

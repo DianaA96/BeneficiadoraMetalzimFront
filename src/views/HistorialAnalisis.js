@@ -17,10 +17,10 @@ function HistorialAnalisis() {
   useEffect(() => {
     setStatus("loading");
     axios
-      .get(`http://localhost:3050/lab/labList?filter=1&order=ASC`)
+      .get(`https://metalzim-webapp.azurewebsites.net/lab/labList?filter=1&order=ASC`)
       .then((result) => {
         setAnalisisData(result.data);
-        axios.get(`http://localhost:3050/gerente/grapHistoricas`)
+        axios.get(`https://metalzim-webapp.azurewebsites.net/gerente/grapHistoricas`)
         .then((result) => {
           setDataGraficas(result.data);
           setStatus("resolved");

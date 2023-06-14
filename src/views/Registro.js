@@ -29,7 +29,7 @@ function Registro() {
 
     axios({
       method: 'post',
-      url: 'http://localhost:3050/admin/create',
+      url: 'https://metalzim-webapp.azurewebsites.net/admin/create',
       data: formValues,
       headers: {
           'Content-type': 'application/json; charset=UTF-8',

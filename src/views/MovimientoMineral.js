@@ -222,7 +222,7 @@ function MovimientoMineral(props) {
     
     useEffect( () => {
         setStatus('loading')
-        axios.get(`http://localhost:3050/operador/reporteD`)
+        axios.get(`https://metalzim-webapp.azurewebsites.net/operador/reporteD`)
         .then((result)=>{
             let arrALaFecha = 
                 [result.data[0].acarreo,
@@ -283,7 +283,7 @@ function MovimientoMineral(props) {
                 document.getElementById((h * 8) + 4).value = trituradasP1ALaFecha[h]
                 document.getElementById((h * 8) + 6).value = trituradasP2ALaFecha[h]
             }
-            axios.get("http://localhost:3050/operador/aLaFechaEmbarque")
+            axios.get("https://metalzim-webapp.azurewebsites.net/operador/aLaFechaEmbarque")
             .then((result) => {
                 let embarquesConcentrados = result.data
                 for (let idx = 0; idx < 16; idx++) {
@@ -621,7 +621,7 @@ function MovimientoMineral(props) {
         setLoaderVisibility(true)
         axios({
             method: 'post',
-            url: `http://localhost:3050/operador/insertMovimientoMineral`,
+            url: `https://metalzim-webapp.azurewebsites.net/operador/insertMovimientoMineral`,
             data: formularioParaPostMovimMineral,
             headers: {
                 'Content-type': 'application/json; charset=UTF-8',
@@ -630,7 +630,7 @@ function MovimientoMineral(props) {
         .then((result)=> {
             axios({
                 method: 'post',
-                url: `http://localhost:3050/operador/embarque`,
+                url: `https://metalzim-webapp.azurewebsites.net/operador/embarque`,
                 data: formularioParaPostEmbarque,
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',

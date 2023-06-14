@@ -45,14 +45,14 @@ const ReporteBascula = ({ rol }) => {
     setStatus("loading");
     // Primera solicitud GET
     axios
-      .get(`http://localhost:3050/gerente/movMineral?fecha=${fecha}`)
+      .get(`https://metalzim-webapp.azurewebsites.net/gerente/movMineral?fecha=${fecha}`)
       .then((result) => {
         setTableData(result.data);
         setStatusMineral("resolved");
       })
     // Segunda solicitud GET
     axios
-      .get(`http://localhost:3050/gerente/embarque?fecha=${fecha}`)
+      .get(`https://metalzim-webapp.azurewebsites.net/gerente/embarque?fecha=${fecha}`)
       .then((result) => {
         setTableDataConc(result.data);
         setStatusEmbarque("resolved");

@@ -18,7 +18,7 @@ const ModalReporteLaboratorio = (props) => {
     useEffect(()=>{
         setStatus('loading')
         
-        axios.get(`http://localhost:3050/lab/labTable?mina=${props.mina.value}&planta=planta 1&fecha=${props.fecha}`)
+        axios.get(`https://metalzim-webapp.azurewebsites.net/lab/labTable?mina=${props.mina.value}&planta=planta 1&fecha=${props.fecha}`)
           .then((result)=>{
             setStatus('resolved')
             setAnalisisData(result.data)
